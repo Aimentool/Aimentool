@@ -5,9 +5,16 @@
   <title>Aimentool – AI automatizáció vállalkozásoknak</title>
   <meta name="description" content="AI alapú automatizációk, weboldalak és rendszerek kisvállalkozásoknak. Időt és pénzt spórolunk.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css?v=1.0">
-  
+
+  <script>
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    // Cache-busting: minden betöltéskor a dátumot adjuk hozzá
+    link.href = 'style.css?v=' + new Date().getTime();
+    document.head.appendChild(link);
+  </script>
 </head>
+
 <body>
 
   <!-- Hero / Fő szekció -->
