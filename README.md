@@ -1,16 +1,34 @@
 ## Hi there 👋
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Aimentool – AI automatizáció vállalkozásoknak</title>
+  <meta name="description" content="AI alapú automatizációk, weboldalak és rendszerek kisvállalkozásoknak. Időt és pénzt spórolunk.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<!--
-**Aimentool/Aimentool** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+  <header class="hero">
+    <h1>AI automatizáció<br>vállalkozásoknak</h1>
+    <p>Belépést biztosítunk az online térbe, automatizáljuk és rendszert építünk.</p>
+    <a href="#contact" class="cta">Kapcsolat</a>
+  </header>
 
-Here are some ideas to get you started:
+  <section class="services">
+    <h2>Szolgáltatások</h2>
+    <ul>
+      <li>AI automatizáció</li>
+      <li>Egyedi weboldal készítés</li>
+      <li>Ügyfélfolyamatok automatizálása</li>
+    </ul>
+  </section>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+  <section id="contact" class="contact">
+    <h2>Kapcsolat</h2>
+    <p>Írj: info@aimentool.com</p>
+  </section>
+
+</body>
+</html>
