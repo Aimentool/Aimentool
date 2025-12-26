@@ -2,65 +2,95 @@
 <html lang="hu">
 <head>
   <meta charset="UTF-8">
-  <title>Aimentool – AI automatizáció vállalkozásoknak</title>
-  <meta name="description" content="AI alapú automatizációk, weboldalak és rendszerek kisvállalkozásoknak. Időt és pénzt spórolunk.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <script>
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    // Cache-busting: minden betöltéskor a dátumot adjuk hozzá
-    link.href = 'style.css?v=' + new Date().getTime();
-    document.head.appendChild(link);
-  </script>
+  <title>AIMentool – Automatizáció egyszerűen</title>
+  <link rel="stylesheet" href="style.css?v=1.0">
 </head>
-
 <body>
 
-  <!-- Hero / Fő szekció -->
-  <header class="hero">
-    <h1>AI automatizáció<br>vállalkozásoknak</h1>
-    <p>Belépést biztosítunk az online térbe, automatizáljuk és rendszert építünk.</p>
-    <a href="#plans" class="cta">Előfizetés megtekintése</a>
-  </header>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>AIMentool</h1>
+    <img src="logo.png" alt="AIMentool logó" class="logo">
 
-  <!-- Szolgáltatások -->
-  <section class="services">
-    <h2>Szolgáltatásaink</h2>
-    <ul>
-      <li>AI automatizáció</li>
-      <li>Egyedi weboldal készítés</li>
-      <li>Ügyfélfolyamatok automatizálása</li>
-    </ul>
-  </section>
-
-  <!-- Előfizetés / Csomagok -->
-  <section id="plans" class="plans">
-    <h2>Előfizetési csomagok</h2>
-    <div class="plan">
-      <h3>Alap</h3>
-      <p>Weboldal + AI alap automatizáció</p>
-      <p class="price">20.000 Ft / hó</p>
-      <a href="#contact" class="cta">Megrendelés</a>
-    </div>
-    <div class="plan">
-      <h3>Pro</h3>
-      <p>Weboldal + AI + Ügyfélfolyamat automatizáció</p>
-      <p class="price">40.000 Ft / hó</p>
-      <a href="#contact" class="cta">Megrendelés</a>
-    </div>
-    <div class="plan">
-      <h3>Prémium</h3>
-      <p>Teljes online rendszer + AI + support</p>
-      <p class="price">60.000 Ft / hó</p>
-      <a href="#contact" class="cta">Megrendelés</a>
+    <div class="box highlight">
+      <p>
+        Üdvözöllek a weboldalon!<br>
+        Már megtetted az első lépést, hogy fejleszd a vállalkozásod.
+      </p>
     </div>
   </section>
 
-  <!-- Kapcsolat -->
-  <section id="contact" class="contact">
-    <h2>Kapcsolat</h2>
-    <p>Írj: <a href="mailto:info@aimentool.com">info@aimentool.com</a></p>
+  <!-- MIRŐL SZÓL -->
+  <section class="section">
+    <div class="box">
+      <h2>Mit csinál az AIMentool?</h2>
+      <p>
+        Segítünk abban, hogy a vállalkozásod kevesebb munkával,
+        kevesebb stresszel és kevesebb hibával működjön.
+        Automatizáljuk az ismétlődő feladatokat, rendszert viszünk a
+        káoszba, és levesszük a terhet a válladról.
+      </p>
+      <p>
+        Nem kell értened a technikához.
+        Úgy magyarázunk mindent, hogy egy 10 éves is megértse.
+      </p>
+    </div>
+  </section>
+
+  <!-- CSOMAGOK -->
+  <section class="section">
+    <h2 class="center">Választható csomagok</h2>
+
+    <div class="packages">
+
+      <div class="package">
+        <h3>Alap</h3>
+        <p>Stabil alap a digitalizáláshoz.</p>
+        <details>
+          <summary>Bővebben</summary>
+          <p>Egyszerű webes jelenlét, alap automatizmusok,
+          karbantartás.</p>
+        </details>
+        <a href="#contact" class="btn">Ezt választom</a>
+      </div>
+
+      <div class="package">
+        <h3>Pro</h3>
+        <p>Folyamatok automatizálása, időmegtakarítás.</p>
+        <details>
+          <summary>Bővebben</summary>
+          <p>Haladó automatizmusok, ügyfélfolyamatok,
+          rendszeres frissítés.</p>
+        </details>
+        <a href="#contact" class="btn">Ezt választom</a>
+      </div>
+
+      <div class="package">
+        <h3>Prémium</h3>
+        <p>Teljes rendszer, minimális emberi beavatkozás.</p>
+        <details>
+          <summary>Bővebben</summary>
+          <p>Komplex AI megoldások, egyedi folyamatok,
+          prioritásos támogatás.</p>
+        </details>
+        <a href="#contact" class="btn">Ezt választom</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KAPCSOLAT -->
+  <section class="section contact" id="contact">
+    <div class="box">
+      <h2>Kapcsolat</h2>
+      <p>Email: <a href="mailto:info@aimentool.com">info@aimentool.com</a></p>
+
+      <div class="social">
+        <a href="https://facebook.com/aimentool" target="_blank">Facebook</a>
+        <a href="https://instagram.com/aimentool" target="_blank">Instagram</a>
+      </div>
+    </div>
   </section>
 
 </body>
