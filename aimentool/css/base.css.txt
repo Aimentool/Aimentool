@@ -1,0 +1,26 @@
+@import './variables.css';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--c-bg);
+    color: var(--c-text-main);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+
+    background-image:
+        var(--grad-hero),
+        linear-gradient(rgba(110,219,193,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(110,219,193,.08) 1px, transparent 1px);
+
+    background-size: 100% 100%, 48px 48px, 48px 48px;
+    background-attachment: fixed;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #6EDBC1, #0F172A, #5B6CFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,7 @@
+<section id="arazas" class="py-32">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+        <div class="glass-card p-8">START</div>
+        <div class="glass-card p-8">GROW</div>
+        <div class="glass-card p-8">SCALE</div>
+    </div>
+</section>

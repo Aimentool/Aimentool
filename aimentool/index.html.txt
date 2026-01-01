@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>AIMentool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+<body>
+
+<main>
+    <!-- HERO -->
+    <?php include 'sections/hero.html'; ?>
+
+    <!-- SERVICES -->
+    <?php include 'sections/services.html'; ?>
+
+    <!-- PRICING -->
+    <?php include 'sections/pricing.html'; ?>
+
+    <!-- INFO -->
+    <?php include 'sections/info-hub.html'; ?>
+
+    <!-- CONTACT -->
+    <?php include 'sections/contact.html'; ?>
+</main>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

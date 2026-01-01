@@ -1,0 +1,4 @@
+<section class="py-32 text-center">
+    <h2 class="text-3xl font-bold mb-6">Kapcsolat</h2>
+    <p>info@aimentool.com</p>
+</section>
