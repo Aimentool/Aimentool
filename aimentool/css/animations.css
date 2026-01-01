@@ -1,8 +1,13 @@
-@keyframes softPulse {
-    0%,100% { opacity: .4 }
-    50% { opacity: .8 }
+[data-aos] {
+    transition-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.animate-soft {
+/* Soft Glow Pulse - Háttér elemekhez */
+@keyframes softPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+.animate-soft-pulse {
     animation: softPulse 4s infinite ease-in-out;
 }
