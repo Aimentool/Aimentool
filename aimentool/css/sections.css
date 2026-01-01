@@ -1,12 +1,73 @@
+/* --- GLASS CARD --- */
 .glass-card {
     background: var(--glass-bg);
     backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.08);
-    transition: transform .3s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease;
 }
 
 .glass-card:hover {
-    transform: translateY(-6px);
+    border-color: rgba(119, 215, 185, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(119, 215, 185, 0.1);
+}
+
+/* --- INFO HUB NAVIGATION --- */
+.hub-link {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.hub-link.active {
+    color: var(--c-menthol);
+    border-left-color: var(--c-menthol);
+    background: linear-gradient(90deg, rgba(119,215,185,0.08) 0%, transparent 100%);
+}
+
+/* --- CONTACT ICONS --- */
+.icon-active {
+    transition: all 0.3s ease;
+}
+.icon-active:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(119, 215, 185, 0.3);
+}
+
+.icon-passive {
+    filter: grayscale(1) opacity(0.4);
+    cursor: not-allowed;
+    position: relative;
+}
+.icon-passive:hover::after {
+    content: "Fejlesztés alatt";
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--c-menthol);
+    color: var(--c-dark);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeInTooltip 0.3s forwards;
+}
+
+@keyframes fadeInTooltip { to { opacity: 1; transform: translateX(-50%) translateY(-5px); } }
+
+/* --- MODAL --- */
+.modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+}
+.modal-content {
+    background: var(--c-dark-surface);
+    border: 1px solid var(--c-menthol);
 }
