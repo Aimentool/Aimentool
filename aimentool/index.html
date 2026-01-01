@@ -1,39 +1,76 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>AIMentool</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMentool | Rendszer a növekedéshez</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#05080A',
+                            menthol: '#77D7B9',
+                            indigo: '#6366f1'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/sections.css">
     <link rel="stylesheet" href="css/animations.css">
 </head>
+<body class="antialiased">
 
-<body>
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-[#05080A]/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="text-xl font-bold tracking-wider text-white">AIMen<span class="text-brand-menthol">tool</span></span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-widest uppercase text-gray-400">
+                <a href="#szolgaltatasok" class="hover:text-brand-menthol transition-colors">Modulok</a>
+                <a href="#arazas" class="hover:text-brand-menthol transition-colors">Árak</a>
+                <a href="#info-hub" class="hover:text-brand-menthol transition-colors">Info Hub</a>
+                <a href="mailto:info@aimentool.com" class="px-6 py-2 bg-brand-menthol/10 text-brand-menthol rounded-full hover:bg-brand-menthol hover:text-brand-dark transition-all">Konzultáció</a>
+            </div>
+        </div>
+    </nav>
 
-<main>
-    <!-- HERO -->
-    <?php include 'sections/hero.html'; ?>
+    <main>
+        </main>
 
-    <!-- SERVICES -->
-    <?php include 'sections/services.html'; ?>
+    <footer class="py-10 border-t border-white/5 bg-[#05080A] text-center">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-gray-600">© 2025 AIMentool</p>
+            <div class="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                <button onclick="openModal('aszf')" class="hover:text-white">ÁSZF</button>
+                <button onclick="openModal('adatkezelési')" class="hover:text-white">Adatkezelés</button>
+                <button onclick="openModal('impresszum')" class="hover:text-white">Impresszum</button>
+            </div>
+        </div>
+    </footer>
 
-    <!-- PRICING -->
-    <?php include 'sections/pricing.html'; ?>
+    <div id="legalModal" class="modal-overlay">
+        <div class="modal-content max-w-2xl mx-auto mt-20 p-8 rounded-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="ph ph-x text-2xl"></i></button>
+            <h2 id="modalTitle" class="text-2xl font-bold text-brand-menthol mb-6"></h2>
+            <div id="modalBody" class="text-gray-400 text-sm leading-loose"></div>
+        </div>
+    </div>
 
-    <!-- INFO -->
-    <?php include 'sections/info-hub.html'; ?>
-
-    <!-- CONTACT -->
-    <?php include 'sections/contact.html'; ?>
-</main>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="js/main.js"></script>
-</body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    
+    </body>
 </html>
