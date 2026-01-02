@@ -1,45 +1,34 @@
 <!DOCTYPE html>
-<html lang="hu" class="scroll-smooth">
-<head><
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIMentool | Fresh Thinking</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIMentool – Fresh Thinking. Automated Growth.</title>
 
-    <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/sections.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/sections.css">
 </head>
-<body class="antialiased">
 
-    <nav class="fixed w-full z-50 border-b border-white/5 bg-[#05080A]/80 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="text-xl font-bold tracking-wider text-white">AIMen<span style="color: var(--c-menta);">tool</span></div>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold tracking-widest uppercase text-gray-400">
-                <a href="#szolgaltatasok" class="hover:text-white transition">Modulok</a>
-                <a href="#arazas" class="hover:text-white transition">Árak</a>
-                <a href="mailto:info@aimentool.com" class="px-5 py-2 bg-[#77D7B9]/10 text-[#77D7B9] rounded-full border border-[#77D7B9]/20 hover:bg-[#77D7B9] hover:text-[#05080A] transition-all">
-                    Konzultáció
-                </a>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <main>
-        <div id="hero-root"></div>
-        <div id="services-root"></div>
-        <div id="info-root"></div>
-        <div id="pricing-root"></div>
-        <div id="footer-root"></div>
-    </main>
+  <!-- HERO -->
+  <div id="hero-container"></div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/main.js"></script>
+  <!-- JS -->
+  <script>
+    fetch("sections/hero.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("hero-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/hero-canvas.js";
+        document.body.appendChild(script);
+      });
+  </script>
+
 </body>
 </html>
