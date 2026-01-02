@@ -7,7 +7,10 @@ body {
     margin: 0;
     overflow-x: hidden;
     /* Mátrix-szerű tech háló a háttérben */
-    background-image: var(--grad-main), linear-gradient(rgba(119, 215, 185, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(119, 215, 185, 0.03) 1px, transparent 1px);
+   background-image:
+    radial-gradient(circle at 20% 20%, rgba(119,215,185,0.18), transparent 45%),
+    radial-gradient(circle at 80% 30%, rgba(99,102,241,0.18), transparent 50%),
+    linear-gradient(180deg, #05080A 0%, #0D1B1E 100%);
     background-size: 100% 100%, 40px 40px, 40px 40px;
     background-attachment: fixed;
 }
