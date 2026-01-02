@@ -1,0 +1,19 @@
+:root {
+    /* Színpaletta - Referencia alapján */
+    --c-dark: #05080A;
+    --c-dark-surface: #0D1317;
+    --c-menta: #77D7B9; /* Menthol */
+    --c-menta-glow: rgba(119, 215, 185, 0.4);
+    --c-indigo: #6366f1;
+    --c-text-main: #E2E8F0;
+    --c-text-muted: #94A3B8;
+
+    /* Glassmorphism változók */
+    --glass-bg: rgba(13, 19, 23, 0.65);
+    --glass-border: rgba(119, 215, 185, 0.15);
+    --glass-blur: 16px;
+
+    /* Gradiens */
+    --grad-main: radial-gradient(circle at 70% 30%, rgba(119, 215, 185, 0.08) 0%, rgba(5, 8, 10, 0) 60%);
+    --grad-text: linear-gradient(90deg, #77D7B9 0%, #ffffff 50%, #6366f1 100%);
+}
