@@ -28,3 +28,25 @@
 .system-card {
   padding: 2.5rem;
 }
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.nav-links a {
+  margin-left: 2rem;
+  color: var(--text-muted);
+}
+
+.nav-links a:hover {
+  color: var(--accent-main);
+}
