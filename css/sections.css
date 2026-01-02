@@ -1,60 +1,36 @@
-/* ===== GROWTH GRAPHIC ===== */
-
-.growth-graphic {
-    filter: drop-shadow(0 0 30px rgba(255,255,255,0.6));
+#hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-/* FŐ GÖRBE */
-.growth-line {
-    fill: none;
-    stroke: rgba(255,255,255,0.9);
-    stroke-width: 4;
-    stroke-dasharray: 8 12;
-    animation: flowLine 6s linear infinite;
+#hero canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
 
-/* HÁLÓ */
-.network line {
-    stroke: rgba(255,255,255,0.5);
-    stroke-width: 1.5;
-    stroke-dasharray: 3 6;
-    animation: flowLine 8s linear infinite;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* CSOMÓPONTOK */
-.nodes circle {
-    fill: white;
-    animation: pulseNode 2.5s ease-in-out infinite;
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
 }
 
-/* LEVÉL */
-.leaf-outline {
-    fill: none;
-    stroke: rgba(255,255,255,0.9);
-    stroke-width: 2.5;
-    stroke-dasharray: 6 10;
-    animation: flowLine 5s linear infinite;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
+.hero-title {
+  font-size: clamp(3.5rem, 6vw, 6rem);
+  font-weight: 800;
 }
 
-/* ===== ANIMÁCIÓK ===== */
-
-@keyframes flowLine {
-    from {
-        stroke-dashoffset: 0;
-    }
-    to {
-        stroke-dashoffset: -200;
-    }
-}
-
-@keyframes pulseNode {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 1;
-        transform: scale(1.4);
-    }
+.hero-subtitle {
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+  color: var(--text-muted);
 }
