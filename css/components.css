@@ -18,3 +18,13 @@
 .btn-primary:hover {
   box-shadow: 0 0 30px rgba(119,215,185,.4);
 }
+.system-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.system-card {
+  padding: 2.5rem;
+}
