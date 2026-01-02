@@ -1,83 +1,60 @@
-/* Glass Card Design */
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-                border-color 0.3s ease;
+/* ===== GROWTH GRAPHIC ===== */
+
+.growth-graphic {
+    filter: drop-shadow(0 0 30px rgba(255,255,255,0.6));
 }
 
-.glass-card:hover {
-    border-color: rgba(119, 215, 185, 0.5);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 40px rgba(119, 215, 185, 0.1);
+/* FŐ GÖRBE */
+.growth-line {
+    fill: none;
+    stroke: rgba(255,255,255,0.9);
+    stroke-width: 4;
+    stroke-dasharray: 8 12;
+    animation: flowLine 6s linear infinite;
 }
 
-/* Info Hub Linkek */
-.hub-link {
-    position: relative;
-    padding-left: 1rem;
-    border-left: 2px solid transparent;
-    transition: all 0.3s ease;
+/* HÁLÓ */
+.network line {
+    stroke: rgba(255,255,255,0.5);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 6;
+    animation: flowLine 8s linear infinite;
 }
 
-.hub-link.active,
-.hub-link:hover {
-    color: var(--c-menta);
-    border-left-color: var(--c-menta);
-    background: linear-gradient(
-        90deg,
-        rgba(119,215,185,0.05) 0%,
-        transparent 100%
-    );
+/* CSOMÓPONTOK */
+.nodes circle {
+    fill: white;
+    animation: pulseNode 2.5s ease-in-out infinite;
 }
 
-/* Modal stílus */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(8px);
-}
-
-.modal-content {
-    background: var(--c-dark-surface);
-    border: 1px solid var(--c-menta);
-}
-
-/* ===== AI LEAF SHIMMER EFFECT ===== */
-
-.ai-leaf-tech path {
+/* LEVÉL */
+.leaf-outline {
+    fill: none;
+    stroke: rgba(255,255,255,0.9);
+    stroke-width: 2.5;
     stroke-dasharray: 6 10;
-    animation: leafFlow 6s linear infinite;
-    filter: drop-shadow(0 0 12px rgba(119,215,185,0.6));
+    animation: flowLine 5s linear infinite;
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.8));
 }
 
-.ai-leaf-tech circle {
-    filter: drop-shadow(0 0 14px rgba(119,215,185,0.9));
-    animation: pulseGlow 2.5s ease-in-out infinite;
-}
+/* ===== ANIMÁCIÓK ===== */
 
-@keyframes leafFlow {
+@keyframes flowLine {
     from {
         stroke-dashoffset: 0;
-        opacity: 0.7;
     }
     to {
-        stroke-dashoffset: -140;
-        opacity: 1;
+        stroke-dashoffset: -200;
     }
 }
 
-@keyframes pulseGlow {
+@keyframes pulseNode {
     0%, 100% {
-        opacity: 0.6;
+        opacity: 0.5;
+        transform: scale(1);
     }
     50% {
         opacity: 1;
+        transform: scale(1.4);
     }
 }
