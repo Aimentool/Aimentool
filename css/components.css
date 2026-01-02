@@ -50,3 +50,25 @@
 .nav-links a:hover {
   color: var(--accent-main);
 }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.pricing-card {
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.pricing-card.featured {
+  border-color: var(--accent-main);
+  box-shadow: 0 0 40px rgba(119,215,185,.2);
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1rem 0;
+}
