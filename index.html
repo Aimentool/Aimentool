@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIMentool | Fresh Thinking</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="antialiased">
+
+    <nav class="fixed w-full z-50 px-6 py-4 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight text-white">
+                AIMen<span style="color: var(--c-menthol);">tool</span>
+            </div>
+            <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest text-gray-400">
+                <a href="#modulok" class="hover:text-white transition-colors">Megoldások</a>
+                <a href="#arazas" class="hover:text-white transition-colors">Árak</a>
+                <a href="#info" class="hover:text-white transition-colors">Info Hub</a>
+                <a href="mailto:info@aimentool.com" class="px-5 py-2 bg-[#9ff5d2]/10 text-[#9ff5d2] rounded-lg border border-[#9ff5d2]/20 hover:bg-[#9ff5d2] hover:text-[#0a191e] transition-all">
+                    Konzultáció
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center relative px-6 pt-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center w-full z-10">
+            
+            <div data-aos="fade-right">
+                <div class="inline-block px-3 py-1 mb-6 border border-[#9ff5d2]/30 rounded-full bg-[#9ff5d2]/5">
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-[#9ff5d2]">System Online v3.0</span>
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                    AIMentool<br>
+                    <span class="text-gradient">Fresh Thinking.</span>
+                </h1>
+                <p class="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
+                    Automated Growth. Építse ki vállalkozása digitális idegrendszerét. 
+                    Tiszta kód, mentális nyugalom, automatizált bevétel.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#arazas" class="btn-primary">Rendszer indítása</a>
+                    <a href="#info" class="btn-secondary">Hogyan működik?</a>
+                </div>
+            </div>
+
+            <div class="hero-leaf-container flex justify-center items-center relative" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="absolute w-[400px] h-[400px] bg-[#9ff5d2]/20 rounded-full blur-[100px] animate-pulse"></div>
+                
+                <svg width="500" height="400" viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" class="relative z-10 drop-shadow-[0_0_30px_rgba(159,245,210,0.3)]">
+                    <path d="M260 40 C360 90 420 170 420 260 C420 340 350 380 260 380 C170 380 100 340 100 260 C100 170 160 90 260 40 Z" 
+                          stroke="#9ff5d2" stroke-width="2" fill="none" class="leaf-path"/>
+                    
+                    <path d="M260 40 L260 380" stroke="#9ff5d2" stroke-width="1" opacity="0.5"/>
+                    <path d="M260 120 C320 160 360 220 380 280" stroke="#9ff5d2" stroke-width="0.5" opacity="0.3"/>
+                    <path d="M260 120 C200 160 160 220 140 280" stroke="#9ff5d2" stroke-width="0.5" opacity="0.3"/>
+
+                    <circle cx="260" cy="120" r="4" fill="#9ff5d2" class="node-pulse" />
+                    <circle cx="260" cy="200" r="3" fill="#9ff5d2" class="node-pulse" style="animation-delay: 0.5s"/>
+                    <circle cx="320" cy="180" r="3" fill="#9ff5d2" class="node-pulse" style="animation-delay: 1.0s"/>
+                    <circle cx="200" cy="180" r="3" fill="#9ff5d2" class="node-pulse" style="animation-delay: 1.5s"/>
+                    <circle cx="260" cy="300" r="4" fill="#9ff5d2" class="node-pulse" style="animation-delay: 2.0s"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="modulok" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-bold">Rendszer <span class="text-[#9ff5d2]">Modulok</span></h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-panel p-8" data-aos="fade-up">
+                    <i class="ph ph-robot text-4xl text-[#9ff5d2] mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">AI Ügynökök</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Autonóm chatbotok és virtuális asszisztensek, akik sosem alszanak.</p>
+                </div>
+                <div class="glass-panel p-8" data-aos="fade-up" data-aos-delay="100">
+                    <i class="ph ph-paper-plane-tilt text-4xl text-[#6366f1] mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">CRM & Email</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Automatizált ügyfélkövetés és hírlevél rendszer integráció.</p>
+                </div>
+                <div class="glass-panel p-8" data-aos="fade-up" data-aos-delay="200">
+                    <i class="ph ph-desktop text-4xl text-white mb-6"></i>
+                    <h3 class="text-xl font-bold text-white mb-3">Tech Web</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Gyors, biztonságos és konverzióra optimalizált weboldalak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="arazas" class="py-24 bg-black/20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-16">Válassza a <span class="text-[#9ff5d2]">sebességet</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-panel p-8 flex flex-col items-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4">Start</span>
+                    <div class="text-3xl font-bold text-white mb-6">15.000 Ft</div>
+                    <ul class="text-sm text-gray-400 space-y-3 mb-8 text-left w-full">
+                        <li>✓ Alap weboldal</li>
+                        <li>✓ Hosting & Domain</li>
+                        <li>✗ AI Integráció</li>
+                    </ul>
+                    <a href="mailto:info@aimentool.com" class="btn-secondary w-full text-center text-sm">Érdekel</a>
+                </div>
+
+                <div class="glass-panel p-8 flex flex-col items-center border-[#9ff5d2] relative transform scale-105 bg-gradient-to-b from-[#162c33] to-[#0a191e]">
+                    <div class="absolute -top-3 bg-[#9ff5d2] text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase">Ajánlott</div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#9ff5d2] mb-4">Növekedés</span>
+                    <div class="text-3xl font-bold text-white mb-6">50.000 Ft</div>
+                    <ul class="text-sm text-gray-200 space-y-3 mb-8 text-left w-full">
+                        <li class="font-bold text-[#9ff5d2]">✓ AI Chatbot</li>
+                        <li>✓ Email Automatizáció</li>
+                        <li>✓ CRM Rendszer</li>
+                    </ul>
+                    <a href="mailto:info@aimentool.com" class="btn-primary w-full text-center text-sm">Kiválasztom</a>
+                </div>
+
+                <div class="glass-panel p-8 flex flex-col items-center">
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#6366f1] mb-4">Enterprise</span>
+                    <div class="text-3xl font-bold text-white mb-6">Egyedi</div>
+                    <ul class="text-sm text-gray-400 space-y-3 mb-8 text-left w-full">
+                        <li>✓ Egyedi fejlesztés</li>
+                        <li>✓ Dedikált szerver</li>
+                        <li>✓ 24/7 Support</li>
+                    </ul>
+                    <a href="mailto:info@aimentool.com" class="btn-secondary w-full text-center text-sm">Konzultáció</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 border-t border-white/5 text-center text-gray-600 text-xs uppercase tracking-widest font-bold">
+        <p>© 2025 AIMentool System. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
