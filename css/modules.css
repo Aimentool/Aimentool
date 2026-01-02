@@ -1,25 +1,27 @@
-/* --- GLASS KÁRTYÁK --- */
+/* --- EGYSÉGES GLASS DESIGN MINDEN KÁRTYÁRA --- */
 .glass-panel {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(159, 245, 210, 0.15); /* Halvány menta keret */
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 24px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-panel:hover {
-    border-color: var(--c-menthol);
-    box-shadow: 0 0 30px rgba(159, 245, 210, 0.1);
+    border-color: rgba(159, 245, 210, 0.4);
+    box-shadow: 0 10px 40px rgba(159, 245, 210, 0.1);
     transform: translateY(-5px);
 }
 
 /* --- GOMBOK --- */
 .btn-primary {
-    background: var(--c-menthol);
+    background: #9ff5d2;
     color: #0a191e;
     font-weight: 700;
     padding: 14px 32px;
     border-radius: 12px;
+    display: inline-block;
     transition: all 0.3s ease;
     box-shadow: 0 0 20px rgba(159, 245, 210, 0.2);
 }
@@ -36,15 +38,17 @@
     font-weight: 600;
     padding: 14px 32px;
     border-radius: 12px;
+    display: inline-block;
     transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
     background: rgba(255,255,255,0.05);
-    border-color: var(--c-menthol);
+    border-color: #9ff5d2;
+    color: #9ff5d2;
 }
 
-/* --- LEVÉL ANIMÁCIÓK (SVG) --- */
+/* --- LEVÉL ANIMÁCIÓK --- */
 .leaf-path {
     stroke-dasharray: 1200;
     stroke-dashoffset: 1200;
@@ -56,11 +60,13 @@
     transform-origin: center;
 }
 
-@keyframes drawLeaf {
-    to { stroke-dashoffset: 0; }
-}
-
+@keyframes drawLeaf { to { stroke-dashoffset: 0; } }
 @keyframes pulseNode {
     0%, 100% { opacity: 0.3; r: 3; }
     50% { opacity: 1; r: 5; fill: white; }
 }
+
+/* --- SCROLLBAR A MODALBAN --- */
+#modalBody::-webkit-scrollbar { width: 6px; }
+#modalBody::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+#modalBody::-webkit-scrollbar-thumb { background: #9ff5d2; border-radius: 3px; }
