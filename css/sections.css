@@ -1,0 +1,37 @@
+/* Glass Card Design */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(119, 215, 185, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(119, 215, 185, 0.1);
+}
+
+/* Info Hub Linkek */
+.hub-link {
+    position: relative;
+    padding-left: 1rem;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.hub-link.active, .hub-link:hover {
+    color: var(--c-menta);
+    border-left-color: var(--c-menta);
+    background: linear-gradient(90deg, rgba(119,215,185,0.05) 0%, transparent 100%);
+}
+
+/* Modal stílus */
+.modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+}
+.modal-content {
+    background: var(--c-dark-surface); border: 1px solid var(--c-menta);
+}
