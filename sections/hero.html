@@ -1,61 +1,102 @@
-<section class="hero-visual min-h-screen flex items-center relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
+<section id="hero" class="relative min-h-screen overflow-hidden flex items-center">
+  <!-- Animated background gradient -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#111827] to-[#020617]"></div>
 
-        <!-- BAL OLDAL -->
-        <div data-aos="fade-right">
-            <h1 class="text-6xl lg:text-7xl font-bold leading-tight mb-6 text-white drop-shadow-lg">
-                AIMentool
-            </h1>
+  <!-- Animated mesh / glow layers -->
+  <div class="absolute inset-0">
+    <div class="absolute -top-40 -left-40 w-[700px] h-[700px] bg-cyan-500/20 rounded-full blur-[160px] animate-float-slow"></div>
+    <div class="absolute top-1/3 -right-40 w-[600px] h-[600px] bg-indigo-500/20 rounded-full blur-[160px] animate-float-medium"></div>
+    <div class="absolute bottom-[-200px] left-1/4 w-[800px] h-[800px] bg-fuchsia-500/10 rounded-full blur-[180px] animate-float-fast"></div>
+  </div>
 
-            <p class="text-xl text-white/90 mb-10 max-w-xl">
-                Fresh Thinking. Automated Growth.
-            </p>
+  <!-- Subtle grid overlay -->
+  <div class="absolute inset-0 opacity-[0.08] bg-[radial-gradient(circle_at_1px_1px,#ffffff_1px,transparent_0)] bg-[size:32px_32px]"></div>
 
-            <div class="flex gap-4">
-                <a href="#arazas"
-                   class="px-8 py-4 bg-white text-[#0D1B1E] font-bold rounded-xl
-                          hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] transition-all">
-                    Rendszer indítása
-                </a>
-            </div>
-        </div>
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    
+    <!-- Text -->
+    <div data-aos="fade-right">
+      <h1 class="text-4xl md:text-5xl xl:text-6xl font-bold leading-tight text-white">
+        Automatizált AI megoldások<br />
+        <span class="text-cyan-400">vállalkozásoknak</span>
+      </h1>
 
-        <!-- JOBB OLDAL – ANIMÁLT GRAFIKA -->
-        <div class="relative flex justify-center items-center" data-aos="zoom-in">
+      <p class="mt-6 text-lg text-slate-300 max-w-xl">
+        Weboldalak, AI agentek és üzleti automatizmusok egy rendszerben.
+        Skálázható. Mérhető. Hatékony.
+      </p>
 
-            <svg viewBox="0 0 700 500"
-                 class="growth-graphic w-full h-auto">
-
-                <!-- NÖVEKEDÉSI GÖRBE -->
-                <path d="M50 400
-                         C200 350, 300 280, 420 260
-                         S580 160, 650 120"
-                      class="growth-line"/>
-
-                <!-- HÁLÓ -->
-                <g class="network">
-                    <line x1="200" y1="300" x2="300" y2="260"/>
-                    <line x1="300" y1="260" x2="420" y2="260"/>
-                    <line x1="420" y1="260" x2="500" y2="200"/>
-                    <line x1="300" y1="260" x2="350" y2="200"/>
-                </g>
-
-                <!-- CSOMÓPONTOK -->
-                <g class="nodes">
-                    <circle cx="200" cy="300" r="5"/>
-                    <circle cx="300" cy="260" r="6"/>
-                    <circle cx="420" cy="260" r="6"/>
-                    <circle cx="500" cy="200" r="5"/>
-                    <circle cx="650" cy="120" r="6"/>
-                </g>
-
-                <!-- LEVÉL -->
-                <path d="M500 120
-                         C560 80, 640 120, 620 200
-                         C600 270, 520 260, 500 200 Z"
-                      class="leaf-outline"/>
-
-            </svg>
-        </div>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a href="#kapcsolat" class="px-7 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold transition">
+          Kapcsolat
+        </a>
+        <a href="#services" class="px-7 py-3 rounded-xl border border-slate-600 text-slate-200 hover:bg-white/5 transition">
+          Szolgáltatások
+        </a>
+      </div>
     </div>
+
+    <!-- Animated graphic -->
+    <div class="relative flex justify-center items-center" data-aos="fade-left">
+      <div class="relative w-[360px] h-[360px] md:w-[420px] md:h-[420px]">
+        
+        <!-- Outer rotating ring -->
+        <div class="absolute inset-0 rounded-full border border-cyan-400/30 animate-spin-slow"></div>
+
+        <!-- Middle pulsing ring -->
+        <div class="absolute inset-6 rounded-full border border-indigo-400/30 animate-pulse-slow"></div>
+
+        <!-- Inner core -->
+        <div class="absolute inset-16 rounded-full bg-gradient-to-br from-cyan-400 via-indigo-500 to-fuchsia-500 blur-[1px] animate-core"></div>
+
+        <!-- Floating dots -->
+        <span class="absolute top-6 left-1/2 w-2 h-2 bg-cyan-400 rounded-full animate-dot"></span>
+        <span class="absolute bottom-10 right-12 w-2 h-2 bg-indigo-400 rounded-full animate-dot-delay"></span>
+        <span class="absolute top-1/3 left-10 w-2 h-2 bg-fuchsia-400 rounded-full animate-dot-slow"></span>
+      </div>
+    </div>
+
+  </div>
 </section>
+
+<style>
+@keyframes floatSlow {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-40px); }
+}
+@keyframes floatMedium {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-60px); }
+}
+@keyframes floatFast {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-80px); }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes pulseSlow {
+  0%,100% { opacity: .4; }
+  50% { opacity: .8; }
+}
+@keyframes core {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes dot {
+  0%,100% { transform: translateY(0); opacity: .6; }
+  50% { transform: translateY(-20px); opacity: 1; }
+}
+
+.animate-float-slow { animation: floatSlow 18s ease-in-out infinite; }
+.animate-float-medium { animation: floatMedium 14s ease-in-out infinite; }
+.animate-float-fast { animation: floatFast 10s ease-in-out infinite; }
+.animate-spin-slow { animation: spinSlow 40s linear infinite; }
+.animate-pulse-slow { animation: pulseSlow 6s ease-in-out infinite; }
+.animate-core { animation: core 5s ease-in-out infinite; }
+.animate-dot { animation: dot 4s ease-in-out infinite; }
+.animate-dot-delay { animation: dot 5s ease-in-out infinite 1s; }
+.animate-dot-slow { animation: dot 6s ease-in-out infinite 2s; }
+</style>
