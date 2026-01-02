@@ -1,33 +1,231 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIMentool</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIMentool – Fresh Thinking. Automated Growth.</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/theme.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===== BASE ===== */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, sans-serif;
+  color: white;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(119,215,185,0.18), transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(99,102,241,0.18), transparent 50%),
+    linear-gradient(135deg, #1f6f5f, #2f8a8a, #1e3a5f);
+  overflow-x: hidden;
+}
+
+h1,h2,h3 { margin: 0; letter-spacing: -0.03em; }
+p { line-height: 1.6; color: rgba(255,255,255,0.75); }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 10;
+  backdrop-filter: blur(14px);
+  background: rgba(13,19,23,0.6);
+  border-bottom: 1px solid rgba(119,215,185,0.15);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  font-weight: 700;
+}
+.logo img { width: 34px; height: 34px; }
+
+/* ===== BUTTON ===== */
+.btn {
+  background: #77D7B9;
+  color: #05080A;
+  padding: 1rem 2rem;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: .3s;
+}
+.btn:hover {
+  box-shadow: 0 0 30px rgba(119,215,185,.4);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.hero canvas {
+  position: absolute;
+  inset: 0;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+.hero span { color: #77D7B9; }
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 8rem 0;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.card {
+  background: rgba(13,19,23,.6);
+  border: 1px solid rgba(119,215,185,.15);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(16px);
+}
+footer {
+  padding: 3rem;
+  text-align: center;
+  background: rgba(13,19,23,.7);
+  border-top: 1px solid rgba(119,215,185,.15);
+}
+</style>
 </head>
 
 <body>
 
-<header id="nav-root"></header>
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="logo.png" alt="AIMentool">
+      <span>AIMentool</span>
+    </div>
+    <a href="#pricing" class="btn">Konzultáció</a>
+  </div>
+</nav>
 
-<main>
-  <section id="hero-root"></section>
-  <section id="system-root"></section>
-  <section id="pricing-root"></section>
-  <section id="infohub-root"></section>
-  <section id="contact-root"></section>
-</main>
+<section class="hero">
+  <canvas id="heroCanvas"></canvas>
 
-<footer id="footer-root"></footer>
+  <div class="hero-content container">
+    <h1>Fresh Thinking.<br><span>Automated Growth.</span></h1>
+    <p style="max-width:600px;margin-top:1.5rem;">
+      AI-alapú vállalkozási rendszerek. Automatizáció. Skálázás.
+    </p>
+    <div style="margin-top:3rem;">
+      <a href="#pricing" class="btn">Rendszer indítása</a>
+    </div>
+  </div>
+</section>
 
-<script src="js/core.js"></script>
-<script src="js/hero/hero-canvas.js"></script>
+<section class="section container">
+  <h2>Rendszer modulok</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>AI Ügynökök</h3>
+      <p>Digitális munkatársak 0-24.</p>
+    </div>
+    <div class="card">
+      <h3>Automata Marketing</h3>
+      <p>Lead, email, hirdetés – kézi munka nélkül.</p>
+    </div>
+    <div class="card">
+      <h3>Prémium Web</h3>
+      <p>Konverzióra optimalizált felületek.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="section container">
+  <h2>Árazás</h2>
+  <div class="cards">
+    <div class="card"><h3>Start</h3><p>15.000 Ft / hó</p></div>
+    <div class="card"><h3>Grow</h3><p>50.000 Ft / hó</p></div>
+    <div class="card"><h3>Scale</h3><p>Egyedi</p></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 AIMentool
+</footer>
+
+<script>
+/* ===== HERO CANVAS – STABIL ===== */
+const canvas = document.getElementById("heroCanvas");
+const ctx = canvas.getContext("2d");
+let w, h;
+
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const nodes = Array.from({length: 90}, () => ({
+  x: Math.random()*w,
+  y: Math.random()*h,
+  vx:(Math.random()-.5)*0.3,
+  vy:(Math.random()-.5)*0.3
+}));
+
+function animate(){
+  ctx.clearRect(0,0,w,h);
+
+  nodes.forEach(a=>{
+    nodes.forEach(b=>{
+      const d = Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<120){
+        ctx.strokeStyle=`rgba(119,215,185,${1-d/120})`;
+        ctx.beginPath();
+        ctx.moveTo(a.x,a.y);
+        ctx.lineTo(b.x,b.y);
+        ctx.stroke();
+      }
+    });
+  });
+
+  nodes.forEach(n=>{
+    n.x+=n.vx; n.y+=n.vy;
+    if(n.x<0||n.x>w) n.vx*=-1;
+    if(n.y<0||n.y>h) n.vy*=-1;
+    ctx.beginPath();
+    ctx.arc(n.x,n.y,2,0,Math.PI*2);
+    ctx.fillStyle="#fff";
+    ctx.fill();
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
 
 </body>
 </html>
