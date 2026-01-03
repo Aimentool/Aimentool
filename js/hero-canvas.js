@@ -1,11 +1,18 @@
 const canvas = document.getElementById("heroCanvas");
 const ctx = canvas.getContext("2d");
 
-let w, h, particles = [], mouse = { x: 0, y: 0 };
+let w, h;
+let time = 0;
 
 const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-const PARTICLE_COUNT = isMobile ? 70 : 140;
-const CONNECT_DIST = isMobile ? 90 : 140;
+
+const CONFIG = {
+    nodes: isMobile ? 90 : 160,
+    connectDist: isMobile ? 90 : 140,
+    pulseSpeed: 0.002,
+    energySpeed: 0.004,
+    sparkleCount: isMobile ? 25 : 60
+};
 
 function resize() {
     w = canvas.width = window.innerWidth;
@@ -14,94 +21,169 @@ function resize() {
 window.addEventListener("resize", resize);
 resize();
 
-class Particle {
-    constructor(tx, ty) {
-        this.tx = tx;
-        this.ty = ty;
-        this.x = tx + Math.random() * 20;
-        this.y = ty + Math.random() * 20;
-        this.vx = 0;
-        this.vy = 0;
-        this.phase = Math.random() * Math.PI * 2;
+/* ===============================
+   CORE GEOMETRY
+================================ */
+
+const spine = [];
+const nodes = [];
+const sparks = [];
+
+function buildSpine() {
+    spine.length = 0;
+    const steps = 80;
+
+    for (let i = 0; i < steps; i++) {
+        const t = i / steps;
+        spine.push({
+            x: w * 0.15 + t * w * 0.55,
+            y: h * 0.72 - Math.pow(t, 1.9) * h * 0.55
+        });
     }
+}
 
-    update() {
-        const dx = this.tx - this.x;
-        const dy = this.ty - this.y;
+function buildNodes() {
+    nodes.length = 0;
 
-        this.vx += dx * 0.002;
-        this.vy += dy * 0.002;
-
-        const mx = this.x - mouse.x;
-        const my = this.y - mouse.y;
-        const dist = Math.sqrt(mx * mx + my * my);
-        if (dist < 120) {
-            this.vx += mx * 0.01;
-            this.vy += my * 0.01;
+    spine.forEach((p, i) => {
+        if (i % 2 === 0) {
+            nodes.push({
+                x: p.x + Math.random() * 12,
+                y: p.y + Math.random() * 12,
+                tx: p.x,
+                ty: p.y,
+                phase: Math.random() * Math.PI * 2,
+                energy: Math.random()
+            });
         }
+    });
 
-        this.vx *= 0.92;
-        this.vy *= 0.92;
-        this.x += this.vx;
-        this.y += this.vy;
+    // levél kontúr
+    for (let i = 0; i < 40; i++) {
+        const t = i / 40;
+        nodes.push({
+            x: w * 0.7 + Math.sin(t * Math.PI) * 120,
+            y: h * 0.35 - t * 180,
+            tx: w * 0.7 + Math.sin(t * Math.PI) * 120,
+            ty: h * 0.35 - t * 180,
+            phase: Math.random() * Math.PI * 2,
+            energy: Math.random()
+        });
     }
+}
 
-    draw(t) {
-        const pulse = Math.sin(t * 0.002 + this.phase) * 1.5 + 2;
+function buildSparks() {
+    sparks.length = 0;
+    for (let i = 0; i < CONFIG.sparkleCount; i++) {
+        sparks.push({
+            x: Math.random() * w,
+            y: Math.random() * h * 0.8,
+            r: Math.random() * 2 + 1,
+            life: Math.random()
+        });
+    }
+}
+
+buildSpine();
+buildNodes();
+buildSparks();
+
+/* ===============================
+   DRAWING
+================================ */
+
+function drawSpine() {
+    const pulse = Math.sin(time * CONFIG.pulseSpeed) * 0.4 + 1.4;
+
+    ctx.beginPath();
+    ctx.lineWidth = 3 * pulse;
+    ctx.strokeStyle = "#78D0C2";
+    ctx.shadowBlur = 25;
+    ctx.shadowColor = "#78D0C2";
+
+    spine.forEach((p, i) => {
+        if (i === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+    });
+
+    ctx.stroke();
+}
+
+function drawNodes() {
+    nodes.forEach(n => {
+        n.x += (n.tx - n.x) * 0.02;
+        n.y += (n.ty - n.y) * 0.02;
+
+        const twinkle = Math.sin(time * 0.003 + n.phase) * 1.5 + 2.5;
+
         ctx.beginPath();
-        ctx.arc(this.x, this.y, pulse, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(120,208,194,0.9)";
-        ctx.shadowBlur = isMobile ? 8 : 15;
-        ctx.shadowColor = "#78D0C2";
+        ctx.arc(n.x, n.y, twinkle, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(230,247,244,0.9)";
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = "#E6F7F4";
         ctx.fill();
-    }
+    });
 }
-
-function createShape() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const t = i / PARTICLE_COUNT;
-        const x = w * 0.3 + t * w * 0.4;
-        const y = h * 0.65 - Math.pow(t, 1.8) * h * 0.5 + Math.sin(t * 6) * 30;
-        particles.push(new Particle(x, y));
-    }
-}
-
-createShape();
-
-canvas.addEventListener("mousemove", e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
 
 function drawConnections() {
-    for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
             const d = Math.sqrt(dx * dx + dy * dy);
 
-            if (d < CONNECT_DIST) {
-                ctx.strokeStyle = `rgba(31,175,154,${1 - d / CONNECT_DIST})`;
-                ctx.lineWidth = 1;
+            if (d < CONFIG.connectDist) {
+                const flow = (time * CONFIG.energySpeed + nodes[i].energy) % 1;
+                ctx.strokeStyle = `rgba(120,208,194,${1 - d / CONFIG.connectDist})`;
+                ctx.lineWidth = 1.2;
+
                 ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.moveTo(nodes[i].x, nodes[i].y);
+                ctx.lineTo(
+                    nodes[i].x + (nodes[j].x - nodes[i].x) * flow,
+                    nodes[i].y + (nodes[j].y - nodes[i].y) * flow
+                );
                 ctx.stroke();
             }
         }
     }
 }
 
-function animate(t) {
+function drawSparks() {
+    sparks.forEach(s => {
+        s.life -= 0.01;
+        if (s.life <= 0) {
+            s.x = Math.random() * w;
+            s.y = Math.random() * h * 0.8;
+            s.r = Math.random() * 3 + 1;
+            s.life = 1;
+        }
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,220,120,${s.life})`;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#FFD86A";
+        ctx.fill();
+    });
+}
+
+/* ===============================
+   LOOP
+================================ */
+
+function animate() {
+    time++;
+
     ctx.clearRect(0, 0, w, h);
     ctx.globalCompositeOperation = "lighter";
 
-    particles.forEach(p => p.update());
-    drawConnections();
-    particles.forEach(p => p.draw(t));
+    drawSpine();        // 🔴 lüktetés
+    drawConnections(); // 🟣 futó fény
+    drawNodes();       // neuron pontok
+    drawSparks();      // 🟡 csillogás
 
     requestAnimationFrame(animate);
 }
 
-animate(0);
+animate();
