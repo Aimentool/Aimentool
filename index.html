@@ -5,226 +5,304 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIMentool – Fresh Thinking. Automated Growth.</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== BASE ===== */
+/* ================= BASE ================= */
 * { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Inter, sans-serif;
-  color: white;
+html,body {
+  margin:0; padding:0;
+  font-family:Inter,sans-serif;
+  color:#fff;
+  scroll-behavior:smooth;
   background:
     radial-gradient(circle at 15% 20%, rgba(119,215,185,0.18), transparent 45%),
     radial-gradient(circle at 85% 25%, rgba(99,102,241,0.18), transparent 50%),
-    linear-gradient(135deg, #1f6f5f, #2f8a8a, #1e3a5f);
-  overflow-x: hidden;
+    linear-gradient(135deg,#1f6f5f,#2f8a8a,#1e3a5f);
 }
+p { color:rgba(255,255,255,.75); line-height:1.65; }
+h1,h2,h3 { letter-spacing:-0.03em; margin:0; }
 
-h1,h2,h3 { margin: 0; letter-spacing: -0.03em; }
-p { line-height: 1.6; color: rgba(255,255,255,0.75); }
-
-/* ===== LAYOUT ===== */
+/* ================= LAYOUT ================= */
 .container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 2rem;
+  max-width:1200px;
+  margin:auto;
+  padding:0 2rem;
+}
+.section {
+  padding:8rem 0;
+  position:relative;
 }
 
-/* ===== NAV ===== */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 80px;
-  z-index: 10;
-  backdrop-filter: blur(14px);
-  background: rgba(13,19,23,0.6);
-  border-bottom: 1px solid rgba(119,215,185,0.15);
+/* ================= HEADER ================= */
+header {
+  position:fixed;
+  top:0; left:0; right:0;
+  height:80px;
+  z-index:100;
+  backdrop-filter:blur(16px);
+  background:rgba(13,19,23,.75);
+  border-bottom:1px solid rgba(119,215,185,.15);
 }
-.nav-inner {
-  max-width: 1200px;
-  margin: auto;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2rem;
+.header-inner {
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 .logo {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  font-weight: 700;
+  display:flex;
+  align-items:center;
+  gap:.8rem;
 }
-.logo img { width: 34px; height: 34px; }
+.logo img {
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+nav a {
+  margin-left:1.5rem;
+  color:rgba(255,255,255,.8);
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover { color:#77D7B9; }
 
-/* ===== BUTTON ===== */
+/* ================= BUTTON ================= */
 .btn {
-  background: #77D7B9;
-  color: #05080A;
-  padding: 1rem 2rem;
-  border-radius: 14px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: .3s;
+  padding:.9rem 2rem;
+  border-radius:14px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
 }
-.btn:hover {
-  box-shadow: 0 0 30px rgba(119,215,185,.4);
+.btn-main {
+  background:#77D7B9;
+  color:#05080A;
+}
+.btn-main:hover {
+  box-shadow:0 0 30px rgba(119,215,185,.4);
 }
 
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: center;
+/* ================= HERO ================= */
+#hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
 }
-.hero canvas {
-  position: absolute;
-  inset: 0;
+#hero canvas {
+  position:absolute;
+  inset:0;
 }
 .hero-content {
-  position: relative;
-  z-index: 2;
+  position:relative;
+  z-index:2;
+  max-width:600px;
 }
-.hero h1 {
-  font-size: clamp(3rem, 6vw, 5.5rem);
+.hero-content h1 {
+  font-size:clamp(3rem,6vw,5.5rem);
 }
-.hero span { color: #77D7B9; }
+.hero-content span { color:#77D7B9; }
 
-/* ===== SECTIONS ===== */
-.section {
-  padding: 8rem 0;
-}
+/* ================= CARDS ================= */
 .cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
-  gap: 2rem;
-  margin-top: 3rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+  margin-top:3rem;
 }
 .card {
-  background: rgba(13,19,23,.6);
-  border: 1px solid rgba(119,215,185,.15);
-  border-radius: 24px;
-  padding: 2.5rem;
-  backdrop-filter: blur(16px);
+  background:rgba(13,19,23,.65);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(119,215,185,.15);
+  border-radius:24px;
+  padding:2.5rem;
+  transition:.4s;
 }
+.card:hover {
+  transform:translateY(-6px);
+  box-shadow:0 0 40px rgba(119,215,185,.15);
+}
+.card.recommended {
+  border-color:#77D7B9;
+  box-shadow:0 0 60px rgba(119,215,185,.25);
+}
+
+/* ================= CONTACT ================= */
+.contact-banner {
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:800;
+  background:linear-gradient(90deg,#77D7B9,#fff,#6366f1);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:pulse 3s infinite;
+}
+@keyframes pulse {
+  0%,100%{opacity:1}
+  50%{opacity:.6}
+}
+.icons {
+  display:flex;
+  gap:1.5rem;
+  margin-top:3rem;
+  flex-wrap:wrap;
+}
+.icon {
+  width:56px;
+  height:56px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  cursor:pointer;
+  transition:.3s;
+}
+.icon.active { background:#77D7B9; color:#05080A; }
+.icon.disabled { background:#222; color:#777; }
+.icon.disabled:hover::after {
+  content:"Fejlesztés alatt";
+  position:absolute;
+  margin-top:80px;
+  font-size:11px;
+  background:#77D7B9;
+  color:#05080A;
+  padding:4px 8px;
+  border-radius:6px;
+}
+
+/* ================= FOOTER ================= */
 footer {
-  padding: 3rem;
-  text-align: center;
-  background: rgba(13,19,23,.7);
-  border-top: 1px solid rgba(119,215,185,.15);
+  background:rgba(13,19,23,.8);
+  border-top:1px solid rgba(119,215,185,.15);
+  padding:3rem 2rem;
+  text-align:center;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
 }
+footer a { color:#77D7B9; text-decoration:none; margin:0 .5rem; }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div class="nav-inner">
+<header>
+  <div class="container header-inner">
     <div class="logo">
-      <img src="logo.png" alt="AIMentool">
-      <span>AIMentool</span>
+      <img src="logo.png">
+      <strong>AIMentool</strong>
     </div>
-    <a href="#pricing" class="btn">Konzultáció</a>
+    <nav>
+      <a href="#hero">Bevezetés</a>
+      <a href="#infohub">InfoHub</a>
+      <a href="#services">Szolgáltatások</a>
+      <a href="#contact">Kapcsolat</a>
+    </nav>
   </div>
-</nav>
+</header>
 
-<section class="hero">
+<!-- HERO -->
+<section id="hero" class="section">
   <canvas id="heroCanvas"></canvas>
-
-  <div class="hero-content container">
+  <div class="container hero-content">
     <h1>Fresh Thinking.<br><span>Automated Growth.</span></h1>
-    <p style="max-width:600px;margin-top:1.5rem;">
-      AI-alapú vállalkozási rendszerek. Automatizáció. Skálázás.
+    <p>
+      Az AIMentool azért jött létre, hogy levegye a vállalkozók válláról
+      az online jelenlét és automatizáció terhét.
     </p>
-    <div style="margin-top:3rem;">
-      <a href="#pricing" class="btn">Rendszer indítása</a>
+    <a href="#services" class="btn btn-main">Kezdjük el</a>
+  </div>
+</section>
+
+<!-- INFOHUB -->
+<section id="infohub" class="section container">
+  <h2>InfoHub – Gyakori kérdések</h2>
+  <div class="cards">
+    <div class="card"><h3>Mi az AIMentool?</h3><p>Egy AI-alapú vállalkozási rendszer.</p></div>
+    <div class="card"><h3>Kinek való?</h3><p>KKV-knak és szolgáltatóknak.</p></div>
+    <div class="card"><h3>Miért jobb mint egy sima weboldal?</h3><p>Mert automatizál.</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section container">
+  <h2>Szolgáltatási csomagok</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Belépés az online térbe</h3>
+      <p>Weblap, céges email</p>
+      <strong>15.000 Ft / hó</strong><br><br>
+      <a href="mailto:info@aimentool.com?subject=Belépés csomag" class="btn btn-main">Kezdés!</a>
+    </div>
+    <div class="card">
+      <h3>Felzárkóztatás</h3>
+      <p>AI chatbot, SEO, heti 1 poszt</p>
+      <strong>50.000 Ft / hó</strong><br><br>
+      <a href="mailto:info@aimentool.com?subject=Felzárkóztatás csomag" class="btn btn-main">Ezt választom!</a>
+    </div>
+    <div class="card recommended">
+      <h3>Fejlődés a jövőbe</h3>
+      <p>3 platform, hirdetés, report</p>
+      <strong>95.000 Ft / hó</strong><br><br>
+      <a href="mailto:info@aimentool.com?subject=Fejlődés csomag" class="btn btn-main">Fejlődni szeretnék!</a>
+    </div>
+    <div class="card">
+      <h3>Ügyfélre szabva</h3>
+      <p>Egyedi AI Agentek</p>
+      <strong>Egyedi ár</strong><br><br>
+      <a href="mailto:info@aimentool.com?subject=Egyedi csomag" class="btn btn-main">Egyedi ajánlatot szeretnék!</a>
     </div>
   </div>
 </section>
 
-<section class="section container">
-  <h2>Rendszer modulok</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>AI Ügynökök</h3>
-      <p>Digitális munkatársak 0-24.</p>
-    </div>
-    <div class="card">
-      <h3>Automata Marketing</h3>
-      <p>Lead, email, hirdetés – kézi munka nélkül.</p>
-    </div>
-    <div class="card">
-      <h3>Prémium Web</h3>
-      <p>Konverzióra optimalizált felületek.</p>
-    </div>
+<!-- CONTACT -->
+<section id="contact" class="section container">
+  <div class="contact-banner">
+    Vegye fel velünk a kapcsolatot ott, ahol Önnek a legkényelmesebb!
   </div>
-</section>
-
-<section id="pricing" class="section container">
-  <h2>Árazás</h2>
-  <div class="cards">
-    <div class="card"><h3>Start</h3><p>15.000 Ft / hó</p></div>
-    <div class="card"><h3>Grow</h3><p>50.000 Ft / hó</p></div>
-    <div class="card"><h3>Scale</h3><p>Egyedi</p></div>
+  <div class="icons">
+    <a class="icon active" href="mailto:info@aimentool.com">Email</a>
+    <a class="icon active" href="https://facebook.com">FB</a>
+    <a class="icon active" href="https://instagram.com">IG</a>
+    <div class="icon disabled">WA</div>
+    <div class="icon disabled">YT</div>
+    <div class="icon disabled">X</div>
+    <div class="icon disabled">IN</div>
+    <div class="icon disabled">TT</div>
   </div>
 </section>
 
 <footer>
-  © 2026 AIMentool
+  © 2025 AIMentool |
+  <a href="#">ÁSZF</a>
+  <a href="#">Adatkezelés</a>
+  <a href="#">Impresszum</a>
 </footer>
 
 <script>
-/* ===== HERO CANVAS – STABIL ===== */
-const canvas = document.getElementById("heroCanvas");
-const ctx = canvas.getContext("2d");
-let w, h;
-
-function resize(){
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-const nodes = Array.from({length: 90}, () => ({
-  x: Math.random()*w,
-  y: Math.random()*h,
-  vx:(Math.random()-.5)*0.3,
-  vy:(Math.random()-.5)*0.3
+/* HERO CANVAS EFFECT */
+const c=document.getElementById("heroCanvas"),x=c.getContext("2d");
+let w,h;
+function r(){w=c.width=innerWidth;h=c.height=innerHeight}
+r();addEventListener("resize",r);
+const n=[...Array(90)].map(()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}));
+function a(){
+x.clearRect(0,0,w,h);
+n.forEach(A=>n.forEach(B=>{
+let d=Math.hypot(A.x-B.x,A.y-B.y);
+if(d<120){x.strokeStyle=`rgba(119,215,185,${1-d/120})`;x.beginPath();x.moveTo(A.x,A.y);x.lineTo(B.x,B.y);x.stroke()}
 }));
-
-function animate(){
-  ctx.clearRect(0,0,w,h);
-
-  nodes.forEach(a=>{
-    nodes.forEach(b=>{
-      const d = Math.hypot(a.x-b.x,a.y-b.y);
-      if(d<120){
-        ctx.strokeStyle=`rgba(119,215,185,${1-d/120})`;
-        ctx.beginPath();
-        ctx.moveTo(a.x,a.y);
-        ctx.lineTo(b.x,b.y);
-        ctx.stroke();
-      }
-    });
-  });
-
-  nodes.forEach(n=>{
-    n.x+=n.vx; n.y+=n.vy;
-    if(n.x<0||n.x>w) n.vx*=-1;
-    if(n.y<0||n.y>h) n.vy*=-1;
-    ctx.beginPath();
-    ctx.arc(n.x,n.y,2,0,Math.PI*2);
-    ctx.fillStyle="#fff";
-    ctx.fill();
-  });
-
-  requestAnimationFrame(animate);
-}
-animate();
+n.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>w)p.vx*=-1;
+if(p.y<0||p.y>h)p.vy*=-1;
+x.beginPath();x.arc(p.x,p.y,2,0,Math.PI*2);x.fillStyle="#fff";x.fill()});
+requestAnimationFrame(a)
+}a();
 </script>
 
 </body>
