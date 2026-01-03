@@ -5,13 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AIMentool – Fresh Thinking. Automated Growth.</title>
 
+<!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- ICON FONT (HIVATALOS LOGÓK) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
 /* ================= BASE ================= */
-*{box-sizing:border-box}
-html,body{
-  margin:0;padding:0;
+* { box-sizing:border-box; }
+html,body {
+  margin:0; padding:0;
   font-family:Inter,sans-serif;
   color:#fff;
   scroll-behavior:smooth;
@@ -20,163 +24,216 @@ html,body{
     radial-gradient(circle at 85% 25%, rgba(99,102,241,0.18), transparent 50%),
     linear-gradient(135deg,#1f6f5f,#2f8a8a,#1e3a5f);
 }
-p{color:rgba(255,255,255,.75);line-height:1.65}
-h1,h2,h3{margin:0;letter-spacing:-0.03em}
+p { color:rgba(255,255,255,.78); line-height:1.7; }
+h1,h2,h3 { margin:0; letter-spacing:-0.03em; }
 
-/* ================= LAYOUT ================= */
-.container{max-width:1200px;margin:auto;padding:0 2rem}
-.section{padding:8rem 0;position:relative}
+.container {
+  max-width:1200px;
+  margin:auto;
+  padding:0 2rem;
+}
+.section {
+  padding:8rem 0;
+  position:relative;
+}
 
 /* ================= HEADER ================= */
-header{
-  position:fixed;top:0;left:0;right:0;height:80px;z-index:100;
-  backdrop-filter:blur(16px);
-  background:rgba(13,40,35,.85);
-  border-bottom:1px solid rgba(119,215,185,.2);
+header {
+  position:fixed;
+  inset:0 0 auto 0;
+  height:80px;
+  z-index:100;
+  backdrop-filter:blur(18px);
+  background:linear-gradient(
+    90deg,
+    rgba(13,19,23,.9),
+    rgba(18,60,55,.9)
+  );
+  border-bottom:1px solid rgba(119,215,185,.15);
 }
-.header-inner{
+.header-inner {
   height:100%;
   display:flex;
   align-items:center;
   justify-content:space-between;
 }
-.logo{
-  display:flex;align-items:center;gap:.8rem;font-weight:800
+.logo {
+  display:flex;
+  align-items:center;
+  gap:.8rem;
 }
-.logo-wrap{
-  width:44px;height:44px;border-radius:50%;
-  background:radial-gradient(circle,#ffffff 60%,rgba(255,255,255,.0) 70%);
-  display:flex;align-items:center;justify-content:center;
+.logo img {
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+  box-shadow:0 0 0 6px rgba(255,255,255,.08);
 }
-.logo img{
-  width:34px;height:34px;border-radius:50%
+nav {
+  display:flex;
+  gap:1.5rem;
 }
-
-/* ================= NAV ================= */
-nav{display:flex;gap:1.6rem}
-nav a{
+nav a {
   color:rgba(255,255,255,.85);
-  text-decoration:none;font-weight:600
+  text-decoration:none;
+  font-weight:600;
 }
-nav a:hover{color:#77D7B9}
+nav a:hover { color:#77D7B9; }
 
 /* MOBILE MENU */
-.menu-btn{display:none;font-size:28px;cursor:pointer}
+.menu-toggle {
+  display:none;
+  font-size:26px;
+  cursor:pointer;
+}
 @media(max-width:900px){
-  nav{
-    position:fixed;top:80px;right:0;
-    background:rgba(13,40,35,.95);
+  nav {
+    position:absolute;
+    top:80px; right:0;
+    background:rgba(13,19,23,.95);
     flex-direction:column;
-    width:220px;padding:1.5rem;
-    transform:translateX(100%);
-    transition:.3s;
+    width:220px;
+    padding:1.5rem;
+    display:none;
   }
-  nav.open{transform:translateX(0)}
-  .menu-btn{display:block}
+  nav.open { display:flex; }
+  .menu-toggle { display:block; }
 }
-
-/* ================= BUTTON ================= */
-.btn{
-  padding:.9rem 2rem;border-radius:14px;
-  font-weight:700;text-decoration:none;
-  display:inline-block;transition:.3s
-}
-.btn-main{background:#77D7B9;color:#05080A}
-.btn-main:hover{box-shadow:0 0 30px rgba(119,215,185,.45)}
 
 /* ================= HERO ================= */
-#hero{
-  min-height:100vh;display:flex;align-items:center;
-  position:relative;overflow:hidden
+#hero {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
 }
-#hero canvas{position:absolute;inset:0}
-.hero-content{
-  position:relative;z-index:2;
-  max-width:620px;text-align:left
+#hero canvas {
+  position:absolute;
+  inset:0;
 }
-.hero-content h1{
-  font-size:clamp(3rem,6vw,5.3rem)
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:620px;
 }
-.hero-content span{color:#77D7B9}
+.hero-content h1 {
+  font-size:clamp(3rem,6vw,5.2rem);
+}
+.hero-content span { color:#77D7B9; }
+
+/* ================= BUTTON ================= */
+.btn {
+  padding:.9rem 2rem;
+  border-radius:16px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
+}
+.btn-main {
+  background:#77D7B9;
+  color:#05080A;
+}
+.btn-main:hover {
+  box-shadow:0 0 30px rgba(119,215,185,.4);
+}
 
 /* ================= CARDS ================= */
-.cards{
+.cards {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:2.2rem;margin-top:3.5rem
+  gap:2rem;
+  margin-top:3rem;
 }
-.card{
-  background:rgba(13,19,23,.7);
+.card {
+  background:rgba(13,19,23,.65);
   backdrop-filter:blur(18px);
-  border:1px solid rgba(119,215,185,.2);
+  border:1px solid rgba(119,215,185,.18);
   border-radius:26px;
-  padding:2.6rem;
-  transition:.4s;position:relative
+  padding:2.8rem;
+  transition:.4s;
 }
-.card:hover{
+.card:hover {
   transform:translateY(-6px);
-  box-shadow:0 0 45px rgba(119,215,185,.2)
+  box-shadow:0 0 40px rgba(119,215,185,.18);
 }
-.card.recommended{
+.card.recommended {
   border-color:#77D7B9;
-  box-shadow:0 0 65px rgba(119,215,185,.35)
-}
-.badge{
-  position:absolute;top:-14px;right:20px;
-  background:#77D7B9;color:#05080A;
-  font-size:11px;font-weight:800;
-  padding:4px 10px;border-radius:999px
+  box-shadow:0 0 70px rgba(119,215,185,.35);
 }
 
-/* ================= CONTACT ================= */
-.contact-banner{
-  font-size:clamp(1.9rem,4vw,2.8rem);
-  font-weight:800;
-  background:linear-gradient(90deg,#77D7B9,#fff,#6366f1);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:pulse 3s infinite
+/* ================= CONTACT ICONS ================= */
+.contact-icons {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(72px,1fr));
+  gap:1.4rem;
+  max-width:520px;
+  margin:3rem auto 0;
+  justify-items:center;
 }
-@keyframes pulse{50%{opacity:.6}}
-
-.icons{
-  display:flex;gap:1.6rem;margin-top:3rem;flex-wrap:wrap
+.contact-icon {
+  width:72px;
+  height:72px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  position:relative;
+  transition:.25s;
 }
-.icon{
-  width:58px;height:58px;border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;cursor:pointer
+.contact-icon.active {
+  background:rgba(119,215,185,.15);
+  color:#77D7B9;
+  cursor:pointer;
 }
-.icon.active{background:#77D7B9;color:#05080A}
-.icon.disabled{background:#222;color:#777}
-.icon.disabled:hover::after{
+.contact-icon.active:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(119,215,185,.4);
+}
+.contact-icon.disabled {
+  background:#1c1c1c;
+  color:#666;
+}
+.contact-icon.disabled:hover::after {
   content:"Fejlesztés alatt";
-  position:absolute;margin-top:80px;
-  background:#77D7B9;color:#05080A;
-  font-size:11px;padding:4px 8px;border-radius:6px
+  position:absolute;
+  bottom:-34px;
+  background:#77D7B9;
+  color:#05080A;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:11px;
+  white-space:nowrap;
 }
 
 /* ================= FOOTER & MODAL ================= */
-footer{
+footer {
   background:rgba(13,19,23,.85);
   border-top:1px solid rgba(119,215,185,.2);
-  padding:3rem 2rem;text-align:center;
-  font-size:13px;color:rgba(255,255,255,.65)
+  padding:3rem 2rem;
+  text-align:center;
+  font-size:13px;
+  color:rgba(255,255,255,.65);
 }
-footer a{color:#77D7B9;text-decoration:none;margin:0 .6rem}
+footer a { color:#77D7B9; cursor:pointer; }
 
-.modal{
-  position:fixed;inset:0;
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
   background:rgba(0,0,0,.85);
-  display:none;align-items:center;justify-content:center;
-  z-index:200
+  backdrop-filter:blur(8px);
+  z-index:200;
 }
-.modal-box{
-  background:#0D1317;
-  border:1px solid rgba(119,215,185,.3);
-  border-radius:20px;
+.modal-content {
   max-width:700px;
-  padding:2.5rem
+  margin:6rem auto;
+  background:#0d1317;
+  padding:2.5rem;
+  border-radius:24px;
+  border:1px solid rgba(119,215,185,.3);
 }
 </style>
 </head>
@@ -186,12 +243,10 @@ footer a{color:#77D7B9;text-decoration:none;margin:0 .6rem}
 <header>
   <div class="container header-inner">
     <div class="logo">
-      <div class="logo-wrap">
-        <img src="logo.png">
-      </div>
-      AIMentool
+      <img src="logo.png">
+      <strong>AIMentool</strong>
     </div>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav id="menu">
       <a href="#hero">Bevezetés</a>
       <a href="#infohub">InfoHub</a>
@@ -207,124 +262,119 @@ footer a{color:#77D7B9;text-decoration:none;margin:0 .6rem}
     <h1>Fresh Thinking.<br><span>Automated Growth.</span></h1>
     <p>
       Az AIMentool azért jött létre, hogy levegye a vállalkozók válláról
-      az online jelenlét terhét, és automatizációt vigyen a vállalkozásába,
+      az online jelenlét terhét, és automatizációt vigyen a vállalkozásába –
       ezzel időt és pénzt spórolva.
     </p>
     <a href="#services" class="btn btn-main">Vágjunk bele!</a>
   </div>
 </section>
 
-<!-- INFOHUB -->
 <section id="infohub" class="section container">
-<h2>InfoHub – Tudástár</h2>
-<div class="cards">
-<div class="card"><h3>Mi az AIMentool?</h3><p>AI-alapú digitális rendszer vállalkozásoknak.</p></div>
-<div class="card"><h3>Kinek ajánlott?</h3><p>KKV-knak, szolgáltatóknak, növekedni vágyóknak.</p></div>
-<div class="card"><h3>Miért van rá szükség?</h3><p>Mert az idő a legdrágább erőforrás.</p></div>
-<div class="card"><h3>Ember helyett AI?</h3><p>Nem. Ember mellett AI.</p></div>
-</div>
+  <h2>InfoHub – Tudástár</h2>
+  <div class="cards">
+    <div class="card"><h3>Mi az AIMentool?</h3><p>Egy moduláris AI-alapú rendszer vállalkozásoknak.</p></div>
+    <div class="card"><h3>Mit automatizál?</h3><p>- Kommunikáció<br>- Marketing<br>- Adminisztráció</p></div>
+    <div class="card"><h3>Miért szükséges?</h3><p>Mert az idő a legdrágább erőforrás.</p></div>
+    <div class="card"><h3>Biztonságos?</h3><p>Adatvédelem, GDPR-kompatibilis működés.</p></div>
+  </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="section container">
-<h2>Szolgáltatási csomagok</h2>
-<div class="cards">
+  <h2>Szolgáltatások</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Belépés az online térbe</h3>
+      <p>- Weblap létrehozása<br>- Céges email</p>
+      <strong>15.000 Ft / hó</strong><br><br>
+      <a class="btn btn-main" href="mailto:info@aimentool.com?subject=Belépés csomag">Kezdés!</a>
+    </div>
 
-<div class="card">
-<h3>Belépés az online térbe</h3>
-<p>- Weblap létrehozása<br>- Céges email</p>
-<strong>15.000 Ft / hó</strong><br><br>
-<a href="mailto:info@aimentool.com?subject=Belépés csomagot választom" class="btn btn-main">Kezdés!</a>
-</div>
+    <div class="card">
+      <h3>Felzárkóztatás</h3>
+      <p>- Alap csomag<br>- AI chatbot (1 platform)<br>- SEO<br>- Heti 1 poszt</p>
+      <strong>50.000 Ft / hó</strong><br><br>
+      <a class="btn btn-main" href="mailto:info@aimentool.com?subject=Felzárkóztatás csomag">Ezt választom!</a>
+    </div>
 
-<div class="card">
-<h3>Felzárkóztatás</h3>
-<p>- 1. csomag tartalma<br>- AI Chatbot (1 platform)<br>- SEO szövegírás<br>- Heti 1 poszt</p>
-<strong>50.000 Ft / hó</strong><br><br>
-<a href="mailto:info@aimentool.com?subject=Felzárkóztatás csomagot választom" class="btn btn-main">Ezt választom!</a>
-</div>
+    <div class="card recommended">
+      <h3>Fejlődés a jövőbe</h3>
+      <p>- 3 platform chatbot<br>- Heti 2 poszt<br>- Hirdetéskezelés<br>- Havi report</p>
+      <strong>95.000 Ft / hó</strong><br><br>
+      <a class="btn btn-main" href="mailto:info@aimentool.com?subject=Fejlődés csomag">Fejlődni szeretnék!</a>
+    </div>
 
-<div class="card recommended">
-<div class="badge">Leggyakoribb választás</div>
-<h3>Fejlődés a jövőbe</h3>
-<p>- Online jelenlét fejlesztés<br>- AI Chatbot (3 platform)<br>- Heti 2 poszt<br>- Hirdetéskezelés<br>- Havi riport</p>
-<strong>95.000 Ft / hó</strong><br><br>
-<a href="mailto:info@aimentool.com?subject=Fejlődés csomagot választom" class="btn btn-main">Fejlődni szeretnék!</a>
-</div>
-
-<div class="card">
-<h3>Ügyfélre szabva</h3>
-<p>- Egyedi AI Agentek<br>- Stratégia<br>- Riportok<br>- Hirdetéskezelés</p>
-<strong>Egyedi ár</strong><br><br>
-<a href="mailto:info@aimentool.com?subject=Egyedi csomagot szeretnék" class="btn btn-main">Egyedi ajánlatot szeretnék!</a>
-</div>
-
-</div>
+    <div class="card">
+      <h3>Ügyfélre szabva</h3>
+      <p>- Egyedi AI Agentek<br>- Stratégiák<br>- Teljes skálázás</p>
+      <strong>Egyedi ár</strong><br><br>
+      <a class="btn btn-main" href="mailto:info@aimentool.com?subject=Egyedi csomag">Egyedi ajánlatot szeretnék!</a>
+    </div>
+  </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section container">
-<div class="contact-banner">
-Vegye fel velünk a kapcsolatot ott, ahol Önnek a legkényelmesebb!
-</div>
-<div class="icons">
-<a class="icon active" href="mailto:info@aimentool.com">✉</a>
-<a class="icon active" href="#">f</a>
-<a class="icon active" href="#">IG</a>
-<div class="icon disabled">WA</div>
-<div class="icon disabled">YT</div>
-<div class="icon disabled">X</div>
-<div class="icon disabled">IN</div>
-<div class="icon disabled">TT</div>
-</div>
+  <h2>Vegye fel velünk a kapcsolatot ott, ahol Önnek a legkényelmesebb</h2>
+  <div class="contact-icons">
+    <a class="contact-icon active" href="mailto:info@aimentool.com"><i class="fa-solid fa-envelope"></i></a>
+    <a class="contact-icon active" href="https://facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
+    <a class="contact-icon active" href="https://instagram.com"><i class="fa-brands fa-instagram"></i></a>
+    <div class="contact-icon disabled"><i class="fa-brands fa-whatsapp"></i></div>
+    <div class="contact-icon disabled"><i class="fa-brands fa-youtube"></i></div>
+    <div class="contact-icon disabled"><i class="fa-brands fa-linkedin-in"></i></div>
+    <div class="contact-icon disabled"><i class="fa-brands fa-x-twitter"></i></div>
+    <div class="contact-icon disabled"><i class="fa-brands fa-tiktok"></i></div>
+  </div>
 </section>
 
 <footer>
-© 2025 AIMentool |
-<a href="#" onclick="openModal('aszf')">ÁSZF</a>
-<a href="#" onclick="openModal('adat')">Adatkezelés</a>
-<a href="#" onclick="openModal('imp')">Impresszum</a>
+  © 2025 AIMentool |
+  <a onclick="openModal('aszf')">ÁSZF</a> |
+  <a onclick="openModal('adat')">Adatkezelés</a> |
+  <a onclick="openModal('imp')">Impresszum</a>
 </footer>
 
 <div class="modal" id="modal">
-  <div class="modal-box" id="modalContent"></div>
+  <div class="modal-content">
+    <div id="modalText"></div>
+    <br><br>
+    <a class="btn btn-main" onclick="closeModal()">Bezárás</a>
+  </div>
 </div>
 
 <script>
-function toggleMenu(){document.getElementById("menu").classList.toggle("open")}
+function toggleMenu(){document.getElementById("menu").classList.toggle("open");}
 
-function openModal(type){
-  const t={
-    aszf:"<h2>ÁSZF</h2><p>Az AIMentool digitális szolgáltatásokat nyújt. A megrendelés elektronikus úton történik...</p>",
-    adat:"<h2>Adatkezelés</h2><p>Személyes adatokat kizárólag a szolgáltatás teljesítéséhez használunk...</p>",
-    imp:"<h2>Impresszum</h2><p>AIMentool – 2025. Kapcsolat: info@aimentool.com</p>"
-  };
-  document.getElementById("modalContent").innerHTML=t[type];
-  document.getElementById("modal").style.display="flex";
-}
-document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")e.target.style.display="none"}
-
-/* CANVAS RESPONSIVE */
+/* CANVAS – adaptive density */
 const c=document.getElementById("heroCanvas"),x=c.getContext("2d");
-let w,h;
-function r(){w=c.width=innerWidth;h=c.height=innerHeight}
-r();addEventListener("resize",r);
-const count=innerWidth<768?45:110;
-const n=[...Array(count)].map(()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}));
-function a(){
-x.clearRect(0,0,w,h);
-n.forEach(A=>n.forEach(B=>{
-let d=Math.hypot(A.x-B.x,A.y-B.y);
-if(d<innerWidth<768?90:140){
-x.strokeStyle=`rgba(119,215,185,${1-d/140})`;
-x.beginPath();x.moveTo(A.x,A.y);x.lineTo(B.x,B.y);x.stroke()}
+function resize(){c.width=innerWidth;c.height=innerHeight}
+resize();addEventListener("resize",resize);
+const isMobile=innerWidth<768;
+const COUNT=isMobile?60:120;
+const dots=[...Array(COUNT)].map(()=>({x:Math.random()*c.width,y:Math.random()*c.height,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25}));
+(function anim(){
+x.clearRect(0,0,c.width,c.height);
+dots.forEach(a=>dots.forEach(b=>{
+let d=Math.hypot(a.x-b.x,a.y-b.y);
+if(d<120){x.strokeStyle=`rgba(119,215,185,${1-d/120})`;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}
 }));
-n.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
-if(p.x<0||p.x>w)p.vx*=-1;
-if(p.y<0||p.y>h)p.vy*=-1;
-x.beginPath();x.arc(p.x,p.y,2,0,Math.PI*2);x.fillStyle="#fff";x.fill()});
-requestAnimationFrame(a)
-}a();
+dots.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+if(p.x<0||p.x>c.width)p.vx*=-1;
+if(p.y<0||p.y>c.height)p.vy*=-1;
+x.beginPath();x.arc(p.x,p.y,2,0,Math.PI*2);x.fillStyle="#fff";x.fill();});
+requestAnimationFrame(anim);
+})();
+
+/* MODAL */
+function openModal(t){
+const m={
+aszf:"<h3>ÁSZF</h3><p>Az AIMentool szolgáltatásainak általános feltételei...</p>",
+adat:"<h3>Adatkezelés</h3><p>GDPR kompatibilis adatkezelés...</p>",
+imp:"<h3>Impresszum</h3><p>AIMentool – 2025</p>"
+};
+document.getElementById("modalText").innerHTML=m[t];
+document.getElementById("modal").style.display="block";
+}
+function closeModal(){document.getElementById("modal").style.display="none";}
 </script>
 
 </body>
