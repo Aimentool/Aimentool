@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIMentool | Fresh Thinking. Automated Growth.</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -16,51 +18,33 @@
 
 <header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#021649]/60 border-b border-[#1FAF9A]/10">
     <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-
-        <div class="flex items-center gap-3 group cursor-pointer">
-            <div class="w-10 h-10 rounded-full overflow-hidden bg-[#021649] shadow-[0_0_18px_rgba(31,175,154,0.35)] group-hover:scale-105 transition-transform flex items-center justify-center">
-                <img src="assets/logo/aimentool-logo.png" alt="AIMentool logo" class="w-full h-full object-cover">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full overflow-hidden bg-[#021649] shadow-[0_0_18px_rgba(31,175,154,0.35)]">
+                <img src="assets/logo/aimentool-logo.png" alt="AIMentool" class="w-full h-full object-cover">
             </div>
             <span class="text-xl font-bold tracking-tight">
                 AIMen<span class="text-[#78D0C2]">tool</span>
             </span>
         </div>
 
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-            <a href="#bevezetes" class="hover:text-[#78D0C2] transition-colors">Bevezetés</a>
-            <a href="#infohub" class="hover:text-[#78D0C2] transition-colors">InfoHub</a>
-            <a href="#szolgaltatasok" class="hover:text-[#78D0C2] transition-colors">Szolgáltatások</a>
-            <a href="#kapcsolat" class="px-5 py-2.5 bg-[#1FAF9A]/10 border border-[#1FAF9A]/30 rounded-full hover:bg-[#1FAF9A] hover:text-white transition-all shadow-lg">Kapcsolat</a>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="#bevezetes" class="hover:text-[#78D0C2]">Bevezetés</a>
+            <a href="#infohub" class="hover:text-[#78D0C2]">InfoHub</a>
+            <a href="#szolgaltatasok" class="hover:text-[#78D0C2]">Szolgáltatások</a>
+            <a href="#kapcsolat" class="px-5 py-2 bg-[#1FAF9A]/10 border border-[#1FAF9A]/30 rounded-full hover:bg-[#1FAF9A] hover:text-white">Kapcsolat</a>
         </div>
-
-        <button class="md:hidden text-2xl"><i class="ph ph-list"></i></button>
     </nav>
 </header>
 
 <main>
 
-<section id="hero"
-    class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden"
-    style="background: url('assets/hero/hero-base.jpg') center/cover no-repeat;"
->
-    <!-- CANVAS OVERLAY -->
-    <canvas
-        id="heroCanvas"
-        class="absolute inset-0 z-0 pointer-events-none"
-    ></canvas>
-
-    <!-- TEXT LAYER -->
-    <div class="relative z-10 text-center max-w-4xl backdrop-blur-md bg-[#021649]/40 p-10 rounded-3xl border border-[#1FAF9A]/20">
-        <h1 class="text-6xl md:text-8xl font-bold leading-[1.1] mb-6 tracking-tighter">
-            AIMentool
-        </h1>
-        <p class="text-lg md:text-xl text-[#BCE8E1]/80">
-            Fresh Thinking. Automated Growth.
-        </p>
-    </div>
+<!-- HERO -->
+<section id="hero" class="hero-bg relative h-[90vh] md:h-screen pt-20 overflow-hidden">
+    <canvas id="heroCanvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
 </section>
 
-<section id="bevezetes" class="py-32 px-6 bg-gradient-to-b from-transparent to-[#021649]/30">
+<!-- BEVEZETÉS -->
+<section id="bevezetes" class="hero-continuation py-32 px-6">
     <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
         <h2 class="text-[#78D0C2] uppercase tracking-[0.3em] text-sm font-bold mb-6">Miért létezünk?</h2>
         <p class="text-3xl md:text-4xl font-light leading-snug">
@@ -71,6 +55,7 @@
     </div>
 </section>
 
+<!-- INFOHUB -->
 <section id="infohub" class="py-32 px-6">
     <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -79,7 +64,7 @@
                 <p class="text-[#BCE8E1]/60">Tudástár a jövőálló vállalkozásoknak.</p>
             </div>
             <div class="relative w-full md:w-96">
-                <input type="text" placeholder="Keresés a tudástárban..." class="w-full bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3 focus:outline-none">
+                <input type="text" placeholder="Keresés a tudástárban..." class="w-full bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3">
                 <i class="ph ph-magnifying-glass absolute right-4 top-4 text-[#1FAF9A]"></i>
             </div>
         </div>
@@ -87,53 +72,93 @@
     </div>
 </section>
 
+<!-- SZOLGÁLTATÁSOK -->
 <section id="szolgaltatasok" class="py-32 px-6 bg-[#021649]/20">
     <div class="max-w-7xl mx-auto">
         <h2 class="text-center text-4xl font-bold mb-20">Rendszerek a növekedéshez</h2>
 
         <div class="grid lg:grid-cols-4 gap-8">
-            <div class="glass-card p-8 flex flex-col">
+            <!-- Belépés -->
+            <div class="glass-card p-8 flex flex-col h-full">
                 <h3 class="text-xl font-bold mb-2">Belépés</h3>
-                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">15.000 Ft<span class="text-xs">/hó</span></div>
-                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 mb-8">
+                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">
+                    15.000 Ft <span class="text-xs text-[#BCE8E1]/50">/hó</span>
+                </div>
+                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 flex-grow">
                     <li>Weblap létrehozása</li>
                     <li>Céges email</li>
                 </ul>
+                <button class="mt-8 py-3 border border-[#1FAF9A]/40 rounded-xl hover:bg-[#1FAF9A]/10">Kezdés!</button>
             </div>
 
-            <div class="glass-card p-8 flex flex-col">
+            <!-- Felzárkóztatás -->
+            <div class="glass-card p-8 flex flex-col h-full">
                 <h3 class="text-xl font-bold mb-2">Felzárkóztatás</h3>
-                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">50.000 Ft<span class="text-xs">/hó</span></div>
-                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 mb-8">
-                    <li>AI chatbot 1 platformon</li>
+                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">
+                    50.000 Ft <span class="text-xs text-[#BCE8E1]/50">/hó</span>
+                </div>
+                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 flex-grow">
+                    <li>Belépés csomag tartalma</li>
+                    <li>AI chatbot (1 platform)</li>
                     <li>SEO szövegírás</li>
-                    <li>Heti 1 social poszt tartalom leírás</li>
-                </ul>
-            </div>
-
-            <div class="glass-card p-8 flex flex-col border-[#1FAF9A]/60 bg-[#0A2E4F]/40 relative">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1FAF9A] text-white text-xs px-4 py-1 rounded-full">Legnépszerűbb</div>
-                <h3 class="text-xl font-bold mb-2">Fejlődés</h3>
-                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">95.000 Ft<span class="text-xs">/hó</span></div>
-                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 mb-8">
-                    <li>AI chatbot 3 platformon</li>
-                    <li>Hirdetéskezelés</li>
-                    <li>Havi 1 riport</li>
                     <li>Heti 1 social poszt</li>
                 </ul>
+                <button class="mt-8 py-3 border border-[#1FAF9A]/40 rounded-xl hover:bg-[#1FAF9A]/10">Ezt választom!</button>
             </div>
 
-            <div class="glass-card p-8 flex flex-col">
-                <h3 class="text-xl font-bold mb-2">Egyedi</h3>
-                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">Ajánlat</div>
-                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 mb-8">
-                    <li>Egyedi AI agentek</li>
-                    <li>Automatizmusok</li>
-                    <li>Tanácsadás</li>
-                    <li>Havi Reportok</li>
-                    <li>Hirdetéskezelés</li>
+            <!-- Fejlődés -->
+            <div class="glass-card p-8 flex flex-col h-full border-[#1FAF9A]/60 bg-[#0A2E4F]/40 relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1FAF9A] text-white text-xs px-4 py-1 rounded-full">
+                    Leggyakoribb választás
+                </div>
+                <h3 class="text-xl font-bold mb-2">Fejlődés a jövőbe</h3>
+                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">
+                    95.000 Ft <span class="text-xs text-[#BCE8E1]/50">/hó</span>
+                </div>
+                <ul class="space-y-3 text-sm text-[#BCE8E1]/90 flex-grow">
+                    <li>Meglévő jelenlét fejlesztése</li>
+                    <li>AI chatbot (max. 3 platform)</li>
+                    <li>Heti 2 poszt (max. 3 platform)</li>
+                    <li>Hirdetéskezelés 200k-ig</li>
+                    <li>Havi 1 riport</li>
                 </ul>
+                <button class="mt-8 py-4 bg-[#1FAF9A] text-white rounded-xl shadow-lg">
+                    Fejlődni szeretnék!
+                </button>
             </div>
+
+            <!-- Egyedi -->
+            <div class="glass-card p-8 flex flex-col h-full">
+                <h3 class="text-xl font-bold mb-2">Ügyfélre szabva</h3>
+                <div class="text-[#1FAF9A] text-2xl font-bold mb-6">Egyedi</div>
+                <ul class="space-y-3 text-sm text-[#BCE8E1]/70 flex-grow">
+                    <li>Egyedi AI agentek</li>
+                    <li>Vállalati automatizmusok</li>
+                    <li>Folyamatos tanácsadás</li>
+                </ul>
+                <button class="mt-8 py-3 border border-[#1FAF9A]/40 rounded-xl hover:bg-[#1FAF9A]/10">
+                    Egyedi ajánlatot szeretnék!
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- KAPCSOLAT -->
+<section id="kapcsolat" class="py-32 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-4xl font-bold mb-8 animate-glow">
+            Vegye fel velünk a kapcsolatot ott, ahol Önnek a legkényelmesebb.
+        </h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-6 mt-16">
+            <a href="mailto:info@aimentool.hu" class="social-icon active"><i class="ph-fill ph-envelope"></i></a>
+            <a href="#" class="social-icon active text-[#1877F2]"><i class="ph-fill ph-facebook-logo"></i></a>
+            <a href="#" class="social-icon active text-[#E4405F]"><i class="ph-fill ph-instagram-logo"></i></a>
+            <div class="social-icon inactive group" data-tooltip="Fejlesztés alatt"><i class="ph-fill ph-whatsapp-logo"></i></div>
+            <div class="social-icon inactive group" data-tooltip="Fejlesztés alatt"><i class="ph-fill ph-youtube-logo"></i></div>
+            <div class="social-icon inactive group" data-tooltip="Fejlesztés alatt"><i class="ph-fill ph-linkedin-logo"></i></div>
+            <div class="social-icon inactive group" data-tooltip="Fejlesztés alatt"><i class="ph-fill ph-tiktok-logo"></i></div>
+            <div class="social-icon inactive group" data-tooltip="Fejlesztés alatt"><i class="ph-fill ph-x-logo"></i></div>
         </div>
     </div>
 </section>
