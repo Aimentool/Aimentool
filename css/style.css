@@ -58,3 +58,15 @@
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #052752; }
 ::-webkit-scrollbar-thumb { background: #1FAF9A; border-radius: 10px; }
+    .hero-bg {
+    background: url("../assets/hero/hero-base.jpg") center/cover no-repeat;
+}
+
+.hero-continuation {
+    background: linear-gradient(
+        to bottom,
+        rgba(5,39,82,0.95) 0%,
+        rgba(2,22,73,1) 40%
+    );
+}
+
