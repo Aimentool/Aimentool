@@ -39,16 +39,23 @@
 
 <main>
 
-<section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden">
-    <canvas id="heroCanvas" class="absolute inset-0 z-0"></canvas>
+<section id="hero"
+    class="relative min-h-screen flex items-center justify-center pt-20 px-6 overflow-hidden"
+    style="background: url('assets/hero/hero-base.jpg') center/cover no-repeat;"
+>
+    <!-- CANVAS OVERLAY -->
+    <canvas
+        id="heroCanvas"
+        class="absolute inset-0 z-0 pointer-events-none"
+    ></canvas>
 
+    <!-- TEXT LAYER -->
     <div class="relative z-10 text-center max-w-4xl backdrop-blur-md bg-[#021649]/40 p-10 rounded-3xl border border-[#1FAF9A]/20">
         <h1 class="text-6xl md:text-8xl font-bold leading-[1.1] mb-6 tracking-tighter">
-            Fresh Thinking.<br>
-            <span class="text-gradient">Automated Growth.</span>
+            AIMentool
         </h1>
         <p class="text-lg md:text-xl text-[#BCE8E1]/80">
-            Intelligens rendszerek. Organikus növekedés. Mérhető eredmények.
+            Fresh Thinking. Automated Growth.
         </p>
     </div>
 </section>
