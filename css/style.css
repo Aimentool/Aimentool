@@ -1,6 +1,3 @@
-/* =========================
-   GLOBAL
-========================= */
 :root {
     --mint: #1FAF9A;
     --mint-soft: #78D0C2;
@@ -8,14 +5,7 @@
     --dark-2: #052752;
 }
 
-body {
-    background: var(--dark-2);
-    color: #E6F7F4;
-}
-
-/* =========================
-   NAV
-========================= */
+/* ================= NAV ================= */
 .nav-cta {
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
@@ -23,192 +13,131 @@ body {
     background: rgba(31,175,154,.12);
 }
 
-.mobile-menu {
-    background: rgba(2,22,73,.95);
-    backdrop-filter: blur(12px);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
-}
-
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 .hero-bg {
-    background: url("../assets/hero/hero-base.jpg") no-repeat center;
-    background-size: cover;
+    background: url("../assets/hero/hero-base.jpg") center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
     .hero-bg {
-        background-size: contain;
-        background-position: center bottom;
+        background: linear-gradient(135deg, #021649, #052752);
     }
 }
 
-/* =========================
-   HERO CONTINUATION
-========================= */
+/* ================= HERO CONTINUATION ================= */
 .hero-continuation {
     background: linear-gradient(
         to bottom,
-        rgba(5,39,82,0.95) 0%,
-        rgba(2,22,73,1) 50%
+        rgba(5,39,82,0.95),
+        rgba(2,22,73,1)
     );
 }
 
-/* =========================
-   WHY TITLE
-========================= */
+/* ================= WHY ================= */
 .why-title {
-    font-size: .85rem;
-    letter-spacing: .35em;
+    font-size: 1.8rem;
+    letter-spacing: .3em;
     text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    animation: titleGlow 3s infinite;
+    margin-bottom: 2rem;
+    animation: whyGlow 3s infinite;
 }
 
-@keyframes titleGlow {
-    0%,100% { opacity: .7; }
-    50% { opacity: 1; }
+@keyframes whyGlow {
+    0%,100% { opacity: .7; text-shadow: 0 0 0 transparent; }
+    50% { opacity: 1; text-shadow: 0 0 18px rgba(120,208,194,.4); }
 }
 
-/* =========================
-   GLASS CARDS
-========================= */
+/* ================= GLASS CARDS ================= */
 .glass-card {
-    background: rgba(10,46,79,0.4);
-    backdrop-filter: blur(14px);
-    border-radius: 24px;
-    border: 1px solid rgba(31,175,154,.2);
-    transition: all .4s ease;
+    background: linear-gradient(
+        145deg,
+        rgba(10,46,79,0.55),
+        rgba(10,46,79,0.25)
+    );
+    backdrop-filter: blur(16px);
+    border-radius: 28px;
+    border: 1px solid rgba(31,175,154,.25);
+    transition: all .45s ease;
     position: relative;
 }
 
 .glass-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 25px 50px rgba(2,22,73,.6);
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px rgba(2,22,73,.65);
 }
 
 .featured {
-    border: 2px solid rgba(31,175,154,.6);
+    border: 2px solid rgba(31,175,154,.7);
 }
 
 .badge {
     position: absolute;
-    top: -14px;
+    top: -16px;
     left: 50%;
     transform: translateX(-50%);
     background: var(--mint);
     color: #fff;
     font-size: .65rem;
-    padding: .35rem 1rem;
+    padding: .4rem 1.2rem;
     border-radius: 999px;
 }
 
-/* =========================
-   PRICE / LIST / BUTTON
-========================= */
+/* ================= PRICE / BUTTON ================= */
 .price {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
     color: var(--mint);
-    margin-bottom: 1.2rem;
-}
-
-.list {
-    color: rgba(230,247,244,.75);
-    flex-grow: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.4rem;
 }
 
 .card-btn {
-    display: block;
+    padding: .9rem;
+    border-radius: 16px;
+    border: 1px solid rgba(31,175,154,.45);
     text-align: center;
-    padding: .75rem;
-    border-radius: 14px;
-    border: 1px solid rgba(31,175,154,.4);
-    transition: .3s;
+    transition: .35s;
 }
 
 .card-btn:hover {
-    background: rgba(31,175,154,.2);
+    background: rgba(31,175,154,.25);
 }
 
-.card-btn.primary {
-    background: var(--mint);
-    color: white;
-}
-
-/* =========================
-   CONTACT
-========================= */
+/* ================= CONTACT ================= */
 .contact-title {
-    font-size: 1.75rem;
+    font-size: 2rem;
     margin-bottom: 3rem;
-    animation: drawText 1.2s ease forwards;
+    animation: drawSlow 2.2s ease forwards;
 }
 
-@keyframes drawText {
-    from { opacity: 0; transform: translateX(-30px); }
+@keyframes drawSlow {
+    from { opacity: 0; transform: translateX(-60px); }
     to { opacity: 1; transform: translateX(0); }
 }
 
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(56px,1fr));
-    gap: 1.5rem;
-    justify-items: center;
-}
-
 .social {
-    width: 56px;
-    height: 56px;
-    border-radius: 16px;
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
     background: #0A2E4F;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
-    transition: .3s;
-    position: relative;
+    font-size: 28px;
+    transition: .4s;
 }
 
 .social.active:hover {
-    transform: scale(1.15);
+    transform: scale(1.18) rotate(4deg);
 }
 
-.social.inactive {
-    opacity: .3;
-    cursor: not-allowed;
-}
+.social.fb { color: #1877F2; }
+.social.ig { color: #E4405F; }
+.social.mail { color: var(--mint); }
 
-.social.inactive:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -30px;
-    background: var(--mint);
-    color: white;
-    font-size: .65rem;
-    padding: .25rem .6rem;
-    border-radius: 6px;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* ================= FOOTER ================= */
 .footer {
-    padding: 2rem;
+    padding: 2.5rem;
     border-top: 1px solid rgba(31,175,154,.15);
     text-align: center;
-    font-size: .8rem;
-    color: rgba(230,247,244,.6);
-}
-
-.footer-links {
-    margin-top: .8rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
+    font-size: .85rem;
 }
