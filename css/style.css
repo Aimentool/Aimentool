@@ -5,7 +5,7 @@
     --dark-2: #052752;
 }
 
-/* ================= NAV ================= */
+/* ========== NAV ========== */
 .nav-cta {
     padding: 0.6rem 1.4rem;
     border-radius: 999px;
@@ -13,7 +13,17 @@
     background: rgba(31,175,154,.12);
 }
 
-/* ================= HERO ================= */
+/* Mobile menu */
+.mobile-menu {
+    background: rgba(2,22,73,.95);
+    backdrop-filter: blur(14px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* ========== HERO ========== */
 .hero-bg {
     background: url("../assets/hero/hero-base.jpg") center/cover no-repeat;
 }
@@ -24,50 +34,58 @@
     }
 }
 
-/* ================= HERO CONTINUATION ================= */
+/* Hero → Bevezetés átmenet */
 .hero-continuation {
     background: linear-gradient(
         to bottom,
-        rgba(5,39,82,0.95),
-        rgba(2,22,73,1)
+        rgba(5,39,82,0.95) 0%,
+        rgba(2,22,73,1) 55%
     );
 }
 
-/* ================= WHY ================= */
+/* ========== WHY SECTION ========== */
 .why-title {
-    font-size: 1.8rem;
-    letter-spacing: .3em;
+    font-size: 2rem;
+    letter-spacing: .35em;
     text-transform: uppercase;
-    margin-bottom: 2rem;
-    animation: whyGlow 3s infinite;
+    margin-bottom: 2.5rem;
+    animation: whyGlow 3.5s infinite ease-in-out;
 }
 
 @keyframes whyGlow {
-    0%,100% { opacity: .7; text-shadow: 0 0 0 transparent; }
-    50% { opacity: 1; text-shadow: 0 0 18px rgba(120,208,194,.4); }
+    0%,100% {
+        opacity: .7;
+        text-shadow: none;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 18px rgba(120,208,194,.45);
+    }
 }
 
-/* ================= GLASS CARDS ================= */
+/* ========== GLASS CARDS (SZOLGÁLTATÁSOK) ========== */
 .glass-card {
     background: linear-gradient(
         145deg,
         rgba(10,46,79,0.55),
         rgba(10,46,79,0.25)
     );
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(18px);
     border-radius: 28px;
     border: 1px solid rgba(31,175,154,.25);
-    transition: all .45s ease;
+    transition: all .45s cubic-bezier(.22,1,.36,1);
     position: relative;
 }
 
 .glass-card:hover {
     transform: translateY(-12px);
-    box-shadow: 0 30px 60px rgba(2,22,73,.65);
+    box-shadow:
+        0 30px 60px rgba(2,22,73,.65),
+        0 0 30px rgba(31,175,154,.15);
 }
 
 .featured {
-    border: 2px solid rgba(31,175,154,.7);
+    border: 2px solid rgba(31,175,154,.75);
 }
 
 .badge {
@@ -78,19 +96,27 @@
     background: var(--mint);
     color: #fff;
     font-size: .65rem;
-    padding: .4rem 1.2rem;
+    padding: .4rem 1.3rem;
     border-radius: 999px;
+    box-shadow: 0 0 20px rgba(31,175,154,.6);
 }
 
-/* ================= PRICE / BUTTON ================= */
+/* Ár + lista + gomb */
 .price {
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: var(--mint);
     margin-bottom: 1.4rem;
 }
 
+.list {
+    color: rgba(230,247,244,.75);
+    flex-grow: 1;
+    margin-bottom: 1.8rem;
+}
+
 .card-btn {
+    display: block;
     padding: .9rem;
     border-radius: 16px;
     border: 1px solid rgba(31,175,154,.45);
@@ -102,16 +128,34 @@
     background: rgba(31,175,154,.25);
 }
 
-/* ================= CONTACT ================= */
+.card-btn.primary {
+    background: var(--mint);
+    color: #fff;
+}
+
+/* ========== CONTACT ========== */
 .contact-title {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    animation: drawSlow 2.2s ease forwards;
+    font-size: 2.1rem;
+    margin-bottom: 3.2rem;
+    animation: drawSlow 2.6s ease forwards;
 }
 
 @keyframes drawSlow {
-    from { opacity: 0; transform: translateX(-60px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(56px,1fr));
+    gap: 1.6rem;
+    justify-items: center;
 }
 
 .social {
@@ -123,21 +167,48 @@
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    transition: .4s;
+    transition: .45s cubic-bezier(.22,1,.36,1);
+    position: relative;
 }
 
 .social.active:hover {
     transform: scale(1.18) rotate(4deg);
+    box-shadow: 0 0 25px rgba(31,175,154,.35);
 }
 
+.social.inactive {
+    opacity: .3;
+    cursor: not-allowed;
+}
+
+.social.inactive:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -32px;
+    background: var(--mint);
+    color: #fff;
+    font-size: .65rem;
+    padding: .25rem .7rem;
+    border-radius: 6px;
+}
+
+/* Brand színek */
 .social.fb { color: #1877F2; }
 .social.ig { color: #E4405F; }
 .social.mail { color: var(--mint); }
 
-/* ================= FOOTER ================= */
+/* ========== FOOTER ========== */
 .footer {
-    padding: 2.5rem;
-    border-top: 1px solid rgba(31,175,154,.15);
+    padding: 2.8rem 2rem;
+    border-top: 1px solid rgba(31,175,154,.18);
     text-align: center;
     font-size: .85rem;
+    color: rgba(230,247,244,.6);
+}
+
+.footer-links {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.8rem;
 }
