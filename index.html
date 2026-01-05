@@ -8,54 +8,65 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body class="bg-[#052752] text-[#E6F7F4] font-['Plus_Jakarta_Sans'] overflow-x-hidden">
 
-<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#021649]/60 border-b border-[#1FAF9A]/10">
+<header class="fixed top-0 w-full z-50 backdrop-blur-xl bg-[#021649]/70 border-b border-[#1FAF9A]/10">
     <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full overflow-hidden bg-[#021649] shadow-[0_0_18px_rgba(31,175,154,0.35)]">
-                <img src="assets/logo/aimentool-logo.png" class="w-full h-full object-cover" alt="AIMentool">
+                <img src="assets/logo/aimentool-logo.png" class="w-full h-full object-cover">
             </div>
-            <span class="text-xl font-bold tracking-tight">AIMen<span class="text-[#78D0C2]">tool</span></span>
+            <span class="text-xl font-bold">AIMen<span class="text-[#78D0C2]">tool</span></span>
         </div>
 
-        <div class="hidden md:flex gap-8 text-sm font-medium">
+        <!-- DESKTOP MENU -->
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#bevezetes">Bevezetés</a>
             <a href="#infohub">InfoHub</a>
             <a href="#szolgaltatasok">Szolgáltatások</a>
-            <a href="#kapcsolat" class="px-5 py-2 bg-[#1FAF9A]/10 border border-[#1FAF9A]/30 rounded-full hover:bg-[#1FAF9A] hover:text-white">Kapcsolat</a>
+            <a href="#kapcsolat" class="nav-cta">Kapcsolat</a>
         </div>
+
+        <!-- MOBILE TOGGLE -->
+        <button class="md:hidden text-2xl" onclick="toggleMenu()">
+            <i class="ph ph-list"></i>
+        </button>
     </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="mobile-menu hidden">
+        <a href="#bevezetes" onclick="toggleMenu()">Bevezetés</a>
+        <a href="#infohub" onclick="toggleMenu()">InfoHub</a>
+        <a href="#szolgaltatasok" onclick="toggleMenu()">Szolgáltatások</a>
+        <a href="#kapcsolat" onclick="toggleMenu()">Kapcsolat</a>
+    </div>
 </header>
 
 <main>
 
 <!-- HERO -->
-<section id="hero" class="hero-bg relative h-[85vh] md:h-screen pt-20 overflow-hidden">
+<section id="hero" class="hero-bg relative h-[90vh] md:h-screen pt-20 overflow-hidden">
     <canvas id="heroCanvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
 </section>
 
 <!-- MIÉRT LÉTEZÜNK -->
 <section id="bevezetes" class="hero-continuation py-32 px-6">
     <div class="max-w-4xl mx-auto text-center">
-        <h2 class="why-title text-[#78D0C2] uppercase tracking-[0.35em] text-sm font-bold mb-10">
-            Miért létezünk?
-        </h2>
+        <h2 class="why-title">Miért létezünk?</h2>
 
-        <p class="text-xl md:text-2xl leading-relaxed mb-6">
+        <p class="text-xl md:text-2xl mb-6">
             Azért, hogy a vállalkozások ne maradjanak le az online térben.
         </p>
 
-        <p class="text-lg md:text-xl text-[#BCE8E1]/80 leading-relaxed">
+        <p class="text-lg md:text-xl text-[#BCE8E1]/80">
             Weboldalakat építünk, digitális rendszereket állítunk fel, AI-megoldásokat integrálunk,
             automatizálunk, hirdetéseket kezelünk és tartalmat készítünk.
             <br><br>
-            <strong>Mindent egy kézben</strong>, ami ahhoz kell, hogy egy vállalkozás felkerüljön
-            az online térképre – és ott is maradjon.
+            <strong>Mindent egy kézben</strong>, ami ahhoz kell, hogy egy vállalkozás
+            felkerüljön az online térképre – és ott is maradjon.
         </p>
     </div>
 </section>
@@ -74,6 +85,16 @@
     </div>
 </section>
 
+<!-- INFO MODAL -->
+<div id="infoModal" class="modal hidden">
+    <div class="modal-bg" onclick="closeInfo()"></div>
+    <div class="modal-box">
+        <h3 id="modalQ"></h3>
+        <p id="modalA"></p>
+        <button onclick="closeInfo()">Bezárás</button>
+    </div>
+</div>
+
 <!-- SZOLGÁLTATÁSOK -->
 <section id="szolgaltatasok" class="py-32 px-6 bg-[#021649]/20">
     <div class="max-w-7xl mx-auto">
@@ -82,55 +103,50 @@
         <div class="grid lg:grid-cols-4 gap-8">
             <!-- Belépés -->
             <div class="glass-card p-8 flex flex-col">
-                <h3 class="text-xl font-bold mb-2">Belépés</h3>
+                <h3>Belépés</h3>
                 <div class="price">15.000 Ft / hó</div>
                 <ul class="list">
                     <li>Weblap létrehozása</li>
                     <li>Céges email</li>
                 </ul>
-                <a href="mailto:info@aimentool.hu?subject=Belépés csomag"
-                   class="card-btn">Kezdés!</a>
+                <a href="mailto:info@aimentool.hu" class="card-btn">Kezdés!</a>
             </div>
 
             <!-- Felzárkóztatás -->
             <div class="glass-card p-8 flex flex-col">
-                <h3 class="text-xl font-bold mb-2">Felzárkóztatás</h3>
+                <h3>Felzárkóztatás</h3>
                 <div class="price">50.000 Ft / hó</div>
                 <ul class="list">
-                    <li>1. csomag tartalma</li>
                     <li>AI chatbot</li>
                     <li>SEO szövegírás</li>
                     <li>Heti social poszt</li>
                 </ul>
-                <a href="mailto:info@aimentool.hu?subject=Felzárkóztatás csomag"
-                   class="card-btn">Ezt választom!</a>
+                <a href="mailto:info@aimentool.hu" class="card-btn">Ezt választom!</a>
             </div>
 
             <!-- Fejlődés -->
-            <div class="glass-card p-8 flex flex-col featured">
+            <div class="glass-card featured p-8 flex flex-col">
                 <span class="badge">Leggyakoribb</span>
-                <h3 class="text-xl font-bold mb-2">Fejlődés</h3>
+                <h3>Fejlődés</h3>
                 <div class="price">95.000 Ft / hó</div>
                 <ul class="list">
                     <li>AI több platformon</li>
                     <li>Hirdetéskezelés</li>
                     <li>Havi riport</li>
                 </ul>
-                <a href="mailto:info@aimentool.hu?subject=Fejlődés csomag"
-                   class="card-btn primary">Fejlődni szeretnék!</a>
+                <a href="mailto:info@aimentool.hu" class="card-btn primary">Fejlődni szeretnék!</a>
             </div>
 
             <!-- Egyedi -->
             <div class="glass-card p-8 flex flex-col">
-                <h3 class="text-xl font-bold mb-2">Egyedi</h3>
+                <h3>Egyedi</h3>
                 <div class="price">Egyedi</div>
                 <ul class="list">
                     <li>Egyedi AI agentek</li>
                     <li>Automatizmusok</li>
                     <li>Tanácsadás</li>
                 </ul>
-                <a href="mailto:info@aimentool.hu?subject=Egyedi ajánlat"
-                   class="card-btn">Ajánlatot kérek</a>
+                <a href="mailto:info@aimentool.hu" class="card-btn">Ajánlatot kérek</a>
             </div>
         </div>
     </div>
@@ -139,20 +155,34 @@
 <!-- KAPCSOLAT -->
 <section id="kapcsolat" class="py-32 px-6">
     <div class="max-w-4xl mx-auto text-center">
-        <h2 class="text-4xl font-bold mb-12">Kapcsolat</h2>
-        <div class="social-grid">
+        <h2 class="contact-title">
+            Vegye fel velünk a kapcsolatot ott, ahol Önnek a legkényelmesebb.
+        </h2>
+
+        <div class="social-grid mt-16">
             <a href="mailto:info@aimentool.hu" class="social active"><i class="ph ph-envelope"></i></a>
-            <a class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-facebook-logo"></i></a>
-            <a class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-instagram-logo"></i></a>
-            <a class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-linkedin-logo"></i></a>
+            <a href="#" class="social active fb"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" class="social active ig"><i class="ph ph-instagram-logo"></i></a>
+
+            <div class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-whatsapp-logo"></i></div>
+            <div class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-youtube-logo"></i></div>
+            <div class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-linkedin-logo"></i></div>
+            <div class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-tiktok-logo"></i></div>
+            <div class="social inactive" data-tooltip="Fejlesztés alatt"><i class="ph ph-x-logo"></i></div>
         </div>
     </div>
 </section>
 
+</main>
+
 <!-- FOOTER -->
-<footer class="py-10 text-center border-t border-[#1FAF9A]/10 text-sm text-[#BCE8E1]/60">
-    © 2025 AIMentool ·
-    <button onclick="openLegal()" class="underline hover:text-[#78D0C2]">ÁSZF</button>
+<footer class="footer">
+    <div>© 2025 AIMentool · Minden jog fenntartva.</div>
+    <div class="footer-links">
+        <button onclick="openLegal()">ÁSZF</button>
+        <button>Adatkezelés</button>
+        <button>Impresszum</button>
+    </div>
 </footer>
 
 <!-- ÁSZF MODAL -->
@@ -160,7 +190,12 @@
     <div class="modal-bg" onclick="closeLegal()"></div>
     <div class="modal-box">
         <h3>Általános Szerződési Feltételek</h3>
-        <p>IDE KERÜL A TELJES ÁSZF SZÖVEG – TÖBB BEKEZDÉSSEL.</p>
+        <p>
+            Az AIMentool digitális szolgáltatásokat nyújt vállalkozások számára.
+            A szolgáltatások havidíjas formában érhetők el.
+            A szerződés határozatlan időre jön létre, 30 napos felmondási idővel.
+            A részletes feltételek a hatályos magyar jogszabályok szerint érvényesek.
+        </p>
         <button onclick="closeLegal()">Bezárás</button>
     </div>
 </div>
