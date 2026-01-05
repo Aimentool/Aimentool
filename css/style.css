@@ -1,84 +1,182 @@
+/* =========================
+   GLOBAL
+========================= */
+:root {
+    --mint: #1FAF9A;
+    --mint-soft: #78D0C2;
+    --dark: #021649;
+    --dark-2: #052752;
+}
+
+body {
+    background: var(--dark-2);
+    color: #E6F7F4;
+}
+
+/* =========================
+   NAV
+========================= */
+.nav-cta {
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid rgba(31,175,154,.35);
+    background: rgba(31,175,154,.12);
+}
+
+.mobile-menu {
+    background: rgba(2,22,73,.95);
+    backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
+/* =========================
+   HERO
+========================= */
 .hero-bg {
-    background: url("../assets/hero/hero-base.jpg") center/cover no-repeat;
+    background: url("../assets/hero/hero-base.jpg") no-repeat center;
+    background-size: cover;
 }
 
 @media (max-width: 768px) {
     .hero-bg {
-        background-position: center right;
+        background-size: contain;
+        background-position: center bottom;
     }
 }
 
+/* =========================
+   HERO CONTINUATION
+========================= */
 .hero-continuation {
-    background: linear-gradient(to bottom, rgba(5,39,82,0.95), #021649);
+    background: linear-gradient(
+        to bottom,
+        rgba(5,39,82,0.95) 0%,
+        rgba(2,22,73,1) 50%
+    );
 }
 
+/* =========================
+   WHY TITLE
+========================= */
 .why-title {
-    animation: fadeUp 1.2s ease forwards;
+    font-size: .85rem;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    animation: titleGlow 3s infinite;
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes titleGlow {
+    0%,100% { opacity: .7; }
+    50% { opacity: 1; }
 }
 
+/* =========================
+   GLASS CARDS
+========================= */
 .glass-card {
     background: rgba(10,46,79,0.4);
-    border: 1px solid rgba(31,175,154,0.2);
+    backdrop-filter: blur(14px);
     border-radius: 24px;
-    transition: .4s;
+    border: 1px solid rgba(31,175,154,.2);
+    transition: all .4s ease;
+    position: relative;
 }
 
 .glass-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px rgba(2,22,73,.6);
 }
 
+.featured {
+    border: 2px solid rgba(31,175,154,.6);
+}
+
+.badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--mint);
+    color: #fff;
+    font-size: .65rem;
+    padding: .35rem 1rem;
+    border-radius: 999px;
+}
+
+/* =========================
+   PRICE / LIST / BUTTON
+========================= */
 .price {
-    color: #1FAF9A;
     font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    color: var(--mint);
+    margin-bottom: 1.2rem;
 }
 
 .list {
+    color: rgba(230,247,244,.75);
     flex-grow: 1;
-    color: rgba(230,247,244,.7);
     margin-bottom: 1.5rem;
 }
 
 .card-btn {
-    border: 1px solid rgba(31,175,154,.4);
-    padding: .75rem;
-    border-radius: 12px;
+    display: block;
     text-align: center;
+    padding: .75rem;
+    border-radius: 14px;
+    border: 1px solid rgba(31,175,154,.4);
     transition: .3s;
 }
 
 .card-btn:hover {
-    background: rgba(31,175,154,.15);
+    background: rgba(31,175,154,.2);
 }
 
-.primary {
-    background: #1FAF9A;
+.card-btn.primary {
+    background: var(--mint);
     color: white;
 }
 
+/* =========================
+   CONTACT
+========================= */
+.contact-title {
+    font-size: 1.75rem;
+    margin-bottom: 3rem;
+    animation: drawText 1.2s ease forwards;
+}
+
+@keyframes drawText {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
 .social-grid {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(56px,1fr));
     gap: 1.5rem;
+    justify-items: center;
 }
 
 .social {
     width: 56px;
     height: 56px;
     border-radius: 16px;
+    background: #0A2E4F;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 26px;
-    background: #0A2E4F;
     transition: .3s;
     position: relative;
+}
+
+.social.active:hover {
+    transform: scale(1.15);
 }
 
 .social.inactive {
@@ -89,32 +187,28 @@
 .social.inactive:hover::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: -28px;
-    background: #1FAF9A;
-    padding: 4px 8px;
-    font-size: 10px;
+    bottom: -30px;
+    background: var(--mint);
+    color: white;
+    font-size: .65rem;
+    padding: .25rem .6rem;
     border-radius: 6px;
 }
 
-.modal {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-}
-
-.modal.hidden { display: none; }
-
-.modal-bg {
-    position: absolute;
-    inset: 0;
-    background: rgba(2,22,73,.85);
-}
-
-.modal-box {
-    position: relative;
-    background: #0A2E4F;
-    max-width: 600px;
-    margin: 10vh auto;
+/* =========================
+   FOOTER
+========================= */
+.footer {
     padding: 2rem;
-    border-radius: 20px;
+    border-top: 1px solid rgba(31,175,154,.15);
+    text-align: center;
+    font-size: .8rem;
+    color: rgba(230,247,244,.6);
+}
+
+.footer-links {
+    margin-top: .8rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
 }
