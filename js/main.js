@@ -1,18 +1,32 @@
-const hubData = [
-    { q: "Mi az AIMentool?", a: "Egy komplex üzleti operációs rendszer, amely az AI segítségével automatizálja a marketinget, az értékesítést és az adminisztrációt." },
-    { q: "Kinek ajánlott?", a: "Olyan kkv-knak és egyéni vállalkozóknak, akik napi 2–4 órát szeretnének felszabadítani a rutinfeladatok alól." },
-    { q: "Biztonság és GDPR?", a: "Rendszereink megfelelnek az EU-s adatvédelmi előírásoknak." },
-    { q: "Emberi kontroll?", a: "Az AI csak végrehajt, a döntés mindig az Öné." }
+const data = [
+    { q: "Mi az AIMentool?", a: "Egy komplex digitális rendszer vállalkozásoknak." },
+    { q: "Kinek ajánlott?", a: "KKV-knak és egyéni vállalkozóknak." },
+    { q: "Milyen gyors az indulás?", a: "Akár 7–14 napon belül." }
 ];
 
-document.addEventListener("DOMContentLoaded", () => {
-    AOS.init();
-    const c = document.getElementById("hub-container");
-    hubData.forEach(i => {
-        c.innerHTML += `
-            <div class="glass-card p-6">
-                <h4 class="font-bold text-[#78D0C2] mb-2">${i.q}</h4>
-                <p class="text-sm text-[#BCE8E1]/60">${i.a}</p>
-            </div>`;
+const container = document.getElementById("hub-container");
+const input = document.getElementById("searchInput");
+
+function render(items) {
+    container.innerHTML = "";
+    items.forEach(i => {
+        const div = document.createElement("div");
+        div.className = "glass-card p-6 cursor-pointer";
+        div.innerHTML = `<strong>${i.q}</strong>`;
+        div.onclick = () => alert(i.a);
+        container.appendChild(div);
     });
-});
+}
+
+input.oninput = () => {
+    render(data.filter(d => d.q.toLowerCase().includes(input.value.toLowerCase())));
+};
+
+render(data);
+
+function openLegal() {
+    document.getElementById("legalModal").classList.remove("hidden");
+}
+function closeLegal() {
+    document.getElementById("legalModal").classList.add("hidden");
+}
