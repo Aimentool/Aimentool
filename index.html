@@ -49,7 +49,7 @@
 <section id="hero" class="hero-bg relative h-[90vh] md:h-screen pt-20 overflow-hidden">
 <canvas id="heroCanvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
 
-<!-- MOBILE HERO OVERLAY -->
+<!-- MOBIL HERO UI -->
 <div class="mobile-hero-ui">
 <h1>AIMentool</h1>
 <p>Fresh Thinking. Automated Growth.</p>
@@ -60,12 +60,12 @@
 </div>
 </section>
 
-<!-- MIÉRT LÉTEZÜNK -->
+<!-- MIÉRT -->
 <section id="bevezetes" class="hero-continuation py-32 px-6">
 <div class="max-w-4xl mx-auto text-center">
 <h2 class="why-title">Miért létezünk?</h2>
 <p class="text-2xl mb-6">Azért, hogy a vállalkozások ne maradjanak le az online térben.</p>
-<p class="text-lg text-[#BCE8E1]/80">
+<p class="text-lg text-[#BCE8E1]/80 leading-relaxed">
 Weboldalakat építünk, digitális rendszereket állítunk fel, AI-megoldásokat integrálunk,
 automatizálunk, hirdetéseket kezelünk és tartalmat készítünk.
 <br><br>
@@ -79,7 +79,8 @@ az online térképre – és ott is maradjon.
 <section id="infohub" class="py-32 px-6">
 <div class="max-w-5xl mx-auto">
 <h2 class="text-center text-4xl font-bold mb-16">Leggyakrabban felmerülő kérdések</h2>
-<input id="searchInput" type="text" placeholder="Keresés..." class="w-full mb-12 bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3">
+<input id="searchInput" type="text" placeholder="Keresés..."
+class="w-full mb-12 bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3">
 <div id="hub-container" class="space-y-4"></div>
 </div>
 </section>
@@ -114,14 +115,14 @@ az online térképre – és ott is maradjon.
 <footer class="footer">
 <div>© 2025 AIMentool · Minden jog fenntartva.</div>
 <div class="footer-links">
-<button onclick="openLegal()">ÁSZF</button>
-<button onclick="openLegal()">Adatkezelés</button>
-<button onclick="openLegal()">Impresszum</button>
+<button onclick="openModal('ÁSZF','Az AIMentool digitális és automatizációs szolgáltatásokat nyújt vállalkozások számára. A szolgáltatás havidíjas rendszerben érhető el, 30 napos felmondási idővel.')">ÁSZF</button>
+<button onclick="openModal('Adatkezelés','A személyes adatokat kizárólag a szolgáltatás teljesítéséhez használjuk.')">Adatkezelés</button>
+<button onclick="openModal('Impresszum','AIMentool · Magyarország · info@aimentool.hu')">Impresszum</button>
 </div>
 </footer>
 
-<!-- UNIVERSAL MODAL -->
-<div id="universalModal" class="modal hidden">
+<!-- PRÉMIUM MODAL -->
+<div id="modal" class="modal hidden">
 <div class="modal-bg" onclick="closeModal()"></div>
 <div class="modal-box">
 <h3 id="modalTitle"></h3>
