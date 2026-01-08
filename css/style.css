@@ -1,214 +1,180 @@
-:root {
-    --mint: #1FAF9A;
-    --mint-soft: #78D0C2;
-    --dark: #021649;
-    --dark-2: #052752;
+:root{
+--mint:#1FAF9A;
+--mint-soft:#78D0C2;
+--dark:#021649;
+--dark-2:#052752;
 }
 
-/* ========== NAV ========== */
-.nav-cta {
-    padding: 0.6rem 1.4rem;
-    border-radius: 999px;
-    border: 1px solid rgba(31,175,154,.35);
-    background: rgba(31,175,154,.12);
+.nav-cta{
+padding:.6rem 1.4rem;
+border-radius:999px;
+border:1px solid rgba(31,175,154,.35);
+background:rgba(31,175,154,.12)
 }
 
-/* Mobile menu */
-.mobile-menu {
-    background: rgba(2,22,73,.95);
-    backdrop-filter: blur(14px);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding: 2rem;
+.mobile-menu{
+background:rgba(2,22,73,.95);
+backdrop-filter:blur(14px);
+display:flex;
+flex-direction:column;
+gap:1.5rem;
+padding:2rem
 }
 
-/* ========== HERO ========== */
-.hero-bg {
-    background: url("../assets/hero/hero-base.jpg") center/cover no-repeat;
+.hero-bg{
+background:url("../assets/hero/hero-base.jpg") center/cover no-repeat
 }
 
-@media (max-width: 768px) {
-    .hero-bg {
-        background: linear-gradient(135deg, #021649, #052752);
-    }
+@media(max-width:768px){
+.hero-bg{background:linear-gradient(135deg,#021649,#052752)}
 }
 
-/* Hero → Bevezetés átmenet */
-.hero-continuation {
-    background: linear-gradient(
-        to bottom,
-        rgba(5,39,82,0.95) 0%,
-        rgba(2,22,73,1) 55%
-    );
+.hero-continuation{
+background:linear-gradient(to bottom,rgba(5,39,82,.95),rgba(2,22,73,1))
 }
 
-/* ========== WHY SECTION ========== */
-.why-title {
-    font-size: 2rem;
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    animation: whyGlow 3.5s infinite ease-in-out;
+.why-title{
+font-size:2.2rem;
+letter-spacing:.35em;
+text-transform:uppercase;
+margin-bottom:2.5rem;
+animation:whyGlow 3.5s infinite
 }
 
-@keyframes whyGlow {
-    0%,100% {
-        opacity: .7;
-        text-shadow: none;
-    }
-    50% {
-        opacity: 1;
-        text-shadow: 0 0 18px rgba(120,208,194,.45);
-    }
+@keyframes whyGlow{
+0%,100%{opacity:.7}
+50%{opacity:1;text-shadow:0 0 18px rgba(120,208,194,.45)}
 }
 
-/* ========== GLASS CARDS (SZOLGÁLTATÁSOK) ========== */
-.glass-card {
-    background: linear-gradient(
-        145deg,
-        rgba(10,46,79,0.55),
-        rgba(10,46,79,0.25)
-    );
-    backdrop-filter: blur(18px);
-    border-radius: 28px;
-    border: 1px solid rgba(31,175,154,.25);
-    transition: all .45s cubic-bezier(.22,1,.36,1);
-    position: relative;
+.glass-card{
+background:linear-gradient(145deg,rgba(10,46,79,.55),rgba(10,46,79,.25));
+backdrop-filter:blur(18px);
+border-radius:28px;
+border:1px solid rgba(31,175,154,.25);
+transition:.45s;
+position:relative
 }
 
-.glass-card:hover {
-    transform: translateY(-12px);
-    box-shadow:
-        0 30px 60px rgba(2,22,73,.65),
-        0 0 30px rgba(31,175,154,.15);
+.glass-card:hover{
+transform:translateY(-12px);
+box-shadow:0 30px 60px rgba(2,22,73,.65),0 0 30px rgba(31,175,154,.15)
 }
 
-.featured {
-    border: 2px solid rgba(31,175,154,.75);
+.featured{border:2px solid rgba(31,175,154,.75)}
+
+.badge{
+position:absolute;
+top:-16px;
+left:50%;
+transform:translateX(-50%);
+background:var(--mint);
+color:#fff;
+font-size:.65rem;
+padding:.4rem 1.3rem;
+border-radius:999px
 }
 
-.badge {
-    position: absolute;
-    top: -16px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--mint);
-    color: #fff;
-    font-size: .65rem;
-    padding: .4rem 1.3rem;
-    border-radius: 999px;
-    box-shadow: 0 0 20px rgba(31,175,154,.6);
+.price{
+font-size:1.8rem;
+font-weight:700;
+color:var(--mint);
+margin-bottom:1.4rem
 }
 
-/* Ár + lista + gomb */
-.price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: var(--mint);
-    margin-bottom: 1.4rem;
+.list{color:rgba(230,247,244,.75);margin-bottom:1.8rem}
+
+.card-btn{
+display:block;
+padding:.9rem;
+border-radius:16px;
+border:1px solid rgba(31,175,154,.45);
+text-align:center;
+transition:.35s
 }
 
-.list {
-    color: rgba(230,247,244,.75);
-    flex-grow: 1;
-    margin-bottom: 1.8rem;
+.card-btn:hover{background:rgba(31,175,154,.25)}
+
+.card-btn.primary{background:var(--mint);color:#fff}
+
+.contact-title{
+font-size:2.1rem;
+margin-bottom:3.2rem;
+animation:drawSlow 2.6s forwards
 }
 
-.card-btn {
-    display: block;
-    padding: .9rem;
-    border-radius: 16px;
-    border: 1px solid rgba(31,175,154,.45);
-    text-align: center;
-    transition: .35s;
+@keyframes drawSlow{
+from{opacity:0;transform:translateX(-80px)}
+to{opacity:1;transform:translateX(0)}
 }
 
-.card-btn:hover {
-    background: rgba(31,175,154,.25);
+.social-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(56px,1fr));
+gap:1.6rem;
+justify-items:center
 }
 
-.card-btn.primary {
-    background: var(--mint);
-    color: #fff;
+.social{
+width:60px;height:60px;border-radius:18px;
+background:#0A2E4F;
+display:flex;align-items:center;justify-content:center;
+font-size:28px;transition:.45s
 }
 
-/* ========== CONTACT ========== */
-.contact-title {
-    font-size: 2.1rem;
-    margin-bottom: 3.2rem;
-    animation: drawSlow 2.6s ease forwards;
+.social.active:hover{
+transform:scale(1.18) rotate(4deg);
+box-shadow:0 0 25px rgba(31,175,154,.35)
 }
 
-@keyframes drawSlow {
-    from {
-        opacity: 0;
-        transform: translateX(-80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.social.inactive{opacity:.3;cursor:not-allowed}
+
+.social.fb{color:#1877F2}
+.social.ig{color:#E4405F}
+.social.mail{color:var(--mint)}
+
+.footer{
+padding:2.8rem 2rem;
+border-top:1px solid rgba(31,175,154,.18);
+text-align:center;
+font-size:.85rem;
+color:rgba(230,247,244,.6)
 }
 
-.social-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(56px,1fr));
-    gap: 1.6rem;
-    justify-items: center;
+.footer-links{margin-top:1rem;display:flex;justify-content:center;gap:1.8rem}
+
+.modal{
+position:fixed;inset:0;z-index:200;
+display:flex;align-items:center;justify-content:center
+}
+.modal.hidden{display:none}
+.modal-bg{
+position:absolute;inset:0;
+background:rgba(2,22,73,.85);
+backdrop-filter:blur(6px)
+}
+.modal-box{
+position:relative;
+max-width:520px;
+background:rgba(10,46,79,.9);
+border:1px solid rgba(31,175,154,.35);
+border-radius:28px;
+padding:2.2rem;
+box-shadow:0 40px 80px rgba(2,22,73,.7)
 }
 
-.social {
-    width: 60px;
-    height: 60px;
-    border-radius: 18px;
-    background: #0A2E4F;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    transition: .45s cubic-bezier(.22,1,.36,1);
-    position: relative;
+.mobile-hero-ui{
+display:none
 }
-
-.social.active:hover {
-    transform: scale(1.18) rotate(4deg);
-    box-shadow: 0 0 25px rgba(31,175,154,.35);
+@media(max-width:768px){
+.mobile-hero-ui{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;
+text-align:center;z-index:20
 }
-
-.social.inactive {
-    opacity: .3;
-    cursor: not-allowed;
+.scroll-down{opacity:.6;animation:float 2s infinite}
 }
-
-.social.inactive:hover::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: -32px;
-    background: var(--mint);
-    color: #fff;
-    font-size: .65rem;
-    padding: .25rem .7rem;
-    border-radius: 6px;
-}
-
-/* Brand színek */
-.social.fb { color: #1877F2; }
-.social.ig { color: #E4405F; }
-.social.mail { color: var(--mint); }
-
-/* ========== FOOTER ========== */
-.footer {
-    padding: 2.8rem 2rem;
-    border-top: 1px solid rgba(31,175,154,.18);
-    text-align: center;
-    font-size: .85rem;
-    color: rgba(230,247,244,.6);
-}
-
-.footer-links {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 1.8rem;
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(8px)}
 }
