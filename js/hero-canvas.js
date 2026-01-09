@@ -1,4 +1,6 @@
 const canvas = document.getElementById("heroCanvas");
+if (!canvas) return;
+
 const ctx = canvas.getContext("2d");
 
 let w, h, t = 0;
