@@ -47,17 +47,47 @@
 
 <!-- HERO -->
 <section id="hero" class="hero-bg relative h-[90vh] md:h-screen pt-20 overflow-hidden">
+
+<!-- PC HERO (LOCKOLT) -->
 <canvas id="heroCanvas" class="absolute inset-0 z-10 pointer-events-none"></canvas>
 
-<!-- MOBIL HERO UI -->
-<div class="mobile-hero-ui">
-<h1>AIMentool</h1>
-<p>Fresh Thinking. Automated Growth.</p>
+<!-- MOBIL HERO – CODE ONLY -->
+<div class="mobile-hero-code md:hidden">
+<canvas id="neural-canvas"></canvas>
+
+<div class="data-bars-bg">
+<div class="data-bar db-1"></div>
+<div class="data-bar db-2"></div>
+<div class="data-bar db-3"></div>
+<div class="data-bar db-4"></div>
+<div class="data-bar db-5"></div>
+</div>
+
+<div class="hero-content-wrapper">
+<div class="ai-core-graphic">
+<svg viewBox="0 0 100 100">
+<circle cx="50" cy="80" r="5" fill="#64ffda"/>
+<circle class="pulse-circle" cx="50" cy="80" r="10"/>
+<circle class="pulse-circle" cx="50" cy="80" r="10"/>
+<path class="data-stream" d="M50 80 C 30 60, 30 40, 40 10"/>
+<path class="data-stream" d="M50 80 L 50 5"/>
+<path class="data-stream" d="M50 80 C 70 60, 70 40, 60 10"/>
+<circle cx="40" cy="10" r="2" fill="#64ffda"/>
+<circle cx="50" cy="5" r="3" fill="#64ffda"/>
+<circle cx="60" cy="10" r="2" fill="#64ffda"/>
+</svg>
+</div>
+
+<h1 class="hero-title">AIMentool</h1>
+<p class="hero-subtitle">Fresh Thinking. Automated Growth.</p>
+
 <a href="#bevezetes" class="scroll-down">
 <i class="ph ph-arrow-down"></i>
 <span>Görgessen tovább</span>
 </a>
 </div>
+</div>
+
 </section>
 
 <!-- MIÉRT -->
@@ -121,7 +151,6 @@ class="w-full mb-12 bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3
 </div>
 </footer>
 
-<!-- PRÉMIUM MODAL -->
 <div id="modal" class="modal hidden">
 <div class="modal-bg" onclick="closeModal()"></div>
 <div class="modal-box">
@@ -134,5 +163,31 @@ class="w-full mb-12 bg-[#0A2E4F] border border-[#1FAF9A]/20 rounded-xl px-5 py-3
 <script src="js/hero-canvas.js"></script>
 <script src="js/services/services-data.js"></script>
 <script src="js/main.js"></script>
+
+<!-- MOBIL HERO NEURAL SCRIPT -->
+<script>
+if (window.innerWidth < 768) {
+const c = document.getElementById("neural-canvas");
+const ctx = c.getContext("2d");
+let w, h, parts=[];
+const opts={n:40,s:.4,r:2,l:130};
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();addEventListener("resize",resize);
+class P{constructor(){this.x=Math.random()*w;this.y=Math.random()*h;this.vx=(Math.random()-.5)*opts.s;this.vy=(Math.random()-.5)*opts.s}
+u(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>w)this.vx*=-1;if(this.y<0||this.y>h)this.vy*=-1}
+d(){ctx.beginPath();ctx.arc(this.x,this.y,opts.r,0,Math.PI*2);ctx.fillStyle="rgba(100,255,218,1)";ctx.fill()}}
+for(let i=0;i<opts.n;i++)parts.push(new P());
+(function a(){
+ctx.clearRect(0,0,w,h);
+parts.forEach(p=>{p.u();p.d()});
+for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
+const dx=parts[i].x-parts[j].x,dy=parts[i].y-parts[j].y,d=Math.hypot(dx,dy);
+if(d<opts.l){ctx.strokeStyle="rgba(100,255,218,.2)";ctx.beginPath();ctx.moveTo(parts[i].x,parts[i].y);ctx.lineTo(parts[j].x,parts[j].y);ctx.stroke()}
+}
+requestAnimationFrame(a)
+})();
+}
+</script>
+
 </body>
 </html>
