@@ -1,23 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* MOBILE MENU */
+    /* ======================
+       MOBILE MENU
+       ====================== */
     window.toggleMenu = function () {
-        document.getElementById("mobileMenu").classList.toggle("hidden");
+        const menu = document.getElementById("mobileMenu");
+        if (menu) menu.classList.toggle("hidden");
     };
 
-    /* MODAL */
+    /* ======================
+       MODAL
+       ====================== */
     window.openModal = function (title, content) {
         const modal = document.getElementById("modal");
+        if (!modal) return;
+
         document.getElementById("modalTitle").innerText = title;
         document.getElementById("modalContent").innerText = content;
         modal.classList.remove("hidden");
     };
 
     window.closeModal = function () {
-        document.getElementById("modal").classList.add("hidden");
+        const modal = document.getElementById("modal");
+        if (modal) modal.classList.add("hidden");
     };
 
-    /* INFOHUB */
+    /* ======================
+       INFOHUB (FAQ)
+       ====================== */
     const faq = [
         { q: "Mi az AIMentool?", a: "Az AIMentool egy digitális operációs rendszer vállalkozásoknak." },
         { q: "Kinek ajánlott?", a: "Egyéni vállalkozóknak és KKV-knak." },
@@ -28,30 +38,41 @@ document.addEventListener("DOMContentLoaded", () => {
     const search = document.getElementById("searchInput");
 
     function renderFaq(list) {
+        if (!hub) return;
         hub.innerHTML = "";
-        list.forEach(i => {
-            const d = document.createElement("div");
-            d.className = "glass-card p-6 cursor-pointer";
-            d.innerHTML = `<strong>${i.q}</strong>`;
-            d.onclick = () => openModal(i.q, i.a);
-            hub.appendChild(d);
+        list.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "glass-card p-6 cursor-pointer";
+            card.innerHTML = `<strong>${item.q}</strong>`;
+            card.addEventListener("click", () => {
+                openModal(item.q, item.a);
+            });
+            hub.appendChild(card);
         });
     }
 
-    search.oninput = () =>
-        renderFaq(faq.filter(f =>
-            f.q.toLowerCase().includes(search.value.toLowerCase())
-        ));
+    if (search) {
+        search.addEventListener("input", () => {
+            renderFaq(
+                faq.filter(f =>
+                    f.q.toLowerCase().includes(search.value.toLowerCase())
+                )
+            );
+        });
+    }
 
     renderFaq(faq);
 
-    /* SERVICES */
+    /* ======================
+       SERVICES
+       ====================== */
     const sc = document.getElementById("servicesContainer");
+
     if (sc && typeof services !== "undefined") {
         services.forEach(s => {
-            const d = document.createElement("div");
-            d.className = "glass-card p-8 flex flex-col" + (s.featured ? " featured" : "");
-            d.innerHTML = `
+            const card = document.createElement("div");
+            card.className = "glass-card p-8 flex flex-col" + (s.featured ? " featured" : "");
+            card.innerHTML = `
                 ${s.featured ? '<span class="badge">Leggyakoribb</span>' : ""}
                 <h3>${s.title}</h3>
                 <div class="price">${s.price}</div>
@@ -63,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                    ${s.cta}
                 </a>
             `;
-            sc.appendChild(d);
+            sc.appendChild(card);
         });
     }
 
