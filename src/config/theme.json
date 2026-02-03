@@ -1,0 +1,17 @@
+{
+  "colors": {
+    "primary": "#00ffa3", 
+    "secondary": "#0f172a",
+    "accent": "#06b6d4",
+    "background": "#020617",
+    "text": "#f8fafc"
+  },
+  "fonts": {
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@400;700;800&display=swap",
+    "heading": "'Montserrat', sans-serif",
+    "body": "'Inter', sans-serif"
+  },
+  "ui": {
+    "border_radius": "0px" 
+  }
+}

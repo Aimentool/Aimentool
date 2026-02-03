@@ -1,0 +1,14 @@
+{
+  "logo_text": "AIMentool",
+  "links": [
+    { "text": "Kezdőlap", "href": "#" },
+    { "text": "Szolgáltatások", "href": "#services" },
+    { "text": "Rólunk", "href": "#about" },
+    { "text": "Blog", "href": "/blog" }
+  ],
+  "cta_button": {
+    "text": "Kapcsolat",
+    "href": "#contact",
+    "show": true
+  }
+}

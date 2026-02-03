@@ -1,0 +1,20 @@
+{
+  "brand": {
+    "name": "AIMentool",
+    "slogan": "Fresh Thinking. Automated Growth.",
+    "description": "Prémium AI megoldások a jövő vállalkozásainak."
+  },
+  "contact": {
+    "email": "info@aimentool.com",
+    "phone": "+36 30 123 4567",
+    "address": "2026 Budapest, Jövő utca 1."
+  },
+  "social": {
+    "facebook": "https://facebook.com/aimentool",
+    "linkedin": "https://linkedin.com/company/aimentool"
+  },
+  "features": {
+    "maintenance_mode": false,
+    "enable_intro_animation": true
+  }
+}

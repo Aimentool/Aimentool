@@ -1,0 +1,6 @@
+{
+  "grid_cols": "grid-cols-1 md:grid-cols-3",
+  "card_bg": "bg-white/5",
+  "card_border": "border-white/10",
+  "hover_effect": "hover:border-[var(--primary)] hover:shadow-lg hover:shadow-[var(--primary)]/20"
+}

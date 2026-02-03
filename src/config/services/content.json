@@ -1,0 +1,21 @@
+{
+  "section_title": "Megoldásaink",
+  "section_subtitle": "Technológia, ami érted dolgozik.",
+  "items": [
+    {
+      "title": "AI Tanácsadás",
+      "description": "Stratégiai tervezés a mesterséges intelligencia bevezetéséhez.",
+      "icon": "brain"
+    },
+    {
+      "title": "Folyamat Automatizálás",
+      "description": "Szabadulj meg a repetitív feladatoktól, és nyerj vissza időt.",
+      "icon": "gear"
+    },
+    {
+      "title": "Egyedi Fejlesztés",
+      "description": "Testreszabott szoftveres megoldások a specifikus igényeidre.",
+      "icon": "code"
+    }
+  ]
+}
