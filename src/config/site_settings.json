@@ -5,10 +5,10 @@
     "description": "Prémium AI megoldások a jövő vállalkozásainak."
   },
   "navigation": [
-    { "name": "Kezdőlap", "link": "/Aimentool/" },
-    { "name": "Rólunk", "link": "/Aimentool/#story" },
-    { "name": "Szolgáltatások", "link": "/Aimentool/#features" },
-    { "name": "Kapcsolat", "link": "/Aimentool/#contact" }
+    { "name": "Kezdőlap", "link": "/" },
+    { "name": "Rólunk", "link": "#story" },
+    { "name": "Szolgáltatások", "link": "#features" },
+    { "name": "Kapcsolat", "link": "#contact" }
   ],
   "contact": {
     "email": "info@aimentool.com",
@@ -40,8 +40,8 @@
   },
  "hero_video": {
     "enable": true,
-    "video_desktop": "/Aimentool/assets/video/hero-desktop.mp4",
-    "video_mobile": "/Aimentool/assets/video/hero-mobile.mp4",
+    "video_desktop": "/assets/hero_video.mp4",
+    "video_mobile": "/assets/hero_video.mp4",
     "overlay_opacity": "0.4",
     
     "mobile_settings": {
