@@ -1,0 +1,156 @@
+---
+import navConfig from '../../config/navigation.json';
+import theme from '../../config/theme.json';
+
+// --- 1. ADATOK BETÖLTÉSE ---
+const settings = navConfig?.settings || {};
+const logo = navConfig?.logo || {};
+const menuItems = navConfig?.menu_items || [];
+
+// --- 2. DESIGN BEÁLLÍTÁSOK ---
+const bgColor = settings.background?.use_global_theme 
+  ? (theme.colors?.background || '#050B10') 
+  : (settings.background?.custom_color || '#050B10');
+
+const opacity = settings.background?.transparency?.enable 
+  ? (settings.background.transparency.opacity_percent || 90) / 100 
+  : 1;
+
+const blur = settings.background?.transparency?.enable 
+  ? (settings.background.transparency.blur_effect || 'backdrop-blur-md') 
+  : '';
+
+// --- 3. ELRENDEZÉS ÉS MÉRETEK ---
+const maxWidth = settings.layout?.width || '100%'; 
+const alignment = settings.layout?.content_alignment || 'justify-between';
+const paddingY = settings.layout?.padding_y || '15px';
+const paddingX = settings.layout?.padding_x || '20px';
+const logoHeight = logo.height_class || 'h-10';
+
+// --- 4. GOMB STÍLUS GENERÁTOR ---
+const getLinkStyle = (item) => {
+  const base = "block py-2 px-3 rounded transition-all duration-300 font-medium text-sm tracking-wide relative group";
+  
+  if (item.type === 'cta_button') {
+     return "px-6 py-2.5 bg-[var(--primary)] text-[#050B10] rounded-full font-bold hover:bg-white hover:scale-105 shadow-[0_0_15px_rgba(94,234,212,0.4)] transition-all transform";
+  }
+  if (item.highlight_effect === 'spotlight') {
+    return `${base} text-white overflow-hidden after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[var(--primary)] after:translate-y-full hover:after:translate-y-0 after:transition-transform after:duration-300 hover:bg-white/5`;
+  }
+  if (item.highlight_effect === 'glow') {
+    return `${base} text-gray-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]`;
+  }
+  return `${base} text-gray-300 hover:text-white`;
+};
+---
+
+<nav 
+  id="master-navbar"
+  class={`fixed w-full z-50 top-0 start-0 transition-transform duration-300 ${blur} border-b border-white/5`}
+  style={`background-color: ${bgColor}; background-color: rgba(5, 11, 16, ${opacity});`}
+>
+  <div 
+    class={`flex flex-wrap items-center ${alignment} mx-auto`}
+    style={`width: ${maxWidth}; padding-top: ${paddingY}; padding-bottom: ${paddingY}; padding-left: ${paddingX}; padding-right: ${paddingX};`}
+  >
+    
+    <a href="/" class="flex items-center gap-3 group">
+        {logo.image_source && (
+            <img 
+                src={logo.image_source} 
+                class={`${logoHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105`} 
+                alt="Logo" 
+            />
+        )}
+
+        {logo.brand_text?.show && (
+            logo.brand_text.mode === 'image' ? (
+                <img src={logo.brand_text.custom_image_path} alt={logo.brand_text.text} class="h-8 w-auto object-contain" />
+            ) : (
+                <span class="self-center text-xl font-black whitespace-nowrap tracking-wider uppercase" style={`color: ${logo.brand_text?.color_override || '#FFF'}`}>
+                    {logo.brand_text?.text}
+                </span>
+            )
+        )}
+    </a>
+
+    <button id="mobile-menu-toggle" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-gray-400 rounded-lg md:hidden hover:bg-white/10 focus:outline-none">
+        <span class="sr-only">Menü</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+    </button>
+
+    <div class="hidden w-full md:flex md:w-auto" id="navbar-menu">
+      <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium md:space-x-8 md:flex-row md:mt-0 bg-black/50 md:bg-transparent rounded-lg border border-white/10 md:border-0 items-center">
+        
+        {menuItems.map((item, index) => (
+          <li>
+            {item.custom_html ? (
+                // --- ITT AZ ÚJ KÉNYSZERÍTŐ RENDSZER INTEGRÁLVA ---
+                (() => {
+                    const uniqueId = `nav-custom-${index}`; // Egyedi ID
+                    const forceColor = item.override_color; // Ellenőrizzük, van-e override
+
+                    return (
+                        <div id={uniqueId} class="nav-custom-wrapper relative">
+                            <div set:html={item.custom_html} />
+                            
+                            {/* Ha van forceColor, beszúrjuk a felülíró stílust */}
+                            {forceColor && (
+                                <script define:vars={{ uid: uniqueId, col: forceColor }}>
+                                   const style = document.createElement('style');
+                                   style.innerHTML = `
+                                     #${uid} * {
+                                       background-color: ${col} !important;
+                                       border-color: ${col} !important;
+                                       color: white !important;
+                                       fill: ${col} !important;
+                                       box-shadow: none !important;
+                                     }
+                                   `;
+                                   document.getElementById(uid)?.appendChild(style);
+                                </script>
+                            )}
+                        </div>
+                    );
+                })()
+            ) : (
+                // --- NORMÁL LINK (Eredeti kód) ---
+                <a href={item.link} class={getLinkStyle(item)}>
+                    {item.text}
+                </a>
+            )}
+          </li>
+        ))}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script define:vars={{ 
+    hideDown: settings.behavior?.hide_on_scroll_down || false, 
+    showUp: settings.behavior?.show_on_scroll_up || false 
+}}>
+    // 1. Mobil menü nyitás/zárás
+    const btn = document.getElementById('mobile-menu-toggle');
+    const menu = document.getElementById('navbar-menu');
+    if(btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    // 2. Okos görgetés (Eltűnés/Megjelenés)
+    let lastScroll = 0;
+    const nav = document.getElementById('master-navbar');
+    
+    window.addEventListener("scroll", () => {
+        if (!hideDown) return; 
+        
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            nav.style.transform = "translateY(-100%)"; 
+        } else if (showUp || currentScroll < 100) {
+            nav.style.transform = "translateY(0)"; 
+        }
+        lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+    });
+</script>

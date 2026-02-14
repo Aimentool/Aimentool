@@ -1,0 +1,199 @@
+---
+import heroConfig from '../../config/sections/hero.json';
+import theme from '../../config/theme.json'; // 1. TÉMA BETÖLTÉSE
+
+const { settings, media, content } = heroConfig;
+
+// Ha ki van kapcsolva a szekció, nem renderelünk semmit
+if (!settings.enabled) return;
+
+// --- BEÁLLÍTÁSOK ---
+const objectFit = media.video_settings?.object_fit || 'object-cover';
+const isDynamic = settings.background_type === 'dynamic';
+const blurStrength = settings.blur_strength || 'blur-3xl';
+const dynamicOpacity = settings.dynamic_opacity || 'opacity-50';
+
+const uniqueBtnId = 'hero-btn-' + Math.random().toString(36).substr(2, 5);
+const btnForceColor = content.button.override_color;
+
+// --- 2. BETŰTÍPUSOK OKOS KEZELÉSE ---
+// Logika: Ha a hero.json-ben van 'custom_font', azt használja. 
+// Ha nincs, akkor a theme.json-ből veszi a globális beállítást.
+const titleFont = content.title.custom_font || theme.fonts?.heading || 'sans-serif';
+const subtitleFont = content.subtitle.custom_font || theme.fonts?.body || 'sans-serif';
+
+// --- POZÍCIÓ GENERÁTOR (A MŰKÖDŐ "NYERS ERŐ" VERZIÓ) ---
+const getStylePosition = (posObj) => {
+  const vertRaw = posObj?.vertical || 'top-[50%]';
+  
+  // Kinyerjük a számot és a típust (top/bottom) a zárójelek közül
+  // Pl: "top-[15%]" -> "top: 15%;"
+  let styleString = "left: 50%; transform: translateX(-50%);"; // Mindig középen vízszintesen!
+
+  if (vertRaw.includes('top-[')) {
+      const val = vertRaw.replace('top-[', '').replace(']', '');
+      styleString += ` top: ${val}; bottom: auto;`;
+  } else if (vertRaw.includes('bottom-[')) {
+      const val = vertRaw.replace('bottom-[', '').replace(']', '');
+      styleString += ` bottom: ${val}; top: auto;`;
+  } else {
+      styleString += " top: 50%;"; // Biztonsági tartalék
+  }
+
+  return styleString;
+};
+
+// --- ANIMÁCIÓ TÍPUS KINYERÉSE ---
+const getAnimType = (animObj) => animObj?.type || 'animate-fade-in-up';
+---
+
+<section 
+  class="hero-section relative w-full overflow-hidden"
+  style={`background-color: ${settings.background_color || '#000000'};`}
+>
+  
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    {isDynamic && media.type === 'video' && (
+      <video class={`absolute inset-0 w-full h-full object-cover scale-110 ${blurStrength} ${dynamicOpacity}`} autoplay muted loop playsinline>
+        <source src={media.source} type="video/mp4" />
+      </video>
+    )}
+
+    {media.type === 'video' ? (
+      <video id="hero-main-video" class={`relative z-10 w-full h-full ${objectFit}`} autoplay={media.video_settings.autoplay} muted={media.video_settings.muted} loop={media.video_settings.loop} playsinline poster={media.poster_image}>
+        <source src={media.source} type="video/mp4" />
+      </video>
+    ) : (
+      <img src={media.source} alt="Hero" class={`relative z-10 w-full h-full ${objectFit}`} />
+    )}
+    <div class={`absolute inset-0 z-15 ${settings.overlay_darkness}`}></div>
+  </div>
+
+  <div id="hero-content-wrapper" class="relative z-40 w-full h-full pointer-events-none opacity-0 transition-opacity duration-1000">
+
+      {content.title.show && (
+        <div class="absolute w-full md:w-auto text-center px-4 pointer-events-auto" style={getStylePosition(content.title.position)}>
+           <div class="hero-anim-item" data-anim={getAnimType(content.title.animation)}>
+              <h1 
+                class={`${content.title.size} tracking-tight leading-tight ${content.title.color} drop-shadow-2xl`}
+                style={`font-family: ${titleFont};`} /* ITT KAPJA MEG A BETŰTÍPUST */
+              >
+                {content.title.text}
+              </h1>
+           </div>
+        </div>
+      )}
+
+      {content.subtitle.show && (
+        <div class="absolute w-full md:w-auto text-center px-4 pointer-events-auto" style={getStylePosition(content.subtitle.position)}>
+           <div class="hero-anim-item" data-anim={getAnimType(content.subtitle.animation)}>
+              <p 
+                class={`${content.subtitle.size} font-light leading-relaxed ${content.subtitle.color} drop-shadow-md`}
+                style={`font-family: ${subtitleFont};`} /* ITT KAPJA MEG A BETŰTÍPUST */
+              >
+                {content.subtitle.text}
+              </p>
+           </div>
+        </div>
+      )}
+
+      {content.button.show && (
+        <div class="absolute w-full md:w-auto text-center px-4 pointer-events-auto" style={getStylePosition(content.button.position)}>
+           <div class="hero-anim-item" data-anim={getAnimType(content.button.animation)}>
+              {content.button.custom_html ? (
+                 <div id={uniqueBtnId} class="inline-block cursor-pointer">
+                    <a href={content.button.link} class="block"><div set:html={content.button.custom_html} /></a>
+                    {btnForceColor && <script define:vars={{uid: uniqueBtnId, col: btnForceColor}}>document.getElementById(uid).style.color=col;</script>}
+                 </div>
+              ) : (
+                 <a href={content.button.link} style={`font-family: ${subtitleFont};`} class="inline-block px-8 py-4 bg-[var(--primary)] text-black font-bold rounded-full uppercase tracking-widest hover:scale-105 transition-transform shadow-lg">{content.button.text}</a>
+              )}
+           </div>
+        </div>
+      )}
+
+  </div>
+</section>
+
+<script define:vars={{ speed: media.video_settings?.playback_speed || 1 }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('hero-main-video');
+    const contentWrapper = document.getElementById('hero-content-wrapper');
+
+    const showContent = () => {
+        contentWrapper.classList.remove('opacity-0');
+        
+        // Minden elemet megkeresünk, és rátesszük a JSON-ből kinyert osztályt
+        const items = document.querySelectorAll('.hero-anim-item');
+        items.forEach((item) => {
+            const animType = item.getAttribute('data-anim');
+            if (animType) item.classList.add(animType);
+        });
+    };
+
+    if (video) video.playbackRate = speed;
+
+    if (!video || video.tagName !== 'VIDEO') {
+        showContent();
+        return;
+    }
+
+    video.addEventListener('ended', showContent);
+    
+    // Biztonsági kapcsoló (15mp)
+    setTimeout(() => {
+        if(contentWrapper.classList.contains('opacity-0')) showContent();
+    }, 15000);
+  });
+</script>
+
+<style define:vars={{ mobileHeight: settings.height.mobile, desktopHeight: settings.height.desktop }}>
+  .hero-section { height: var(--mobileHeight); }
+  @media (min-width: 768px) { .hero-section { height: var(--desktopHeight); } }
+
+  /* --- ANIMÁCIÓK A JSON SZÁMÁRA --- */
+
+  /* 1. Fentről beúszás */
+  .animate-fade-in-down {
+    animation: fadeInDown 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes fadeInDown {
+    from { opacity: 0; margin-top: -50px; }
+    to { opacity: 1; margin-top: 0; }
+  }
+
+  /* 2. Lentről beúszás */
+  .animate-fade-in-up {
+    animation: fadeInUp 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; margin-top: 50px; }
+    to { opacity: 1; margin-top: 0; }
+  }
+  
+  /* 3. PULZÁLÁS (Görgess lejjebb) */
+  /* Ez egyszerre úszik be ÉS kezd el pulzálni */
+  .animate-pulse {
+    animation: pulseIn 1s ease-out forwards, pulseLoop 2s infinite 1s; 
+  }
+  
+  /* Beúszás fázis */
+  @keyframes pulseIn {
+    from { opacity: 0; margin-top: 20px; }
+    to { opacity: 1; margin-top: 0; }
+  }
+  
+  /* Végtelen pulzálás fázis */
+  @keyframes pulseLoop {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* Gomb ugrálása */
+  :global(.animate-bounce) { animation: bounce 2s infinite; }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+  }
+</style>

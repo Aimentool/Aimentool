@@ -1,0 +1,92 @@
+---
+const { data } = Astro.props;
+---
+
+<section class="story-wrapper" data-theme={data.theme}>
+  <div class="sticky">
+    {data.sections.map((section, i) => (
+      <div class={`layer layer-${i}`}>
+        <h2>{section.text}</h2>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+.story-wrapper {
+  height: 400vh;
+  position: relative;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.layer {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.layer h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* THEME SYSTEM */
+
+[data-theme="dark"] {
+  background: #0f0f0f;
+  color: white;
+}
+
+[data-theme="light"] {
+  background: white;
+  color: black;
+}
+
+[data-theme="premium"] {
+  background: linear-gradient(180deg, #0f0f0f, #1a1a1a);
+  color: white;
+}
+</style>
+
+<script client:load>
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const layers = document.querySelectorAll(".layer");
+
+const tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".story-wrapper",
+    start: "top top",
+    end: "bottom bottom",
+    scrub: true
+  }
+});
+
+layers.forEach((layer, i) => {
+  tl.fromTo(layer,
+    { opacity: 0, y: 100 },
+    { opacity: 1, y: 0, duration: 0.5 },
+    i * 0.5
+  );
+
+  tl.to(layer,
+    { opacity: 0, y: -100, duration: 0.5 },
+    i * 0.5 + 0.5
+  );
+});
+</script>

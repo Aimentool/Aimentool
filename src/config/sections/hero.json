@@ -1,0 +1,73 @@
+{
+  "settings": {
+    "enabled": true,
+    "height": {
+      "desktop": "100vh",
+      "mobile": "100vh"
+    },
+    "background_color": "#000000",
+    "overlay_darkness": "bg-black/30",
+    "background_type": "solid",
+    "blur_strength": "blur-3xl",
+    "dynamic_opacity": "opacity-50"
+  },
+  "media": {
+    "type": "video",
+    "source": "/Aimentool/assets/hero_video.mp4",
+    "poster_image": "",
+    "video_settings": {
+      "loop": false,
+      "autoplay": true,
+      "muted": true,
+      "playback_speed": 1.0,
+      "object_fit": "object-contain" 
+    }
+  },
+  "content": {
+    "max_width": "max-w-6xl",
+    "title": {
+      "show": true,
+      "text": "Üdvözöljük a Weboldalon!",
+      "color": "text-white",
+      "size": "text-4xl md:text-6xl",
+      "position": {
+        "vertical": "top-[20%]",
+        "horizontal": "left-1/2 -translate-x-1/2"
+      },
+      "animation": {
+        "type": "animate-fade-in-down",
+        "delay": "" 
+      }
+    },
+    "subtitle": {
+      "show": true,
+      "text": "Görgessen lentebb a részletekért",
+      "color": "text-gray-400",
+      "size": "text-sm uppercase tracking-widest",
+      "position": {
+        "vertical": "bottom-[15%]",
+        "horizontal": "left-1/2 -translate-x-1/2"
+      },
+      "animation": {
+        "type": "animate-pulse",
+        "delay": "delay-500"
+      }
+    },
+    "button": {
+      "show": true,
+      "text": "",
+      "link": "#details",
+      "style": "primary",
+      "custom_html": "<div class='animate-bounce'><svg class='w-6 h-6 text-white' fill='none' stroke='currentColor' viewBox='0 0 24 24'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 14l-7 7m0 0l-7-7m7 7V3'></path></svg></div>",
+      "override_color": "var(--primary)",
+      "position": {
+        "vertical": "bottom-[15%]",
+        "horizontal": "left-1/2 -translate-x-1/2"
+      },
+      "animation": {
+        "type": "animate-fade-in-up",
+        "delay": "delay-200"
+      }
+    }
+  }
+}

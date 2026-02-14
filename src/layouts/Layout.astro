@@ -1,67 +1,99 @@
 ---
-// --- 1. RÉSZ: IMPORTOK ---
-import siteSettings from '../config/site_settings.json';
+// 1. ADATOK BETÖLTÉSE
+import settings from '../config/settings.json';
 import theme from '../config/theme.json';
-// Itt húzzuk be az új Navbárt:
-import Navbar from '../components/sections/Navbar.astro';
-// Ha létrehoztad a global.css-t, azt is itt érdemes behúzni (opcionális):
-import '../styles/global.css';
+import '../styles/global.css'; 
+import Navbar from '../components/ui/Navbar.astro';
 
+// 2. PROPS KEZELÉSE
 interface Props {
-	title?: string;
+  title?: string;
 }
 
-const { title = siteSettings.brand.name } = Astro.props;
+const { title = settings.site.title } = Astro.props;
+
+// 3. SZÍNEK KINYERÉSE (Biztonsági mentés)
+// Ha a JSON-ben valami hiányozna, ne omoljon össze a kód
+const primary = theme.colors?.primary || '#66E6C1';
+const secondary = theme.colors?.secondary || '#0F766E'; // ÚJ: Másodlagos szín
+const accent = theme.colors?.accent || '#2DD4BF';       // ÚJ: Kiemelő szín
+const custom = theme.colors?.custom_element || '#FF5733'; // ÚJ: A "Jolly Joker" színed!
+
+const background = theme.colors?.background || '#0A151F';
+const text = theme.colors?.text || '#FFFFFF';
 ---
 
 <!doctype html>
 <html lang="hu" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-        <meta name="description" content={siteSettings.brand.description} />
-		
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href={theme.fonts.google_fonts_url} rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/Aimentool/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-		<title>{title} | {siteSettings.brand.slogan}</title>
-
-        <style define:vars={{ 
-            'color-primary': theme.colors.primary,
-            'color-secondary': theme.colors.secondary,
-            'color-accent': theme.colors.accent,
-            'color-bg': theme.colors.background,
-            'color-text': theme.colors.text,
-            'font-heading': theme.fonts.heading,
-            'font-body': theme.fonts.body,
-            'ui-radius': theme.ui.border_radius
-        }}>
-            :root {
-                --primary: var(--color-primary);
-                --secondary: var(--color-secondary);
-                --bg: var(--color-bg);
-                --text: var(--color-text);
-            }
-            
-            body {
-                font-family: var(--font-body);
-                background-color: var(--bg);
-                color: var(--text);
-                overflow-x: hidden;
-            }
-
-            h1, h2, h3, h4, h5, h6 {
-                font-family: var(--font-heading);
-            }
-        </style>
-	</head>
-	<body>
-        <Navbar />
-
-        <slot />
+    <style is:global define:vars={{ 
+        'p-col': primary,
+        's-col': secondary, // Bekötve
+        'a-col': accent,    // Bekötve
+        'c-col': custom,    // Bekötve (Ez a lényeg!)
+        'bg-col': background,
+        't-col': text,
+        'h-font': theme.fonts?.heading || 'sans-serif',
+        'b-font': theme.fonts?.body || 'sans-serif',
+        'rad': theme.ui?.border_radius || '12px'
+    }}>
+      :root {
+        /* CSS Változók létrehozása a HTML-hez */
+        --primary: var(--p-col);
+        --secondary: var(--s-col);
+        --accent: var(--a-col);
+        --custom: var(--c-col); /* Itt jön létre a var(--custom)! */
         
-	</body>
+        --background: var(--bg-col);
+        --text: var(--t-col);
+        --font-heading: var(--h-font);
+        --font-body: var(--b-font);
+        --radius: var(--rad);
+      }
+
+      html {
+        font-family: var(--font-body), system-ui, sans-serif;
+        background-color: var(--background);
+        color: var(--text);
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-heading);
+      }
+
+      /* Biztonsági törlés: Ha bárhol maradt volna piros keret, ez kioltja */
+      * {
+        border-color: transparent; 
+        outline: none;
+      }
+      
+      /* Kivétel: Ha direktbe border-t akarsz a custom HTML-ben, azt engedjük */
+      [style*="border"] {
+          border-color: initial;
+      }
+    </style>
+  </head>
+  
+  <body class="bg-dark text-light antialiased selection:bg-primary selection:text-dark">
+    
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+  </body>
 </html>

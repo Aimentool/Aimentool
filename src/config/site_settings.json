@@ -4,17 +4,125 @@
     "slogan": "Fresh Thinking. Automated Growth.",
     "description": "Prémium AI megoldások a jövő vállalkozásainak."
   },
+  "navigation": [
+    { "name": "Kezdőlap", "link": "/Aimentool/" },
+    { "name": "Rólunk", "link": "/Aimentool/#story" },
+    { "name": "Szolgáltatások", "link": "/Aimentool/#features" },
+    { "name": "Kapcsolat", "link": "/Aimentool/#contact" }
+  ],
   "contact": {
     "email": "info@aimentool.com",
     "phone": "+36 30 123 4567",
     "address": "2026 Budapest, Jövő utca 1."
   },
-  "social": {
-    "facebook": "https://facebook.com/aimentool",
-    "linkedin": "https://linkedin.com/company/aimentool"
+  "social_links": [
+    {
+      "platform": "facebook",
+      "url": "https://facebook.com/aimentool",
+      "aria_label": "Facebook"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://linkedin.com/company/aimentool",
+      "aria_label": "LinkedIn"
+    },
+    {
+      "platform": "instagram",
+      "url": "https://instagram.com/aimentool",
+      "aria_label": "Instagram"
+    }
+  ],
+  "modules": {
+    "hero_type": "video",
+    "show_features": true,
+    "show_story": true,
+    "show_contact": true
   },
-  "features": {
-    "maintenance_mode": false,
-    "enable_intro_animation": true
+ "hero_video": {
+    "enable": true,
+    "video_desktop": "/Aimentool/assets/video/hero-desktop.mp4",
+    "video_mobile": "/Aimentool/assets/video/hero-mobile.mp4",
+    "overlay_opacity": "0.4",
+    
+    "mobile_settings": {
+      "margin_top": "60vh", 
+      "gap": "20px"
+    },
+
+    "buttons_desktop": [
+      { "text": "Szolgáltatások felfedezése", "link": "#features", "style": "primary" },
+      { "text": "Kapcsolatfelvétel", "link": "#contact", "style": "secondary" }
+    ],
+    
+    "buttons_mobile": [
+      { "text": "📞 Hívás Most", "link": "tel:+36301234567", "style": "primary" },
+      { "text": "✉️ Üzenet írása", "link": "mailto:info@aimentool.com", "style": "secondary" }
+    ]
+
+  },
+  "hero": {
+    "badge": "v2.0 Verzió",
+    "title_start": "Statikus",
+    "title_highlight": "Képes Verzió",
+    "title_end": "itt.",
+    "description": "Ez jelenik meg, ha a modules.hero_type értékét 'image'-re állítod.",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=2072&q=80",
+    "primary_button": { "text": "Gomb 1", "link": "#" },
+    "secondary_button": { "text": "Gomb 2", "link": "#" }
+  },
+  "features_section": {
+    "title": "Szolgáltatásaink",
+    "subtitle": "MODULÁRIS",
+    "description": "Válassz a szolgáltatásaink közül.",
+    "items": [
+      {
+        "title": "AI Integráció",
+        "text": "Okos megoldások cégeknek.",
+        "icon": "cpu"
+      },
+      {
+        "title": "Webfejlesztés",
+        "text": "Gyors Astro weboldalak.",
+        "icon": "code"
+      },
+      {
+        "title": "Automatizálás",
+        "text": "Robotizált folyamatok.",
+        "icon": "cog"
+      }
+    ]
+  },
+  "story_section": {
+    "enable": true,
+    "title": "A Folyamat",
+    "subtitle": "TÖRTÉNET",
+    "steps": [
+      {
+        "title": "1. Lépés",
+        "text": "Kezdeti lépések...",
+        "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800"
+      },
+      {
+        "title": "2. Lépés",
+        "text": "Megvalósítás...",
+        "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800"
+      }
+    ]
+  },
+  "contact_section": {
+    "title": "Lépj kapcsolatba velünk",
+    "subtitle": "KAPCSOLAT",
+    "description": "Írj nekünk, és 24 órán belül válaszolunk.",
+    "form_action": "https://formspree.io/f/mjgevnyl", 
+    "design": {
+        "theme": "light", 
+        "bg_color": "bg-white" 
+    },
+    "form_fields": {
+      "name_placeholder": "Név",
+      "email_placeholder": "Email cím",
+      "message_placeholder": "Írd ide az üzeneted...",
+      "button_text": "Küldés"
+    }
   }
 }

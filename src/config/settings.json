@@ -1,0 +1,18 @@
+{
+  "site": {
+    "title": "AIMentool",
+    "description": "Fresh Thinking. Automated Growth.",
+    "url": "https://aimentool.com",
+    "language": "hu"
+  },
+  "brand": {
+    "name": "AIMentool",
+    "logo_text": "AI",
+    "logo_img": "/assets/logo.svgjpg"
+  },
+  "contact": {
+    "phone": "+36 30 123 4567",
+    "email": "info@aimentool.com",
+    "address": "Budapest, Hungary"
+  }
+}

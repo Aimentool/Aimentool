@@ -1,0 +1,110 @@
+---
+import siteSettings from '../../config/site_settings.json';
+import SocialIcons from '../ui/SocialIcons.astro';
+
+const section = siteSettings.contact_section;
+const contact = siteSettings.contact;
+const theme = section.design?.theme || 'light'; 
+
+// --- OKOS SZÍNEK ---
+const textColor = theme === 'dark' ? 'text-white' : 'text-gray-900';
+const subTextColor = theme === 'dark' ? 'text-gray-400' : 'text-gray-600';
+// Az űrlap dobozának háttere
+const cardBg = theme === 'dark' ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-100';
+
+// --- STÍLUSOK (Változókban a könnyű szerkesztésért) ---
+const inputClass = "w-full px-5 py-4 rounded-xl bg-white text-gray-900 placeholder:text-gray-400 border border-gray-200 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/20 outline-none transition-all";
+const labelClass = `block text-sm font-semibold mb-2 ${textColor}`;
+const iconBgClass = "w-12 h-12 bg-[var(--primary)]/10 rounded-full flex items-center justify-center text-[var(--primary)] text-2xl shrink-0";
+---
+
+<section id="contact" class={`relative py-24 ${section.design?.bg_color || 'bg-white'}`}>
+  
+  <div class="container mx-auto px-6 relative z-10">
+    <div class="flex flex-col lg:flex-row gap-16">
+      
+      <div class="w-full lg:w-1/2">
+        <span class="text-[var(--primary)] font-bold tracking-widest uppercase text-sm">
+            {section.subtitle}
+        </span>
+        <h2 class={`text-4xl md:text-5xl font-bold mt-2 mb-6 ${textColor}`}>
+            {section.title}
+        </h2>
+        <p class={`text-xl mb-12 leading-relaxed ${subTextColor}`}>
+            {section.description}
+        </p>
+
+        <div class="space-y-8 mb-12">
+            
+            <div class="flex items-start gap-5">
+                <div class={iconBgClass}>📍</div>
+                <div>
+                    <h4 class={`font-bold text-lg ${textColor}`}>Cím</h4>
+                    <p class={subTextColor}>{contact.address}</p>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-5">
+                <div class={iconBgClass}>📧</div>
+                <div>
+                    <h4 class={`font-bold text-lg ${textColor}`}>Email</h4>
+                    <a href={`mailto:${contact.email}`} class={`${subTextColor} hover:text-[var(--primary)] transition-colors`}>
+                        {contact.email}
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex items-start gap-5">
+                <div class={iconBgClass}>📞</div>
+                <div>
+                    <h4 class={`font-bold text-lg ${textColor}`}>Telefon</h4>
+                    <a href={`tel:${contact.phone}`} class={`${subTextColor} hover:text-[var(--primary)] transition-colors`}>
+                        {contact.phone}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class={textColor}>
+            <h4 class="font-bold mb-4">Kövess minket:</h4>
+            <div class={theme === 'dark' ? 'brightness-0 invert' : ''}>
+                <SocialIcons />
+            </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2">
+        <form action={section.form_action} method="POST" class={`p-8 md:p-10 rounded-3xl shadow-lg border ${cardBg}`}>
+          <div class="grid grid-cols-1 gap-6">
+            
+            <div>
+              <label for="name" class={labelClass}>Név</label>
+              <input type="text" name="name" id="name" required placeholder={section.form_fields.name_placeholder} class={inputClass} />
+            </div>
+
+            <div>
+              <label for="email" class={labelClass}>Email cím</label>
+              <input type="email" name="email" id="email" required placeholder={section.form_fields.email_placeholder} class={inputClass} />
+            </div>
+
+            <div>
+              <label for="message" class={labelClass}>Üzenet</label>
+              <textarea name="message" id="message" rows="4" required placeholder={section.form_fields.message_placeholder} class={`${inputClass} resize-none`}></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 px-8 bg-[var(--primary)] text-white font-bold text-lg rounded-xl hover:opacity-90 transition-all shadow-xl shadow-[var(--primary)]/20 transform hover:-translate-y-1">
+              {section.form_fields.button_text}
+            </button>
+
+            <p class={`text-xs text-center mt-4 ${subTextColor}`}>
+              Az adatokat biztonságosan kezeljük.
+            </p>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

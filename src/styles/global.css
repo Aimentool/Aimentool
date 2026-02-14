@@ -1,3 +1,70 @@
+/* --- 1. TAILWIND ALAPOK (Kötelező) --- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- 2. VÁLTOZÓK (Fallback / Biztonsági tartalék) --- */
+:root {
+  --primary: #5EEAD4;
+  --background: #050B10;
+  --text: #FFFFFF;
+}
+
+/* --- 3. ALAP BEÁLLÍTÁSOK (@layer base használatával a piros hibák ellen) --- */
+@layer base {
+  html {
+    font-family: system-ui, sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--background); /* Alap háttér */
+  }
+
+  body {
+    /* Tailwind osztályok */
+    @apply antialiased overflow-x-hidden;
+    
+    /* CSS változók bekötése */
+    background-color: var(--background);
+    color: var(--text);
+  }
+
+  /* Címsorok beállítása */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    color: var(--text);
+  }
+}
+
+/* --- 4. SPECIÁLIS OSZTÁLYOK (Standard CSS) --- */
+
+/* FONTOS: Kontraszt javítás */
+/* Ha egy kártya fehér, a benne lévő szöveg legyen sötét! */
+.bg-white {
+  background-color: #ffffff !important;
+  color: #050B10 !important;
+}
+
+/* Ha fekete a háttér, legyen fehér a szöveg */
+.bg-black, .bg-dark {
+  background-color: #050B10 !important;
+  color: #ffffff !important;
+}
+
+/* --- 5. ANIMÁCIÓK (Hogy a JSON-ből is működjenek) --- */
+
+/* Ugrálás (Bounce) */
+@keyframes bounce {
+  0%, 100% { transform: translateY(-25%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+  50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Pulzálás (Pulse) */
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

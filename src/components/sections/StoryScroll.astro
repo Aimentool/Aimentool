@@ -1,0 +1,189 @@
+---
+import storyConfig from '../../config/sections/story.json';
+
+const { settings, content } = storyConfig;
+if (!settings?.enabled) return;
+
+const steps = content.steps || [];
+const accentColor = settings.accent_color || '#5EEAD4';
+---
+
+<section id="universe-travel" class="relative bg-black overflow-hidden" style="height: 800vh;">
+  
+  <div class="fixed-camera sticky top-0 left-0 w-full h-screen overflow-hidden perspective-1000">
+    
+    <canvas id="warp-speed-canvas" class="absolute inset-0 z-0"></canvas>
+
+    <div id="universe-void" class="absolute inset-0 preserve-3d">
+      
+      {steps.map((step, index) => (
+        <div 
+          class="step-portal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-0"
+          data-z={-3000 * (index + 1)}
+        >
+          <div class="portal-ring relative flex items-center justify-center w-32 h-32 md:w-48 md:h-48 rounded-full border-2 border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.1)] mb-12">
+            <div class="absolute inset-0 rounded-full animate-pulse-slow" style={`box-shadow: inset 0 0 50px ${accentColor}, 0 0 50px ${accentColor}; opacity: 0.3;`}></div>
+            <span class="text-3xl md:text-5xl font-black text-white z-10">{step.year}</span>
+          </div>
+
+          <div class="info-card backdrop-blur-xl bg-white/5 p-8 rounded-3xl border border-white/10 text-center max-w-lg shadow-2xl">
+            <h3 class="text-4xl font-bold mb-4 text-white tracking-tighter uppercase">{step.title}</h3>
+            <p class="text-gray-300 text-lg leading-relaxed">{step.description}</p>
+            
+            {step.image && (
+              <div class="mt-6 rounded-xl overflow-hidden border border-white/10">
+                <img src={step.image} alt={step.title} class="w-full h-40 object-cover opacity-80" />
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 text-xs tracking-[0.5em] uppercase animate-bounce">
+      Görgess az utazáshoz
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ accentColor }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const void_container = document.getElementById('universe-void');
+    const steps = document.querySelectorAll('.step-portal');
+    const canvas = document.getElementById('warp-speed-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let w, h, stars = [];
+    const starCount = 400;
+
+    // 1. CSILLAGOK INICIALIZÁLÁSA
+    const initStars = () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = [];
+      for(let i=0; i<starCount; i++) {
+        stars.push({
+          x: Math.random() * w - w/2,
+          y: Math.random() * h - h/2,
+          z: Math.random() * 2000,
+          px: 0, py: 0
+        });
+      }
+    };
+
+    // 2. CSILLAGMEZŐ RAJZOLÁSA (WARP EFFECT)
+    let lastScroll = window.scrollY;
+    let speed = 2;
+
+    const drawStars = () => {
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, w, h);
+      
+      const currentScroll = window.scrollY;
+      const scrollDiff = Math.abs(currentScroll - lastScroll);
+      speed = 2 + (scrollDiff * 0.2); // Gyorsabb görgetés = hosszabb csíkok
+      lastScroll = currentScroll;
+
+      ctx.strokeStyle = 'white';
+      ctx.beginPath();
+      
+      stars.forEach(s => {
+        s.z -= speed;
+        if(s.z <= 0) s.z = 2000;
+
+        const x = (s.x / s.z) * w + w/2;
+        const y = (s.y / s.z) * h + h/2;
+
+        if(s.px !== 0) {
+          ctx.lineWidth = (1 - s.z/2000) * 3;
+          ctx.globalAlpha = (1 - s.z/2000);
+          ctx.moveTo(x, y);
+          ctx.lineTo(s.px, s.py);
+        }
+        s.px = x; s.py = y;
+      });
+      ctx.stroke();
+      requestAnimationFrame(drawStars);
+    };
+
+    // 3. 3D UTAZÁS LOGIKA
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowH = window.innerHeight;
+      const section = document.getElementById('universe-travel');
+      const rect = section.getBoundingClientRect();
+      
+      // Haladás kiszámítása (0-tól 1-ig)
+      const progress = Math.max(0, -rect.top / (rect.height - windowH));
+      const travelDepth = progress * 15000; // Milyen mély az univerzum
+
+      steps.forEach((step, i) => {
+        const baseZ = parseFloat(step.dataset.z);
+        const currentZ = baseZ + travelDepth;
+
+        // --- AZ "ÁTHALADÁS" LOGIKA ---
+        // Ha currentZ közelít a 0-hoz, akkor van a szemünk előtt
+        // Ha currentZ > 500, akkor már "mögöttünk" van
+        
+        let opacity = 0;
+        let scale = 1;
+        let blur = 0;
+
+        if (currentZ < -2000) {
+          opacity = 0; // Túl messze van
+        } else if (currentZ < 0) {
+          opacity = (currentZ + 2000) / 1500; // Közeledik és kivilágosodik
+          scale = 0.5 + (currentZ + 2000) / 4000;
+        } else if (currentZ < 1500) {
+          // ÉPPEN ÁTHALADUNK RAJTA
+          opacity = 1 - (currentZ / 1500); 
+          scale = 1 + (currentZ / 200); // Hatalmasra nő, ahogy "átmegyünk" rajta
+          blur = (currentZ / 100); // Elhomályosodik a széleken
+        } else {
+          opacity = 0; // Már elhagytuk
+        }
+
+        step.style.opacity = opacity;
+        step.style.transform = `translate(-50%, -50%) translateZ(${currentZ}px) scale(${scale})`;
+        step.style.filter = `blur(${blur}px)`;
+        
+        // Ha éppen átmegyünk rajta, legyen a rétegrend legfelül
+        step.style.zIndex = Math.round(1000 + currentZ);
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', initStars);
+    initStars();
+    drawStars();
+  });
+</script>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
+  }
+
+  /* Segít az animációk simításában */
+  .step-portal {
+    pointer-events: none; /* Ne zavarja a görgetést */
+    transition: opacity 0.1s linear;
+  }
+  
+  /* Amikor közel van, lehessen kattintani a kártyára */
+  .step-portal[style*="opacity: 1"] {
+    pointer-events: auto;
+  }
+</style>
