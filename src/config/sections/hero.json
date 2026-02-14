@@ -13,7 +13,7 @@
   },
   "media": {
     "type": "video",
-    "source": "/Aimentool/assets/hero_video.mp4",
+    "source": "/assets/hero_video.mp4",
     "poster_image": "",
     "video_settings": {
       "loop": false,

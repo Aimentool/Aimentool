@@ -22,13 +22,13 @@
     }
   },
   "logo": {
-    "image_source": "/Aimentool/assets/logo.png", 
+    "image_source": "/assets/logo.png", 
     "height_class": "h-10", 
     "brand_text": {
       "show": true,
       "text": "AIMentool",
       "mode": "image",
-      "custom_image_path": "/Aimentool/assets/brand_text.png",
+      "custom_image_path": "/assets/brand_text.png",
       "color_override": "#FFFFFF"
     }
   },
