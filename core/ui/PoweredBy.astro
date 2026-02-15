@@ -1,0 +1,40 @@
+﻿---
+interface Props {
+  data: {
+    label: string;
+    url: string;
+    logo?: string;
+    logoAlt?: string;
+  };
+}
+
+const { data } = Astro.props;
+
+const rawLogo = data?.logo || '';
+const isExternal = rawLogo.startsWith('http://') || rawLogo.startsWith('https://');
+const isRootPath = rawLogo.startsWith('/');
+const logoSrc = rawLogo
+  ? (isExternal || isRootPath ? rawLogo : new URL(rawLogo, import.meta.url).href)
+  : '';
+const logoAlt = data?.logoAlt || 'Powered by logo';
+---
+
+<div class="flex items-center justify-center gap-2 text-xs opacity-60 hover:opacity-100 transition">
+  {logoSrc && (
+    <img
+      src={logoSrc}
+      alt={logoAlt}
+      class="w-4 h-4 object-contain"
+      loading="lazy"
+    />
+  )}
+
+  <a
+    href={data.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hover:underline"
+  >
+    {data.label}
+  </a>
+</div>

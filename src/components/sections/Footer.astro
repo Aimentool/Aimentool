@@ -1,9 +1,9 @@
 ﻿---
 import footer from '../../config/footer.json';
 import agency from '../../config/agency.json';
-import coreLegal from '../../../../core/legal/agency-legal.json';
-import SocialIcon from '../../../../core/ui/social-icons.astro';
-import PoweredBy from '../../../../core/ui/PoweredBy.astro';
+import coreLegal from '../../../core/legal/agency-legal.json';
+import SocialIcon from '../../../core/ui/social-icons.astro';
+import PoweredBy from '../../../core/ui/PoweredBy.astro';
 
 const currentYear = new Date().getFullYear();
 const baseUrl = import.meta.env.BASE_URL || '/';
@@ -189,3 +189,4 @@ const showPoweredBy = Boolean(
     </div>
   </div>
 </footer>
+

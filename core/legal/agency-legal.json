@@ -1,0 +1,12 @@
+﻿{
+  "privacyPath": "/adatvedelem",
+  "termsPath": "/aszf",
+  "cookiePath": "/cookie-policy",
+  "poweredBy": {
+    "enabled": true,
+    "label": "Weboldal: Aimentool",
+    "url": "https://aimentool.com",
+    "logo": "../branding/logo.png",
+    "logoAlt": "Aimentool"
+  }
+}
