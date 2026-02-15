@@ -1,0 +1,194 @@
+﻿  .story-root {
+    --story-glass: rgba(9, 22, 32, 0.58);
+  }
+
+  .story-bg-1 {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(102, 230, 193, 0.18) 0%, transparent 36%),
+      radial-gradient(circle at 85% 70%, rgba(129, 161, 166, 0.18) 0%, transparent 34%),
+      linear-gradient(165deg, #0b1520 0%, #071018 52%, #050b10 100%);
+  }
+
+  .story-bg-2 {
+    background:
+      radial-gradient(circle at 75% 22%, rgba(102, 230, 193, 0.2) 0%, transparent 36%),
+      linear-gradient(180deg, #0a1720 0%, #124e58 100%);
+  }
+
+  .story-bg-3 {
+    background: linear-gradient(165deg, #0a1b28 0%, #12324a 52%, #16384d 100%);
+  }
+
+  .story-bg-4 {
+    background:
+      radial-gradient(circle at 32% 26%, rgba(102, 230, 193, 0.14) 0%, transparent 40%),
+      linear-gradient(130deg, #113546 0%, #0d2533 56%, #0f2431 100%);
+  }
+
+  .story-bg-5 {
+    background:
+      radial-gradient(circle at 50% 8%, rgba(102, 230, 193, 0.22) 0%, transparent 38%),
+      linear-gradient(180deg, #0b1720 0%, #071018 100%);
+  }
+
+  .story-bg-noise {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 0.8px, transparent 0.8px);
+    background-size: 3px 3px;
+    mix-blend-mode: soft-light;
+  }
+
+  .story-bg-grid {
+    background-image:
+      linear-gradient(rgba(129, 161, 166, 0.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(129, 161, 166, 0.13) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+
+  .story-orb {
+    width: min(38vw, 460px);
+    aspect-ratio: 1 / 1;
+    border-radius: 999px;
+    filter: blur(70px);
+    opacity: 0.28;
+  }
+
+  .story-orb-a {
+    left: -8%;
+    top: -6%;
+    background: rgba(102, 230, 193, 0.38);
+  }
+
+  .story-orb-b {
+    right: -8%;
+    top: 20%;
+    background: rgba(18, 78, 88, 0.58);
+  }
+
+  .story-orb-c {
+    left: 30%;
+    bottom: -12%;
+    background: rgba(129, 161, 166, 0.34);
+  }
+
+  .story-phase {
+    position: relative;
+  }
+
+  .story-glass {
+    backdrop-filter: blur(10px);
+    background: var(--story-glass);
+  }
+
+  .chaos-card,
+  .service-card,
+  .integration-card,
+  .broken-node,
+  .sync-slot {
+    backdrop-filter: blur(8px);
+    will-change: transform, opacity;
+  }
+
+  .chaos-card.is-synced {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .broken-line {
+    stroke: rgba(129, 161, 166, 0.82);
+    stroke-width: 1.2;
+    fill: none;
+    stroke-dasharray: 9 8;
+    stroke-dashoffset: 120;
+    opacity: 0.25;
+  }
+
+  .sync-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .sync-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .sync-slot {
+    min-height: 92px;
+    border: 1px solid rgba(102, 230, 193, 0.3);
+    border-radius: 0.75rem;
+    background: rgba(7, 20, 30, 0.48);
+    padding: 0.75rem;
+  }
+
+  .engine-panel {
+    backdrop-filter: blur(14px);
+  }
+
+  .engine-chip {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.7rem;
+    padding: 0.62rem 0.85rem;
+    background: rgba(5, 11, 16, 0.56);
+  }
+
+  .engine-rings .ring {
+    position: absolute;
+    inset: 16%;
+    border-radius: 999px;
+    border: 1px solid rgba(102, 230, 193, 0.24);
+  }
+
+  .engine-rings .ring-2 {
+    inset: 28%;
+    border-color: rgba(102, 230, 193, 0.32);
+  }
+
+  .engine-path {
+    fill: none;
+    stroke: rgba(102, 230, 193, 0.85);
+    stroke-width: 2;
+  }
+
+  .packet {
+    fill: #66e6c1;
+    filter: drop-shadow(0 0 6px rgba(102, 230, 193, 0.6));
+  }
+
+  .service-pin {
+    overflow: hidden;
+  }
+
+  .service-track {
+    will-change: transform;
+  }
+
+  @media (min-width: 1024px) {
+    .service-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(300px, 1fr);
+      gap: 1.25rem;
+    }
+  }
+
+  .story-flow-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .story-flow-path {
+    fill: none;
+    stroke: rgba(102, 230, 193, 0.45);
+    stroke-width: 2;
+  }
+
+  @media (max-width: 899px) {
+    .story-orb {
+      width: min(58vw, 360px);
+      filter: blur(54px);
+      opacity: 0.22;
+    }
+  }
+

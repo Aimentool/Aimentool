@@ -1,0 +1,36 @@
+{
+  "theme": {
+    "background": "#0f172a",
+    "text": "#e2e8f0"
+  },
+  "brand": {
+    "name": "Aimentool",
+    "description": "Modern digitális megoldások."
+  },
+  "contact": {
+    "address": "Budapest, Magyarország",
+    "email": "info@aimentool.com",
+    "phone": "+36 30 123 4567"
+  },
+  "menu": [
+    { "label": "Kezdőlap", "href": "/" },
+    { "label": "Szolgátatások", "href": "#services" },
+    { "label": "kapcsolat", "href": "/contact" }
+  ],
+  "social": {
+    "facebook": "https://www.facebook.com/aimentool",
+    "instagram": "",
+    "linkedin": "https://www.facebook.com/aimentool",
+    "tiktok": "https://www.facebook.com/aimentool",
+    "youtube": "",
+    "pinterest": "",
+    "viber": "",
+    "whatsapp": "",
+    "gmb": "",
+    "waze": "",
+    "joszaki": ""
+  },
+  "poweredBy": true,
+  "systemStatus": true,
+  "trustBadge": "Human Verified"
+}

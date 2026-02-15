@@ -1,31 +1,28 @@
----
+﻿---
 import Layout from '../layouts/Layout.astro';
 import siteSettings from '../config/site_settings.json';
 
-// --- KOMPONENSEK IMPORTÁLÁSA ---
+// --- KOMPONENSEK IMPORTĂLĂSA ---
 import HeroVideo from '../components/sections/HeroVideo.astro';
-// Ha létezik a Hero.astro, vedd ki a kommentet, különben hiba lesz!
+// Ha lĂ©tezik a Hero.astro, vedd ki a kommentet, kĂĽlĂ¶nben hiba lesz!
 // import Hero from '../components/sections/Hero.astro'; 
 
-import Features from '../components/sections/Features.astro';
-import StoryScroll from '../components/sections/StoryScroll.astro'; // <--- MOST MÁR LÁTHATÓ LESZ
+import StoryScroll from '../components/sections/StoryScroll.astro'; // <--- MOST MĂR LĂTHATĂ“ LESZ
 import Contact from '../components/sections/Contact.astro';
 import Footer from '../components/sections/Footer.astro';
 
-// --- LOGIKA (FONTOS: Ez is a kerítésen BELÜL van!) ---
+// --- LOGIKA (FONTOS: Ez is a kerĂ­tĂ©sen BELĂśL van!) ---
 const modules = siteSettings.modules || {};
 ---
 
-<Layout title="Kezdőlap">
+<Layout title="KezdĹ‘lap">
 	<main>
 
         {
             modules.hero_type === 'video' 
             ? <HeroVideo /> 
-            : <HeroVideo /> /* Ideiglenesen ide is a videót tettem, hogy ne omoljon össze, ha nincs Hero.astro fájlod */
+            : <HeroVideo /> /* Ideiglenesen ide is a videĂłt tettem, hogy ne omoljon Ă¶ssze, ha nincs Hero.astro fĂˇjlod */
         }
-
-        {modules.show_features && <Features />}
         
         {modules.show_story && <StoryScroll />}
         

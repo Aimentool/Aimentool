@@ -1,189 +1,192 @@
----
-import storyConfig from '../../config/sections/story.json';
-
-const { settings, content } = storyConfig;
-if (!settings?.enabled) return;
-
-const steps = content.steps || [];
-const accentColor = settings.accent_color || '#5EEAD4';
+﻿---
+import TheEngine from '../TheEngine.astro';
+import '../../styles/story.css';
 ---
 
-<section id="universe-travel" class="relative bg-black overflow-hidden" style="height: 800vh;">
-  
-  <div class="fixed-camera sticky top-0 left-0 w-full h-screen overflow-hidden perspective-1000">
-    
-    <canvas id="warp-speed-canvas" class="absolute inset-0 z-0"></canvas>
+<section id="story-scroll-root" class="story-root relative overflow-hidden text-light">
+  <div class="pointer-events-none absolute inset-0">
+    <div class="story-bg-1 absolute inset-0"></div>
+    <div class="story-bg-2 story-bg-2 absolute inset-0 opacity-0"></div>
+    <div class="story-bg-3 story-bg-3 absolute inset-0 opacity-0"></div>
+    <div class="story-bg-4 story-bg-4 absolute inset-0 opacity-0"></div>
+    <div class="story-bg-5 story-bg-5 absolute inset-0 opacity-0"></div>
+    <div class="story-bg-noise absolute inset-0 opacity-25"></div>
+    <div class="story-bg-grid absolute inset-0 story-bg-grid opacity-0"></div>
+    <div class="story-orb story-orb-a absolute"></div>
+    <div class="story-orb story-orb-b absolute"></div>
+    <div class="story-orb story-orb-c absolute"></div>
 
-    <div id="universe-void" class="absolute inset-0 preserve-3d">
-      
-      {steps.map((step, index) => (
-        <div 
-          class="step-portal absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-0"
-          data-z={-3000 * (index + 1)}
-        >
-          <div class="portal-ring relative flex items-center justify-center w-32 h-32 md:w-48 md:h-48 rounded-full border-2 border-white/20 shadow-[0_0_100px_rgba(255,255,255,0.1)] mb-12">
-            <div class="absolute inset-0 rounded-full animate-pulse-slow" style={`box-shadow: inset 0 0 50px ${accentColor}, 0 0 50px ${accentColor}; opacity: 0.3;`}></div>
-            <span class="text-3xl md:text-5xl font-black text-white z-10">{step.year}</span>
-          </div>
+    <svg class="story-flow-svg absolute inset-0" viewBox="0 0 1200 560" preserveAspectRatio="none" aria-hidden="true">
+      <path class="story-flow-path" d="M0,80 C220,130 280,30 430,96 C560,156 640,230 780,200 C930,168 1000,290 1200,260" />
+    </svg>
+  </div>
 
-          <div class="info-card backdrop-blur-xl bg-white/5 p-8 rounded-3xl border border-white/10 text-center max-w-lg shadow-2xl">
-            <h3 class="text-4xl font-bold mb-4 text-white tracking-tighter uppercase">{step.title}</h3>
-            <p class="text-gray-300 text-lg leading-relaxed">{step.description}</p>
-            
-            {step.image && (
-              <div class="mt-6 rounded-xl overflow-hidden border border-white/10">
-                <img src={step.image} alt={step.title} class="w-full h-40 object-cover opacity-80" />
-              </div>
-            )}
-          </div>
+  <div class="relative z-10">
+    <section class="story-phase story-phase-1 flex min-h-screen items-center">
+      <div class="mx-auto w-full max-w-7xl px-6">
+        <div class="story-phase-copy max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Entropia</p>
+          <h2 data-entropy-title data-final-text="A legtobb weboldal csak jelen van." class="mt-6 text-4xl font-bold leading-tight md:text-6xl">
+            A legtobb weboldal csak jelen van.
+          </h2>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+            Nincs benne valodi folyamat, ami fogadja, rendszerezi es tovabbviszi az erdeklodest.
+          </p>
         </div>
-      ))}
 
-    </div>
+        <div class="chaos-grid mt-10 grid gap-4 md:mt-14 md:grid-cols-2">
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-8 md:max-w-md">Bejovo erdeklodes elveszik</article>
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-auto md:mr-10 md:max-w-md">Nincs automatizalt valasz</article>
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-2 md:max-w-md">Nincs CRM osszekotes</article>
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-auto md:mr-16 md:max-w-md">Nincs meres</article>
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-14 md:max-w-md">Nincs utan-kovetes</article>
+          <article class="chaos-card story-glass rounded-xl border border-white/10 p-5 md:ml-auto md:mr-6 md:max-w-md">Nincs folyamatfegyelem</article>
+        </div>
+      </div>
+    </section>
 
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/30 text-xs tracking-[0.5em] uppercase animate-bounce">
-      Görgess az utazáshoz
-    </div>
+    <section class="story-phase story-phase-2 flex min-h-screen items-center">
+      <div class="mx-auto w-full max-w-7xl px-6">
+        <div class="story-phase-copy max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Disconnect</p>
+          <h3 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">Ez nem rendszer.<br />Ez csak jelenlet.</h3>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+            Az elemek leteznek, de nem beszelnek egymassal. Nincs osszefuggo adatut.
+          </p>
+        </div>
+
+        <div class="relative mt-12">
+          <div class="grid gap-4 md:grid-cols-3">
+            <div class="broken-node story-glass rounded-xl border border-white/10 p-4">Weboldal</div>
+            <div class="broken-node story-glass rounded-xl border border-white/10 p-4">Urlap</div>
+            <div class="broken-node story-glass rounded-xl border border-white/10 p-4">Erdeklodo</div>
+          </div>
+          <svg class="pointer-events-none absolute inset-0 hidden md:block" viewBox="0 0 1000 260" preserveAspectRatio="none" aria-hidden="true">
+            <path class="broken-line" d="M90,80 C220,10 320,140 420,80" />
+            <path class="broken-line" d="M420,80 C540,22 640,160 760,96" />
+            <path class="broken-line" d="M420,190 C560,130 640,230 810,170" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-phase story-phase-3 flex min-h-screen items-center">
+      <div class="mx-auto w-full max-w-7xl px-6">
+        <div class="story-phase-copy max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Grid Snap</p>
+          <h3 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">
+            Az <span class="text-primary">Aimentool</span> rendszert epit.
+          </h3>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+            A szetesett elemek osszeallnak egy merheto, skalazhato mukodesi modellbe.
+          </p>
+        </div>
+
+        <div class="sync-grid mt-12">
+          <div class="sync-slot" data-sync-slot="0"></div>
+          <div class="sync-slot" data-sync-slot="1"></div>
+          <div class="sync-slot" data-sync-slot="2"></div>
+          <div class="sync-slot" data-sync-slot="3"></div>
+          <div class="sync-slot" data-sync-slot="4"></div>
+          <div class="sync-slot" data-sync-slot="5"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-phase story-phase-4 min-h-screen">
+      <div class="engine-pin-wrap mx-auto flex w-full max-w-7xl items-center px-6 py-20">
+        <TheEngine />
+      </div>
+    </section>
+
+    <section class="story-phase story-phase-5 min-h-screen py-20">
+      <div class="service-pin mx-auto w-full max-w-7xl px-6">
+        <div class="story-phase-copy max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Modulok</p>
+          <h3 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">Konkret elemek, konkret eredmenyhez.</h3>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+            Nem igeretet adunk, hanem vegrehajthato modulokat epitunk ossze egy rendszerbe.
+          </p>
+        </div>
+
+        <div class="service-track mt-10">
+          <article class="service-card story-glass rounded-xl border border-white/10 p-6">
+            <h4 class="text-xl font-semibold">Weboldal es Story</h4>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Gyors Astro alap, mobiloptimalizalt szerkezet, tiszta informacio-architektura.</p>
+          </article>
+          <article class="service-card story-glass rounded-xl border border-white/10 p-6">
+            <h4 class="text-xl font-semibold">Lead es CRM</h4>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Urlapbol azonnali CRM beerkezes, statuszkezeles, visszakovetheto ugyfelut.</p>
+          </article>
+          <article class="service-card story-glass rounded-xl border border-white/10 p-6">
+            <h4 class="text-xl font-semibold">Automatizacio</h4>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Automatikus email, SMS ertesites, ismetelheto es skalazhato folyamatok.</p>
+          </article>
+          <article class="service-card story-glass rounded-xl border border-white/10 p-6">
+            <h4 class="text-xl font-semibold">Hirdetes es tartalom</h4>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Meta kampanykivitelezes, celcsoport-logika, utemezett posztolasi workflow.</p>
+          </article>
+          <article class="service-card story-glass rounded-xl border border-white/10 p-6">
+            <h4 class="text-xl font-semibold">Meres es optimalizalas</h4>
+            <p class="mt-3 text-sm leading-relaxed text-muted">Valos teljesitmenymeres, konverzios fokusz es folyamatos rendszerhangolas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-phase story-phase-6 flex min-h-screen items-center">
+      <div class="mx-auto w-full max-w-7xl px-6">
+        <div class="story-phase-copy max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Integracio</p>
+          <h3 class="mt-5 text-4xl font-bold leading-tight md:text-5xl">
+            Nem csak weboldalt kapsz.<br />
+            <span class="text-primary">Rendszert kapsz.</span>
+          </h3>
+        </div>
+
+        <div class="integration-grid mt-12 grid gap-4 md:grid-cols-2">
+          <article class="integration-card story-glass rounded-xl border border-primary/35 p-5">Kaosz helyett folyamat</article>
+          <article class="integration-card story-glass rounded-xl border border-primary/35 p-5">Kezi munka helyett automatizmus</article>
+          <article class="integration-card story-glass rounded-xl border border-primary/35 p-5">Elszort adatok helyett kozos rendszer</article>
+          <article class="integration-card story-glass rounded-xl border border-primary/35 p-5">Jelenlet helyett merheto mukodes</article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story-phase story-phase-7 flex min-h-screen items-center">
+      <div class="mx-auto w-full max-w-7xl px-6">
+        <div class="max-w-3xl">
+          <p class="text-sm uppercase tracking-[0.24em] text-muted">Launch</p>
+          <h3 class="mt-5 text-5xl font-bold leading-tight md:text-7xl">Epits rendszert.<br />Ne csak oldalt.</h3>
+          <p class="mt-6 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
+            Ha a kovetkezo szint a cel, akkor olyan digitalis infrastruktura kell, ami helyetted is dolgozik.
+          </p>
+          <a href="#contact" class="mt-10 inline-flex rounded-md border border-primary bg-primary px-7 py-3 text-sm font-semibold text-dark transition hover:bg-transparent hover:text-primary">
+            Inditsuk el
+          </a>
+        </div>
+      </div>
+    </section>
   </div>
 </section>
 
-<script define:vars={{ accentColor }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    const void_container = document.getElementById('universe-void');
-    const steps = document.querySelectorAll('.step-portal');
-    const canvas = document.getElementById('warp-speed-canvas');
-    const ctx = canvas.getContext('2d');
+<script type="module">
+  import { createStoryAnimation } from '/src/hooks/useStoryAnimation.ts';
+  let cleanup = null;
 
-    let w, h, stars = [];
-    const starCount = 400;
+  createStoryAnimation('#story-scroll-root')
+    .then((dispose) => {
+      cleanup = dispose;
+    })
+    .catch(() => {
+      cleanup = null;
+    });
 
-    // 1. CSILLAGOK INICIALIZÁLÁSA
-    const initStars = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      stars = [];
-      for(let i=0; i<starCount; i++) {
-        stars.push({
-          x: Math.random() * w - w/2,
-          y: Math.random() * h - h/2,
-          z: Math.random() * 2000,
-          px: 0, py: 0
-        });
-      }
-    };
-
-    // 2. CSILLAGMEZŐ RAJZOLÁSA (WARP EFFECT)
-    let lastScroll = window.scrollY;
-    let speed = 2;
-
-    const drawStars = () => {
-      ctx.fillStyle = 'black';
-      ctx.fillRect(0, 0, w, h);
-      
-      const currentScroll = window.scrollY;
-      const scrollDiff = Math.abs(currentScroll - lastScroll);
-      speed = 2 + (scrollDiff * 0.2); // Gyorsabb görgetés = hosszabb csíkok
-      lastScroll = currentScroll;
-
-      ctx.strokeStyle = 'white';
-      ctx.beginPath();
-      
-      stars.forEach(s => {
-        s.z -= speed;
-        if(s.z <= 0) s.z = 2000;
-
-        const x = (s.x / s.z) * w + w/2;
-        const y = (s.y / s.z) * h + h/2;
-
-        if(s.px !== 0) {
-          ctx.lineWidth = (1 - s.z/2000) * 3;
-          ctx.globalAlpha = (1 - s.z/2000);
-          ctx.moveTo(x, y);
-          ctx.lineTo(s.px, s.py);
-        }
-        s.px = x; s.py = y;
-      });
-      ctx.stroke();
-      requestAnimationFrame(drawStars);
-    };
-
-    // 3. 3D UTAZÁS LOGIKA
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const windowH = window.innerHeight;
-      const section = document.getElementById('universe-travel');
-      const rect = section.getBoundingClientRect();
-      
-      // Haladás kiszámítása (0-tól 1-ig)
-      const progress = Math.max(0, -rect.top / (rect.height - windowH));
-      const travelDepth = progress * 15000; // Milyen mély az univerzum
-
-      steps.forEach((step, i) => {
-        const baseZ = parseFloat(step.dataset.z);
-        const currentZ = baseZ + travelDepth;
-
-        // --- AZ "ÁTHALADÁS" LOGIKA ---
-        // Ha currentZ közelít a 0-hoz, akkor van a szemünk előtt
-        // Ha currentZ > 500, akkor már "mögöttünk" van
-        
-        let opacity = 0;
-        let scale = 1;
-        let blur = 0;
-
-        if (currentZ < -2000) {
-          opacity = 0; // Túl messze van
-        } else if (currentZ < 0) {
-          opacity = (currentZ + 2000) / 1500; // Közeledik és kivilágosodik
-          scale = 0.5 + (currentZ + 2000) / 4000;
-        } else if (currentZ < 1500) {
-          // ÉPPEN ÁTHALADUNK RAJTA
-          opacity = 1 - (currentZ / 1500); 
-          scale = 1 + (currentZ / 200); // Hatalmasra nő, ahogy "átmegyünk" rajta
-          blur = (currentZ / 100); // Elhomályosodik a széleken
-        } else {
-          opacity = 0; // Már elhagytuk
-        }
-
-        step.style.opacity = opacity;
-        step.style.transform = `translate(-50%, -50%) translateZ(${currentZ}px) scale(${scale})`;
-        step.style.filter = `blur(${blur}px)`;
-        
-        // Ha éppen átmegyünk rajta, legyen a rétegrend legfelül
-        step.style.zIndex = Math.round(1000 + currentZ);
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', initStars);
-    initStars();
-    drawStars();
-  });
+  window.addEventListener(
+    'pagehide',
+    () => {
+      if (cleanup) cleanup();
+    },
+    { once: true }
+  );
 </script>
-
-<style>
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-  .preserve-3d {
-    transform-style: preserve-3d;
-    will-change: transform;
-  }
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.05); }
-  }
-
-  /* Segít az animációk simításában */
-  .step-portal {
-    pointer-events: none; /* Ne zavarja a görgetést */
-    transition: opacity 0.1s linear;
-  }
-  
-  /* Amikor közel van, lehessen kattintani a kártyára */
-  .step-portal[style*="opacity: 1"] {
-    pointer-events: auto;
-  }
-</style>

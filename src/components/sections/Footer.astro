@@ -1,62 +1,191 @@
----
-import siteSettings from '../../config/site_settings.json';
-import SocialIcons from '../ui/SocialIcons.astro';
+﻿---
+import footer from '../../config/footer.json';
+import agency from '../../config/agency.json';
+import coreLegal from '../../../../core/legal/agency-legal.json';
+import SocialIcon from '../../../../core/ui/social-icons.astro';
+import PoweredBy from '../../../../core/ui/PoweredBy.astro';
 
 const currentYear = new Date().getFullYear();
-const { brand, contact } = siteSettings;
+const baseUrl = import.meta.env.BASE_URL || '/';
+const normalizedBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+const withBase = (url) => {
+  if (!url || typeof url !== 'string') return normalizedBase;
+  if (
+    url.startsWith('#') ||
+    url.startsWith('mailto:') ||
+    url.startsWith('tel:') ||
+    url.startsWith('http://') ||
+    url.startsWith('https://')
+  ) {
+    return url;
+  }
+  if (url.startsWith(normalizedBase)) return url;
+  if (url.startsWith('/')) return `${normalizedBase}${url.replace(/^\/+/, '')}`;
+  return `${normalizedBase}${url}`;
+};
+
+const themeMode = footer?.theme?.mode || 'dark';
+const isDark = themeMode !== 'light';
+const footerBg = footer?.theme?.background || (isDark ? '#0f172a' : '#ffffff');
+const footerText = footer?.theme?.text || (isDark ? '#e2e8f0' : '#1f2937');
+const footerAccent = footer?.theme?.accent || '#6366f1';
+
+const brandName = footer?.brand?.name || '';
+const brandDescription = footer?.brand?.description || '';
+const contactAddress = footer?.contact?.address || '';
+const contactEmail = footer?.contact?.email || '';
+const contactPhone = footer?.contact?.phone || '';
+const menuItems = Array.isArray(footer?.menu)
+  ? footer.menu.filter((item) => item?.label && item?.href)
+  : [];
+
+const socialEntries = Object.entries(footer?.social || {})
+  .filter(([_, value]) => typeof value === 'string' && value.trim() !== '');
+
+const showSystemStatus = Boolean(footer?.systemStatus);
+const trustBadge = footer?.trustBadge || '';
+
+const mergedLegal = {
+  privacyPath: agency?.privacyPath || coreLegal?.privacyPath || '',
+  termsPath: agency?.termsPath || coreLegal?.termsPath || '',
+  cookiePath: agency?.cookiePath || coreLegal?.cookiePath || '',
+  poweredBy: {
+    ...coreLegal?.poweredBy,
+    ...agency?.poweredBy,
+  },
+};
+
+const legalLinks = [
+  { label: 'Adatvedelem', href: mergedLegal.privacyPath },
+  { label: 'ASZF', href: mergedLegal.termsPath },
+  { label: 'Cookie', href: mergedLegal.cookiePath },
+].filter((item) => item.href);
+
+const poweredByData = {
+  label: mergedLegal?.poweredBy?.label || mergedLegal?.poweredBy?.name || '',
+  url: mergedLegal?.poweredBy?.url || '',
+  logo: mergedLegal?.poweredBy?.logo || '',
+  logoAlt: mergedLegal?.poweredBy?.logoAlt || mergedLegal?.poweredBy?.name || 'Powered by',
+};
+
+const showPoweredBy = Boolean(
+  footer?.poweredBy &&
+  mergedLegal?.poweredBy?.enabled !== false &&
+  poweredByData.label &&
+  poweredByData.url
+);
 ---
 
-<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
-  <div class="container mx-auto px-6">
-    
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-      
-      <div class="col-span-1 md:col-span-2">
-        <a href="/" class="text-2xl font-bold text-[var(--primary)] tracking-tighter mb-4 block">
-            {brand.name}
-        </a>
-        <p class="text-gray-500 mb-6 max-w-sm">
-          {brand.description}
-        </p>
-        <SocialIcons />
+<footer
+  style={`
+    --footer-bg:${footerBg};
+    --footer-text:${footerText};
+    --footer-accent:${footerAccent};
+  `}
+  class={`w-full border-t ${isDark ? 'border-white/10' : 'border-black/10'}`}
+>
+  <div class="w-full" style="background:var(--footer-bg); color:var(--footer-text);">
+    <div class="mx-auto max-w-7xl px-6 py-14 md:py-16">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div>
+          {brandName && (
+            <a href={normalizedBase} class="block text-xl font-semibold tracking-tight">
+              {brandName}
+            </a>
+          )}
+          {brandDescription && (
+            <p class="mt-4 max-w-sm text-sm leading-6 opacity-75">
+              {brandDescription}
+            </p>
+          )}
+
+          {socialEntries.length > 0 && (
+            <div class="mt-6 flex flex-wrap items-center gap-3">
+              {socialEntries.map(([platform, url]) => (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={platform}
+                  class={`inline-flex h-9 w-9 items-center justify-center rounded-md border transition ${isDark ? 'border-white/15 text-white/80 hover:text-white hover:bg-white/10' : 'border-black/15 text-black/70 hover:text-black hover:bg-black/5'} hover:scale-105`}
+                >
+                  <SocialIcon name={platform} />
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <nav aria-label="Footer menu">
+          <h4 class="text-xs font-semibold uppercase tracking-wider opacity-70">Menu</h4>
+          {menuItems.length > 0 && (
+            <ul class="mt-4 space-y-2 text-sm">
+              {menuItems.map((item) => (
+                <li>
+                  <a href={withBase(item.href)} class="opacity-75 transition hover:opacity-100 hover:text-[var(--footer-accent)]">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </nav>
+
+        <address class="not-italic text-sm">
+          <h4 class="text-xs font-semibold uppercase tracking-wider opacity-70">Contact</h4>
+          <ul class="mt-4 space-y-3 opacity-80">
+            {contactAddress && <li>{contactAddress}</li>}
+            {contactEmail && (
+              <li>
+                <a href={`mailto:${contactEmail}`} class="transition hover:opacity-100 hover:text-[var(--footer-accent)]">
+                  {contactEmail}
+                </a>
+              </li>
+            )}
+            {contactPhone && (
+              <li>
+                <a href={`tel:${contactPhone}`} class="transition hover:opacity-100 hover:text-[var(--footer-accent)]">
+                  {contactPhone}
+                </a>
+              </li>
+            )}
+          </ul>
+        </address>
       </div>
 
-      <div>
-        <h4 class="font-bold text-gray-900 mb-4">Menü</h4>
-        <ul class="space-y-2">
-          <li><a href="/" class="text-gray-600 hover:text-[var(--primary)] transition-colors">Kezdőlap</a></li>
-          <li><a href="#features" class="text-gray-600 hover:text-[var(--primary)] transition-colors">Szolgáltatások</a></li>
-          <li><a href="#contact" class="text-gray-600 hover:text-[var(--primary)] transition-colors">Kapcsolat</a></li>
-        </ul>
-      </div>
+      <div class={`mt-10 border-t pt-6 ${isDark ? 'border-white/10' : 'border-black/10'}`}>
+        <div class="flex flex-col items-center gap-4 text-xs md:text-sm">
+          {showSystemStatus && (
+            <div class="flex items-center gap-2 opacity-75">
+              <span class="h-2 w-2 rounded-full" style="background:var(--footer-accent);"></span>
+              <span>System online</span>
+            </div>
+          )}
 
-      <div>
-        <h4 class="font-bold text-gray-900 mb-4">Elérhetőség</h4>
-        <ul class="space-y-3 text-gray-600">
-          <li class="flex items-start gap-3">
-             <span class="text-[var(--primary)] mt-1">📍</span>
-             {contact.address}
-          </li>
-          <li class="flex items-center gap-3">
-             <span class="text-[var(--primary)]">📧</span>
-             <a href={`mailto:${contact.email}`} class="hover:text-[var(--primary)]">{contact.email}</a>
-          </li>
-          <li class="flex items-center gap-3">
-             <span class="text-[var(--primary)]">📞</span>
-             <a href={`tel:${contact.phone}`} class="hover:text-[var(--primary)]">{contact.phone}</a>
-          </li>
-        </ul>
-      </div>
+          {trustBadge && (
+            <p class="text-center opacity-65">{trustBadge}</p>
+          )}
 
+          {legalLinks.length > 0 && (
+            <nav aria-label="Legal links" class="flex flex-wrap items-center justify-center gap-6 opacity-70">
+              {legalLinks.map((item) => (
+                <a href={withBase(item.href)} class="transition hover:opacity-100 hover:text-[var(--footer-accent)]">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+          )}
+
+          <p class="text-center opacity-60">&copy; {currentYear} {brandName}</p>
+
+          {showPoweredBy && (
+            <div class="opacity-60 hover:opacity-100 transition">
+              <PoweredBy data={poweredByData} />
+            </div>
+          )}
+        </div>
+      </div>
     </div>
-
-    <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-      <p>&copy; {currentYear} {brand.name}. Minden jog fenntartva.</p>
-      <div class="flex gap-6">
-        <a href="#" class="hover:text-gray-900">Adatvédelem</a>
-        <a href="#" class="hover:text-gray-900">ÁSZF</a>
-      </div>
-    </div>
-
   </div>
 </footer>
